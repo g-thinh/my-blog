@@ -5241,6 +5241,11 @@ static-extend@^0.1.1:
     define-property "^0.2.5"
     object-copy "^0.1.0"
 
+storyblok-rich-text-react-renderer@^2.3.1:
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/storyblok-rich-text-react-renderer/-/storyblok-rich-text-react-renderer-2.3.1.tgz#70db4f45d87cfafaa2a12d2b7f4b6e811f1fdfb0"
+  integrity sha512-9G5G/wsVW/md88WoSWfaP42c+3SqOuDhk1n23yg0aD74rRuBFyS8cq2wiYf9JZWxT0Oz1BxNyFxetjYcRDVVtQ==
+
 stream-browserify@3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/stream-browserify/-/stream-browserify-3.0.0.tgz#22b0a2850cdf6503e73085da1fc7b7d0c2122f2f"
