@@ -46,7 +46,7 @@ export default function AboutPage({ data }: any) {
               mb={[3, 4]}
             >
               <Flex>
-                <Flex sx={{ justifyContent: "center", borderRadius: "card" }}>
+                <Flex sx={{ width: "100%", flex: "1" }}>
                   <StyledImage
                     src={post.content.image.filename}
                     alt={post.content.image.alt}
@@ -57,6 +57,7 @@ export default function AboutPage({ data }: any) {
                 <Flex
                   px={[3, 4]}
                   sx={{
+                    flex: "3",
                     justifyContent: "center",
                     alignItems: "center",
                     margin: "auto",
@@ -93,5 +94,5 @@ export default function AboutPage({ data }: any) {
 }
 
 const StyledImage = styled(Image)({
-  borderRadius: "1rem",
+  borderRadius: "1.5rem",
 });
