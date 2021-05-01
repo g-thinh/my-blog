@@ -18,7 +18,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 };
 
 export default function AboutPage({ data }: any) {
-  console.log(data);
   return (
     <Container
       my="auto"
