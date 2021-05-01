@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { GetServerSideProps } from "next";
 import Image from "next/image";
 import absoluteUrl from "next-absolute-url";
+import { format } from "date-fns";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   try {
@@ -27,12 +28,37 @@ export default function AboutPage({ data }: any) {
         height: "100%",
       }}
     >
+      <Text
+        as="h1"
+        color="text"
+        my={[2, 3]}
+        sx={{
+          fontSize: [4, 5],
+          textAlign: ["center", "left"],
+          fontWeight: "bold",
+        }}
+      >
+        Food stuff 🤤
+      </Text>
+      <Text
+        as="p"
+        color="text"
+        mb={[4, 5]}
+        sx={{ textAlign: ["center", "left"], fontSize: [3] }}
+      >
+        Here are some of the recipes I've been cooking up lately that were worth
+        sharing.
+      </Text>
       {data.map((post) => {
         return (
           <Link href={post.full_slug}>
             <Card
               bg="muted"
               sx={{
+                display: "flex",
+                width: "100%",
+                flexDirection: "row",
+                flexWrap: "wrap",
                 borderRadius: "card",
                 "&:hover": {
                   cursor: "pointer",
@@ -42,18 +68,24 @@ export default function AboutPage({ data }: any) {
                   },
                 },
               }}
-              p={3}
+              p={[2, 3]}
               mb={[3, 4]}
             >
-              <Flex>
-                <Flex sx={{ width: "100%", flex: "1" }}>
+              <Flex sx={{ width: "100%" }}>
+                <Box
+                  sx={{
+                    width: "100%",
+                    flex: ["none", 1],
+                    display: ["none", "flex"],
+                  }}
+                >
                   <StyledImage
                     src={post.content.image.filename}
                     alt={post.content.image.alt}
                     width={120}
                     height={120}
                   />
-                </Flex>
+                </Box>
                 <Flex
                   px={[3, 4]}
                   sx={{
@@ -75,11 +107,19 @@ export default function AboutPage({ data }: any) {
                   >
                     {post.content.title}
                   </Text>
+                  <Text as="h3">
+                    {format(new Date(post.content.date), "do MMMM, yyyy")}
+                  </Text>
                   <Text
                     as="p"
                     color="text"
                     my={[1, 3]}
-                    sx={{ textAlign: "center", fontSize: [1] }}
+                    sx={{
+                      textAlign: "center",
+                      fontSize: [1],
+                      flexGrow: 1,
+                      display: "flex",
+                    }}
                   >
                     {post.content.description}
                   </Text>
