@@ -30,7 +30,7 @@ export const BlogPostCard = ({ data }) => {
           },
         }}
       >
-        <Flex>
+        <Flex sx={{ width: "100%" }}>
           <Flex
             sx={{
               flex: "1",
@@ -63,7 +63,7 @@ export const BlogPostCard = ({ data }) => {
                 fontSize: [1],
               }}
             >
-              {data.content.intro}
+              {data.content.preview}
             </Text>
             <Link href={data.full_slug} passHref>
               <Text
