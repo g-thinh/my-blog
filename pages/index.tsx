@@ -24,11 +24,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   }
 };
 
-interface Props {
-  data: any;
-}
-
-export default function HomePage({ data }: Props) {
+export default function HomePage({ data }: any): JSX.Element {
   return (
     <Container p={[2, 3]}>
       <Heading>{data.content.title}</Heading>

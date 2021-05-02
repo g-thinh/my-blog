@@ -23,7 +23,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   }
 };
 
-export default function AboutPage({ data }: any) {
+export default function AboutPage({ data }: any): JSX.Element {
   return (
     <Container p={[2, 3]}>
       <Heading>Food stuff 🤤</Heading>

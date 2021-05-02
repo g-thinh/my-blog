@@ -4,7 +4,7 @@ import { theme } from "@styles/theme";
 import Layout from "@components/Layout";
 import { ThemeProvider } from "theme-ui";
 
-function MyApp({ Component, pageProps }: AppProps) {
+function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyles styles />
