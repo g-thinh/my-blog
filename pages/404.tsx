@@ -1,4 +1,5 @@
 import { Container, Text } from "theme-ui";
+import { Heading } from "@components/index";
 
 export default function ErrorPage() {
   return (
@@ -9,17 +10,7 @@ export default function ErrorPage() {
         height: "100%",
       }}
     >
-      <Text
-        as="h1"
-        color="text"
-        sx={{
-          fontSize: [3, 4, 5],
-          textAlign: "center",
-          fontWeight: "bold",
-        }}
-      >
-        404 Not Found. 😢
-      </Text>
+      <Heading>404 Not Found. 😢</Heading>
     </Container>
   );
 }

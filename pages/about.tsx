@@ -1,4 +1,5 @@
 import { Container, Text, Box } from "theme-ui";
+import { Heading, Subheading } from "@components/index";
 import { GetServerSideProps } from "next";
 import { render } from "storyblok-rich-text-react-renderer";
 import { resolvers } from "@utils/StoryblokResolvers";
@@ -26,27 +27,10 @@ export default function AboutPage({ data }: any) {
         height: "100%",
       }}
     >
-      <Text
-        as="h1"
-        color="text"
-        sx={{
-          fontSize: [3, 4, 5],
-          textAlign: "center",
-          fontWeight: "bold",
-        }}
-      >
-        {data.content.title}
-      </Text>
-      <Text
-        as="p"
-        color="text"
-        my={[1, 3]}
-        sx={{ textAlign: "center", fontSize: [3] }}
-      >
-        {data.content.subtitle}
-      </Text>
+      <Heading>{data.content.title}</Heading>
+      <Subheading>{data.content.subtitle}</Subheading>
 
-      <Box as="section" mt={[3, 4]}>
+      <Box as="section" mt={[3, 4]} p={[3, 0]}>
         {render(data.content.description, resolvers)}
       </Box>
     </Container>

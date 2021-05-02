@@ -1,4 +1,5 @@
 import { Container, Box, Text, Paragraph } from "theme-ui";
+import { Heading, Subheading } from "@components/index";
 import { GetServerSideProps } from "next";
 import absoluteUrl from "next-absolute-url";
 
@@ -23,25 +24,8 @@ interface Props {
 export default function Home({ data }: Props) {
   return (
     <Container>
-      <Text
-        as="h1"
-        color="text"
-        sx={{
-          fontSize: [3, 4, 5],
-          textAlign: "center",
-          fontWeight: "bold",
-        }}
-      >
-        {data.content.title}
-      </Text>
-      <Text
-        as="p"
-        color="text"
-        my={[1, 3]}
-        sx={{ textAlign: "center", fontSize: [3] }}
-      >
-        {data.content.subtitle}
-      </Text>
+      <Heading>{data.content.title}</Heading>
+      <Subheading>{data.content.subtitle}</Subheading>
       <Box p={2} sx={{ borderRadius: "card" }}>
         <Paragraph as="p" variant="block" my={3}>
           {data.content.description}
