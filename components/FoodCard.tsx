@@ -1,4 +1,4 @@
-import { Text, Box, Card, Flex } from "theme-ui";
+import { Text, Box, Card } from "theme-ui";
 import styled from "styled-components";
 import { format } from "date-fns";
 import Link from "next/link";
@@ -9,11 +9,12 @@ export const FoodCard = ({ data }) => {
     <Link href={data.full_slug}>
       <Card
         bg="muted"
+        p={[2, 3]}
+        mb={[3, 4]}
+        mx={[3, 4]}
         sx={{
-          display: "flex",
-          width: "100%",
-          flexDirection: "row",
-          flexWrap: "wrap",
+          display: ["flex", "block"],
+          justifyContent: "center",
           borderRadius: "card",
           "&:hover": {
             cursor: "pointer",
@@ -23,34 +24,23 @@ export const FoodCard = ({ data }) => {
             },
           },
         }}
-        p={[2, 3]}
-        mb={[3, 4]}
       >
-        <Flex sx={{ width: "100%" }}>
-          <Box
-            sx={{
-              width: "100%",
-              flex: ["none", 1],
-              display: ["none", "flex"],
-            }}
-          >
-            <StyledImage
-              src={data.content.image.filename}
-              alt={data.content.image.alt}
-              width={120}
-              height={120}
-            />
-          </Box>
-          <Flex
-            px={[3, 4]}
-            sx={{
-              flex: "3",
-              justifyContent: "center",
-              alignItems: "center",
-              margin: "auto",
-              flexDirection: "column",
-            }}
-          >
+        <Box
+          sx={{
+            display: ["none", "flex"],
+            margin: "auto",
+            justifyContent: "center",
+          }}
+        >
+          <StyledImage
+            src={data.content.image.filename}
+            alt={data.content.image.alt}
+            width={120}
+            height={120}
+          />
+        </Box>
+        <Box>
+          <Box my={[2, 3]}>
             <Text
               as="h2"
               color="text"
@@ -62,24 +52,22 @@ export const FoodCard = ({ data }) => {
             >
               {data.content.title}
             </Text>
-            <Text as="h3">
+            <Text as="h3" sx={{ textAlign: "center" }}>
               {format(new Date(data.content.date), "do MMMM, yyyy")}
             </Text>
-            <Text
-              as="p"
-              color="text"
-              my={[1, 3]}
-              sx={{
-                textAlign: "center",
-                fontSize: [1],
-                flexGrow: 1,
-                display: "flex",
-              }}
-            >
-              {data.content.description}
-            </Text>
-          </Flex>
-        </Flex>
+          </Box>
+          <Text
+            as="p"
+            color="text"
+            my={[1, 3]}
+            sx={{
+              textAlign: "center",
+              fontSize: [1],
+            }}
+          >
+            {data.content.description}
+          </Text>
+        </Box>
       </Card>
     </Link>
   );

@@ -1,4 +1,4 @@
-import { Container, Text } from "theme-ui";
+import { Container, Text, Grid } from "theme-ui";
 import { GetServerSideProps } from "next";
 import absoluteUrl from "next-absolute-url";
 import { FoodCard } from "@components/FoodCard";
@@ -46,9 +46,13 @@ export default function AboutPage({ data }: any) {
         Here are some of the recipes I've been cooking up lately that were worth
         sharing.
       </Text>
-      {data.map((post) => {
-        return <FoodCard data={post} />;
-      })}
+      <Grid
+        sx={{ gridTemplateColumns: ["1fr", "1fr 1fr"], gridAutoRows: "1fr" }}
+      >
+        {data.map((post) => {
+          return <FoodCard data={post} />;
+        })}
+      </Grid>
     </Container>
   );
 }
