@@ -2,7 +2,7 @@ import { Box, Flex, Text } from "theme-ui";
 import { RouteLink } from "@components/RouteLink";
 import NavButtons from "@components/NavButtons";
 
-const Header: React.FC = () => (
+const Navbar: React.FC = () => (
   <Box as="header" mx={[0, 1]} my={[0, 3]} px={[0, 3]}>
     <Flex
       sx={{
@@ -52,18 +52,17 @@ const Header: React.FC = () => (
           Food
         </RouteLink>
       </Flex>
-      <Flex
+      <Box
         sx={{
           display: ["none", "flex"],
           flex: "1",
-          width: "100%",
           justifyContent: "flex-end",
         }}
       >
         <NavButtons />
-      </Flex>
+      </Box>
     </Flex>
   </Box>
 );
 
-export default Header;
+export default Navbar;

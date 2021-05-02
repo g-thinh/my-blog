@@ -25,13 +25,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
 export default function AboutPage({ data }: any) {
   return (
-    <Container
-      my="auto"
-      sx={{
-        width: "100%",
-        height: "100%",
-      }}
-    >
+    <Container p={[2, 3]}>
       <Heading>Food stuff 🤤</Heading>
       <Subheading>
         Here are some of the recipes I've been cooking up lately that were worth

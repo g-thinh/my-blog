@@ -1,9 +1,32 @@
 {
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended"],
   "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+  "globals": {
+    "React": true,
+    "google": true,
+    "mount": true,
+    "mountWithRouter": true,
+    "shallow": true,
+    "shallowWithRouter": true,
+    "context": true,
+    "expect": true,
+    "jsdom": true,
+    "JSX": true
+  },
   "plugins": ["@typescript-eslint"],
-  "extends": ["eslint:recommended", "react-app"],
   "rules": {
-    "react/prop-types": 0,
-    "react/react-in-jsx-scope": 0
+    "no-unused-vars": "error",
+    "no-console": 0,
+    "no-empty": 0,
+    "no-irregular-whitespace": 0,
+    "@typescript-eslint/no-explicit-any": "off"
   }
 }

@@ -30,7 +30,7 @@ interface Props {
 
 export default function HomePage({ data }: Props) {
   return (
-    <Container>
+    <Container p={[2, 3]}>
       <Heading>{data.content.title}</Heading>
       <Subheading>{data.content.subtitle}</Subheading>
       <Box p={2} sx={{ borderRadius: "card" }}>

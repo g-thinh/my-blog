@@ -8,12 +8,14 @@
     "start": "next start"
   },
   "dependencies": {
+    "babel-plugin-styled-components": "^1.12.0",
     "date-fns": "^2.21.1",
-    "next": "10.0.0",
+    "next": "10.1.0",
     "next-absolute-url": "^1.2.2",
-    "react": "17.0.0",
-    "react-dom": "17.0.0",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
     "react-icons": "^4.2.0",
+    "react-syntax-highlighter": "^15.4.3",
     "react-toggle-dark-mode": "^1.0.4",
     "storyblok-rich-text-react-renderer": "^2.3.1",
     "styled-components": "^5.2.3",
@@ -22,6 +24,9 @@
   },
   "devDependencies": {
     "@types/node": "^15.0.1",
-    "@types/react": "^17.0.4"
+    "@types/react": "^17.0.4",
+    "@typescript-eslint/eslint-plugin": "^4.22.0",
+    "@typescript-eslint/parser": "^4.22.0",
+    "eslint": "^7.25.0"
   }
 }
