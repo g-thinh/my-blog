@@ -7,7 +7,7 @@ export default async (_req: NextApiRequest, res: NextApiResponse) => {
     const randomId = Math.floor(Math.random() * 10000);
     const API_KEY = process.env.sbKey;
     const response = await fetch(
-      `${baseURL}?filter_query[component][in]=foodpost&token=${API_KEY}&cv=${randomId}`
+      `${baseURL}?filter_query[component][in]=blogpost&token=${API_KEY}&cv=${randomId}`
     );
     const { stories } = await response.json();
     res.status(200).send(stories);

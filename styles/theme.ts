@@ -1,7 +1,7 @@
-import { Theme } from 'theme-ui';
-import colors from './colors';
-import shadows from './shadows';
-import typography from './typography';
+import { Theme } from "theme-ui";
+import colors from "./colors";
+import shadows from "./shadows";
+import typography from "./typography";
 
 export const theme: Theme = {
   space: [0, 4, 8, 16, 32, 64, 128, 256, 512],
@@ -19,23 +19,36 @@ export const theme: Theme = {
   shadows,
   text: {
     block: {
-      fontFamily: 'inherit',
-      lineHeight: 'body',
+      fontFamily: "inherit",
+      lineHeight: "body",
     },
   },
   styles: {
     typography,
   },
   radii: {
-    card: '0.5rem',
+    card: "1rem",
   },
-  breakpoints: ['48em', '64em'],
+  breakpoints: ["48em", "64em"],
   buttons: {
+    link: {
+      color: "text",
+      width: "fit-content",
+      boxShadow: "card",
+      marginTop: "auto",
+      cursor: "pointer",
+      textDecoration: "none",
+      backgroundColor: "highlight",
+      "&:hover": {
+        backgroundColor: "primary",
+        color: "black",
+      },
+    },
     secondary: {
-      boxShadow: 'card',
-      cursor: 'pointer',
-      '&:hover': {
-        backgroundColor: 'black',
+      boxShadow: "card",
+      cursor: "pointer",
+      "&:hover": {
+        backgroundColor: "black",
       },
     },
   },

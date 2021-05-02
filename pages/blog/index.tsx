@@ -1,14 +1,12 @@
-import { Container, Box } from "theme-ui";
-import { Heading, Subheading } from "@components/index";
+import { Container, Grid } from "theme-ui";
 import { GetServerSideProps } from "next";
-import { render } from "storyblok-rich-text-react-renderer";
-import { resolvers } from "@utils/StoryblokResolvers";
 import absoluteUrl from "next-absolute-url";
+import { Heading, Subheading, BlogPostCard } from "@components/index";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   try {
     const { origin } = absoluteUrl(context.req);
-    const apiURL = `${origin}/api/about`;
+    const apiURL = `${origin}/api/blog`;
     const res = await fetch(apiURL);
     const data = await res.json();
     return { props: { data } };
@@ -25,7 +23,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   }
 };
 
-export default function AboutPage({ data }: any) {
+export default function BlogPage({ data }: any) {
   return (
     <Container
       my="auto"
@@ -34,12 +32,15 @@ export default function AboutPage({ data }: any) {
         height: "100%",
       }}
     >
-      <Heading>{data.content.title}</Heading>
-      <Subheading>{data.content.subtitle}</Subheading>
-
-      <Box as="section" mt={[3, 4]} p={[3, 0]}>
-        {render(data.content.description, resolvers)}
-      </Box>
+      <Heading>Blog Posts</Heading>
+      <Subheading>
+        Some of the discoveries I've made working as a front-end dev lately.
+      </Subheading>
+      <Grid sx={{ gridTemplateColumns: ["1fr"], gridAutoRows: "1fr" }}>
+        {data.map((post) => {
+          return <BlogPostCard key={post.id} data={post} />;
+        })}
+      </Grid>
     </Container>
   );
 }
