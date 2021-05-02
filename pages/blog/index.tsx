@@ -25,13 +25,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
 export default function BlogPage({ data }: any) {
   return (
-    <Container
-      my="auto"
-      sx={{
-        width: "100%",
-        height: "100%",
-      }}
-    >
+    <Container p={[2, 3]}>
       <Heading>Blog Posts</Heading>
       <Subheading>
         Some of the discoveries I've made working as a front-end dev lately.
