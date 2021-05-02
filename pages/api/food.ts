@@ -10,7 +10,6 @@ export default async (_req: NextApiRequest, res: NextApiResponse) => {
       `${baseURL}?filter_query[component][in]=foodpost&token=${API_KEY}&cv=${randomId}`
     );
     const { stories } = await response.json();
-    console.log(stories);
     res.status(200).send(stories);
   } catch (error) {
     res.status(500).send(error);

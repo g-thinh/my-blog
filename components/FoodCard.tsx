@@ -1,4 +1,4 @@
-import { Text, Box, Card } from "theme-ui";
+import { Text, Button, Box, Card, Flex } from "theme-ui";
 import styled from "styled-components";
 import { format } from "date-fns";
 import Link from "next/link";
@@ -17,6 +17,13 @@ export const FoodCard = ({ data }) => {
           justifyContent: "center",
           borderRadius: "card",
           "&:hover": {
+            cursor: "pointer",
+            boxShadow: "card",
+            "& h2": {
+              color: "primary",
+            },
+          },
+          "&:focus-within": {
             cursor: "pointer",
             boxShadow: "card",
             "& h2": {
@@ -61,12 +68,33 @@ export const FoodCard = ({ data }) => {
             color="text"
             my={[1, 3]}
             sx={{
+              display: "flex",
               textAlign: "center",
               fontSize: [1],
+              flexGrow: 1,
             }}
           >
             {data.content.description}
           </Text>
+          <Flex
+            sx={{
+              justifyContent: "center",
+            }}
+          >
+            <Link href={data.full_slug} passHref>
+              <Button
+                color="text"
+                sx={{
+                  margin: "0 auto",
+                  width: "80%",
+                  textDecoration: "none",
+                  "&:hover": { textDecoration: "underline" },
+                }}
+              >
+                See more
+              </Button>
+            </Link>
+          </Flex>
         </Box>
       </Card>
     </Link>

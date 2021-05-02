@@ -41,7 +41,7 @@ export default function AboutPage({ data }: any) {
         sx={{ gridTemplateColumns: ["1fr", "1fr 1fr"], gridAutoRows: "1fr" }}
       >
         {data.map((post) => {
-          return <FoodCard data={post} />;
+          return <FoodCard key={post.id} data={post} />;
         })}
       </Grid>
     </Container>
