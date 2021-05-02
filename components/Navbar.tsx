@@ -19,7 +19,7 @@ const Header: React.FC = () => (
           my={[2, 0]}
           sx={{
             userSelect: "none",
-            fontSize: [4, 5],
+            fontSize: [3, 4],
             textAlign: "center",
           }}
         >
