@@ -45,7 +45,11 @@ export default function BlogPostPage({ data }): JSX.Element {
               key={tag}
               mr={3}
               px={2}
-              sx={{ backgroundColor: "primary", color: "text" }}
+              sx={{
+                backgroundColor: "primary",
+                color: "text",
+                borderRadius: "1rem",
+              }}
             >
               {tag}
             </Badge>
