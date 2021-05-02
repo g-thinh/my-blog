@@ -12,7 +12,14 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     return { props: { data } };
   } catch (error) {
     console.log("Error", error);
-    return { props: {} };
+    return {
+      notFound: true,
+      redirect: {
+        destination: "/404",
+        permanent: false,
+      },
+      props: {},
+    };
   }
 };
 
