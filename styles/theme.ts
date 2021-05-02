@@ -31,6 +31,19 @@ export const theme: Theme = {
   },
   breakpoints: ["48em", "64em"],
   buttons: {
+    link: {
+      color: "text",
+      width: "fit-content",
+      boxShadow: "card",
+      marginTop: "auto",
+      cursor: "pointer",
+      textDecoration: "none",
+      backgroundColor: "highlight",
+      "&:hover": {
+        backgroundColor: "primary",
+        color: "black",
+      },
+    },
     secondary: {
       boxShadow: "card",
       cursor: "pointer",

@@ -13,8 +13,10 @@ export const FoodCard = ({ data }) => {
         mb={[3, 4]}
         mx={[3, 4]}
         sx={{
-          display: ["flex", "block"],
+          display: ["flex", "flex"],
           justifyContent: "center",
+          alignItems: "center",
+          flexFlow: "column nowrap",
           borderRadius: "card",
           "&:hover": {
             cursor: "pointer",
@@ -46,7 +48,7 @@ export const FoodCard = ({ data }) => {
             height={120}
           />
         </Box>
-        <Box>
+        <Flex sx={{ flex: "1", flexFlow: "column nowrap" }}>
           <Box my={[2, 3]}>
             <Text
               as="h2"
@@ -68,7 +70,6 @@ export const FoodCard = ({ data }) => {
             color="text"
             my={[1, 3]}
             sx={{
-              display: "flex",
               textAlign: "center",
               fontSize: [1],
               flexGrow: 1,
@@ -76,26 +77,12 @@ export const FoodCard = ({ data }) => {
           >
             {data.content.description}
           </Text>
-          <Flex
-            sx={{
-              justifyContent: "center",
-            }}
-          >
+          <Flex sx={{ justifyContent: "center" }}>
             <Link href={data.full_slug} passHref>
-              <Button
-                color="text"
-                sx={{
-                  margin: "0 auto",
-                  width: "80%",
-                  textDecoration: "none",
-                  "&:hover": { textDecoration: "underline" },
-                }}
-              >
-                See more
-              </Button>
+              <Button variant="link">Read More</Button>
             </Link>
           </Flex>
-        </Box>
+        </Flex>
       </Card>
     </Link>
   );
