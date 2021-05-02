@@ -28,7 +28,7 @@ interface Props {
   data: any;
 }
 
-export default function Home({ data }: Props) {
+export default function HomePage({ data }: Props) {
   return (
     <Container>
       <Heading>{data.content.title}</Heading>
