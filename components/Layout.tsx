@@ -1,4 +1,3 @@
-/** @jsxImportSource theme-ui */
 import { Flex, Box, Text } from "theme-ui";
 import Navbar from "@components/Navbar";
 import NavButtons from "@components/NavButtons";

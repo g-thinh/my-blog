@@ -1,4 +1,4 @@
-import { Container, Text, Box } from "theme-ui";
+import { Container, Box } from "theme-ui";
 import { Heading, Subheading } from "@components/index";
 import { GetServerSideProps } from "next";
 import { render } from "storyblok-rich-text-react-renderer";

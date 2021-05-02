@@ -1,4 +1,4 @@
-import { Container, Text } from "theme-ui";
+import { Container } from "theme-ui";
 import { Heading } from "@components/index";
 
 export default function ErrorPage() {

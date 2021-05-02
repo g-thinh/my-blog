@@ -1,4 +1,4 @@
-import { Container, Text, Grid } from "theme-ui";
+import { Container, Grid } from "theme-ui";
 import { GetServerSideProps } from "next";
 import absoluteUrl from "next-absolute-url";
 import { FoodCard, Heading, Subheading } from "@components/index";
