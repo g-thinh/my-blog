@@ -1,30 +1,30 @@
 /** @jsxImportSource theme-ui */
-import { Flex, Box, Text } from 'theme-ui';
-import Header from '@components/Header';
-import NavButtons from '@components/NavButtons';
+import { Flex, Box, Text } from "theme-ui";
+import Navbar from "@components/Navbar";
+import NavButtons from "@components/NavButtons";
 
 const Layout: React.FC = (props) => (
   <Flex
     sx={{
-      display: 'flex',
-      flexDirection: 'column',
-      minHeight: '100vh',
+      display: "flex",
+      flexDirection: "column",
+      minHeight: "100vh",
     }}
   >
-    <Header />
+    <Navbar />
 
     <Flex
       as="main"
       sx={{
         marginTop: [2, 4],
-        width: '100%',
-        flex: '1 1 auto',
+        width: "100%",
+        flex: "1 1 auto",
       }}
     >
       <Box
         sx={{
-          maxWidth: '48em',
-          mx: 'auto',
+          maxWidth: "48em",
+          mx: "auto",
           px: [1, 3],
         }}
       >
@@ -34,13 +34,13 @@ const Layout: React.FC = (props) => (
     <Box
       as="footer"
       sx={{
-        width: '100%',
+        width: "100%",
       }}
     >
       <Box py={[2, 3]} bg="muted">
         <Box
           sx={{
-            display: ['block', 'none'],
+            display: ["block", "none"],
           }}
         >
           <NavButtons />
@@ -49,8 +49,8 @@ const Layout: React.FC = (props) => (
           as="p"
           sx={{
             fontSize: 0,
-            filter: 'brightness(75%)',
-            textAlign: 'center',
+            filter: "brightness(75%)",
+            textAlign: "center",
           }}
         >
           © 2021 All rights probably deserved.
