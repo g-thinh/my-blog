@@ -13,7 +13,7 @@ const Header: React.FC = () => (
         height: "100%",
       }}
     >
-      <RouteLink href="/" index={1}>
+      <RouteLink isActive={false} href="/" index={1}>
         <Text
           as="p"
           my={[2, 0]}

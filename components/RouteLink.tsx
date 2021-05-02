@@ -1,12 +1,22 @@
-import Link from 'next/link';
-import { Text } from 'theme-ui';
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { Text } from "theme-ui";
 
 interface Props {
   href: string;
   index: number;
+  isActive?: boolean;
+  children: React.ReactNode;
 }
 
-export const RouteLink: React.FC<Props> = ({ href, index, ...props }) => {
+export const RouteLink = ({
+  href,
+  index,
+  isActive = true,
+  children,
+}: Props) => {
+  const router = useRouter();
+  const isActiveLink = isActive && router.asPath === href;
   return (
     <Link href={href} passHref>
       <Text
@@ -14,19 +24,19 @@ export const RouteLink: React.FC<Props> = ({ href, index, ...props }) => {
         px={[3, 4]}
         tabIndex={index}
         sx={{
-          color: 'text',
-          textDecoration: 'none',
+          color: isActiveLink ? "primary" : "text",
+          textDecoration: "none",
           fontSize: [2, 3],
-          cursor: 'pointer',
-          '&:hover': {
-            color: 'primary',
+          cursor: "pointer",
+          "&:hover": {
+            color: "primary",
           },
-          '&:focus': {
-            color: 'primary',
+          "&:focus": {
+            color: "primary",
           },
         }}
       >
-        {props.children}
+        {children}
       </Text>
     </Link>
   );
