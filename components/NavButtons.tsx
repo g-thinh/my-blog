@@ -1,4 +1,4 @@
-import { Flex, Link, Button, useColorMode } from "theme-ui";
+import { Flex, Box, Link, Button, useColorMode } from "theme-ui";
 import { DarkModeSwitch } from "react-toggle-dark-mode";
 import { FiGithub, FiTwitter, FiLinkedin } from "react-icons/fi";
 
@@ -33,13 +33,13 @@ const NavButtons: React.FC = () => {
           },
         }}
       >
-        <Flex
+        <Box
           sx={{
-            alignItems: "center",
+            marginTop: "6px",
           }}
         >
-          <FiTwitter size={18} />
-        </Flex>
+          <FiTwitter />
+        </Box>
       </Link>
       <Link
         href="www.linkedin.com/in/gthinh-nguyen"
@@ -56,13 +56,13 @@ const NavButtons: React.FC = () => {
           },
         }}
       >
-        <Flex
+        <Box
           sx={{
-            alignItems: "center",
+            marginTop: "6px",
           }}
         >
-          <FiLinkedin size={18} />
-        </Flex>
+          <FiLinkedin size="1rem" />
+        </Box>
       </Link>
       <Link
         href="https://github.com/g-thinh/"
@@ -79,13 +79,13 @@ const NavButtons: React.FC = () => {
           },
         }}
       >
-        <Flex
+        <Box
           sx={{
-            alignItems: "center",
+            marginTop: "6px",
           }}
         >
           <FiGithub size={18} />
-        </Flex>
+        </Box>
       </Link>
       <Flex px={2} sx={{ justifyContent: "center", alignContent: "center" }}>
         <Button bg="transparent" p={0} px={1} onClick={handleColorChange}>
