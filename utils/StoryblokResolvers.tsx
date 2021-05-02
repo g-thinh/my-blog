@@ -1,6 +1,6 @@
 import Image from "next/image";
 import styled from "styled-components";
-import { Link, Text, Box } from "theme-ui";
+import { Link, Text, Box, Message } from "theme-ui";
 import {
   NODE_IMAGE,
   NODE_PARAGRAPH,
@@ -78,6 +78,21 @@ export const resolvers = {
         {children}
       </Text>
     ),
+  },
+  blokResolvers: {
+    ["Note"]: (props): JSX.Element => (
+      <Message my={[3, 4]}>{props.text}</Message>
+    ),
+  },
+  defaultBlokResolver: (name: string, props): JSX.Element => {
+    return (
+      <div>
+        <code>Missing blok resolver for blok type "{name}".</code>
+        <pre>
+          <code>{JSON.stringify(props, undefined, 2)}</code>
+        </pre>
+      </div>
+    );
   },
 };
 

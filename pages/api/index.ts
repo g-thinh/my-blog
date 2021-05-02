@@ -2,7 +2,10 @@ import { NextApiRequest, NextApiResponse } from "next";
 
 const baseURL = "https://api.storyblok.com/v1/cdn/stories";
 
-export default async (_req: NextApiRequest, res: NextApiResponse) => {
+export default async (
+  _req: NextApiRequest,
+  res: NextApiResponse
+): Promise<any> => {
   try {
     const randomId = Math.floor(Math.random() * 10000);
     const API_KEY = process.env.sbKey;
