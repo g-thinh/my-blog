@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Flex, Box, Link, Button, useColorMode } from "theme-ui";
 import { DarkModeSwitch } from "react-toggle-dark-mode";
 import { FiGithub, FiTwitter, FiLinkedin } from "react-icons/fi";
@@ -10,6 +11,19 @@ const NavButtons: React.FC = () => {
   function handleColorChange() {
     setColorMode(colorMode === "light" ? "dark" : "light");
   }
+
+  useEffect(() => {
+    const switchMode = (e) => {
+      const isDarkMode = e.matches;
+      isDarkMode ? setColorMode("dark") : setColorMode("light");
+    };
+    const darkModeMediaQuery = window.matchMedia(
+      "(prefers-color-scheme: dark)"
+    );
+    darkModeMediaQuery.addListener(switchMode);
+    // cleanup on unmount
+    return () => darkModeMediaQuery.removeEventListener("change", switchMode);
+  }, [setColorMode]);
 
   return (
     <Flex
