@@ -9,11 +9,11 @@ export const getStaticProps: GetStaticProps = async (context) => {
   try {
     const slug = "about";
     const params: Params = {
-      version: "published",
+      version: "draft",
     };
 
     if (context.preview) {
-      params.version = "published";
+      params.version = "draft";
       params.cv = Date.now();
     }
 
