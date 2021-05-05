@@ -1,8 +1,9 @@
-import { Container, Text, Box, Badge, Flex, Divider } from "theme-ui";
+import { Container, Text, Box, Badge, Flex, Button, Divider } from "theme-ui";
 import { GetStaticPaths, GetStaticProps } from "next";
 import Storyblok, { useStoryblok } from "@utils/storyblok";
 import { format } from "date-fns";
 import Image from "next/image";
+import { useRouter } from "next/router";
 import { calculateReadTime } from "@utils/calculateReadTime";
 import { Heading } from "@components/index";
 import { render } from "storyblok-rich-text-react-renderer";
@@ -53,16 +54,22 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export default function CodePostPage(props: StoryPage): JSX.Element {
+  const router = useRouter();
   const story = useStoryblok(props.story);
   return (
     <Container p={[2, 3]}>
-      <Heading>{story.content.title}</Heading>
+      <Flex sx={{ flexFlow: "column nowrap", alignItems: "center" }}>
+        <Button variant="back" onClick={() => router.back()}>
+          <span>Food</span>
+        </Button>
+        <Heading>{story.content.title}</Heading>
+      </Flex>
       <Flex my={2} sx={{ justifyContent: "center", flexFlow: "row wrap" }}>
         {story.content.tags &&
           story.content.tags.map((tag) => (
             <Badge
               key={tag}
-              mr={3}
+              mr={story.content.tags.length > 1 ? 3 : 0}
               px={2}
               sx={{
                 backgroundColor: "primary",

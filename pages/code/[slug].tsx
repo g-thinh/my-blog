@@ -1,4 +1,4 @@
-import { Container, Text, Box, Badge, Divider } from "theme-ui";
+import { Container, Text, Box, Flex, Badge, Divider, Button } from "theme-ui";
 import { GetStaticPaths, GetStaticProps } from "next";
 import Storyblok, { useStoryblok } from "@utils/storyblok";
 import { format } from "date-fns";
@@ -6,6 +6,8 @@ import { calculateReadTime } from "@utils/calculateReadTime";
 import { Heading, Subheading } from "@components/index";
 import { render } from "storyblok-rich-text-react-renderer";
 import { resolvers } from "@utils/StoryblokResolvers";
+
+import { useRouter } from "next/router";
 
 export const getStaticProps: GetStaticProps = async (context) => {
   try {
@@ -52,10 +54,16 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export default function CodePostPage(props: StoryPage): JSX.Element {
+  const router = useRouter();
   const story = useStoryblok(props.story);
   return (
     <Container p={[2, 3]} sx={{ width: "100%" }}>
-      <Heading isCenter={false}>{story.name}</Heading>
+      <Flex sx={{ flexFlow: "column nowrap" }}>
+        <Button variant="back" onClick={() => router.back()}>
+          <span>Code</span>
+        </Button>
+        <Heading isCenter={false}>{story.name}</Heading>
+      </Flex>
 
       <Text as="h2" color="grey" sx={{ textAlign: "left" }}>
         {format(new Date(story.first_published_at), "MMM d")} •{"  "}
@@ -65,7 +73,7 @@ export default function CodePostPage(props: StoryPage): JSX.Element {
         story.content.tags.map((tag) => (
           <Badge
             key={tag}
-            mr={3}
+            mr={story.content.tags.length > 1 ? 3 : 0}
             px={2}
             sx={{
               backgroundColor: "primary",

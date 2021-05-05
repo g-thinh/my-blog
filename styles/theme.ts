@@ -31,6 +31,32 @@ export const theme: Theme = {
   },
   breakpoints: ["48em", "64em"],
   buttons: {
+    back: {
+      backgroundColor: "transparent",
+      padding: 0,
+      color: "grey",
+      width: "fit-content",
+      cursor: "pointer",
+      "&:hover": {
+        color: "primary",
+        "&::before": {
+          content: "'👋 bye'",
+        },
+        "& span": {
+          display: "none",
+        },
+      },
+
+      "&:focus": {
+        color: "primary",
+        "&::before": {
+          content: "'go back'",
+        },
+        "& span": {
+          display: "none",
+        },
+      },
+    },
     link: {
       color: "text",
       width: "fit-content",

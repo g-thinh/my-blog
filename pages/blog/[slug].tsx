@@ -1,7 +1,8 @@
-import { Container, Text, Box, Badge } from "theme-ui";
+import { Container, Text, Box, Badge, Flex, Button } from "theme-ui";
 import { GetStaticPaths, GetStaticProps } from "next";
 import Storyblok, { useStoryblok } from "@utils/storyblok";
 import Image from "next/image";
+import { useRouter } from "next/router";
 import { format } from "date-fns";
 import { calculateReadTime } from "@utils/calculateReadTime";
 import { Heading } from "@components/index";
@@ -50,11 +51,18 @@ export const getStaticPaths: GetStaticPaths = async () => {
   };
 };
 export default function BlogPostPage(props: StoryPage): JSX.Element {
+  const router = useRouter();
   const story = useStoryblok(props.story);
   return (
     <Container p={[2, 3]}>
       <Box mb={[3, 4]}>
-        <Heading isCenter={false}>{story.content.title}</Heading>
+        <Flex sx={{ flexFlow: "column nowrap" }}>
+          <Button variant="back" onClick={() => router.back()}>
+            <span>Blog</span>
+          </Button>
+          <Heading isCenter={false}>{story.content.title}</Heading>
+        </Flex>
+
         <Text>{story.content.intro}</Text>
         <Text as="h2" color="grey" sx={{ textAlign: "left" }}>
           {format(new Date(story.first_published_at), "MMM d")} •{"  "}
@@ -64,7 +72,7 @@ export default function BlogPostPage(props: StoryPage): JSX.Element {
           story.content.tags.map((tag) => (
             <Badge
               key={tag}
-              mr={3}
+              mr={story.content.tags.length > 1 ? 3 : 0}
               px={2}
               sx={{
                 backgroundColor: "primary",
