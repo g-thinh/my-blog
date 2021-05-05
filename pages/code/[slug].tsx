@@ -32,19 +32,19 @@ export const getStaticProps: GetStaticProps = async (context) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const { data } = await Storyblok.get("cdn/links/", {
+  const { data } = await Storyblok.get("cdn/links", {
     starts_with: "code",
   });
 
   const paths = [];
   Object.keys(data.links).forEach((linkKey) => {
-    if (data.links[linkKey].is_folder || data.links[linkKey].slug !== "code") {
+    if (data.links[linkKey].is_folder) {
       return;
     }
+
     const slug = data.links[linkKey].slug.replace("code", "");
     paths.push({ params: { slug } });
   });
-
   return {
     paths: paths,
     fallback: "blocking",
@@ -55,7 +55,6 @@ export default function CodePostPage(props: StoryPage): JSX.Element {
   const story = useStoryblok(props.story);
   return (
     <Container p={[2, 3]} sx={{ width: "100%" }}>
-      <h1>Hello</h1>
       <Heading isCenter={false}>{story.name}</Heading>
 
       <Text as="h2" color="grey" sx={{ textAlign: "left" }}>
