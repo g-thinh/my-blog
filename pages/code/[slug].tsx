@@ -15,7 +15,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
     };
 
     if (context.preview) {
-      params.version = "draft";
+      params.version = "published";
       params.cv = Date.now();
     }
 

@@ -12,11 +12,11 @@ export const getStaticProps: GetStaticProps = async (context) => {
   try {
     const slug = "landing";
     const params: Params = {
-      version: "draft",
+      version: "published",
     };
 
     if (context.preview) {
-      params.version = "draft";
+      params.version = "published";
       params.cv = Date.now();
     }
 
