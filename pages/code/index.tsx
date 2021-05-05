@@ -49,7 +49,7 @@ export default function CodePage(props: StoriesPage): JSX.Element {
         {stories &&
           stories.map((post) => {
             return (
-              <Card>
+              <Card key={post.id}>
                 <Divider />
                 <Flex py={3} sx={{ flexFlow: ["column nowrap", "row nowrap"] }}>
                   <Flex
