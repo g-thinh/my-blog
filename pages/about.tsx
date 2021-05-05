@@ -36,13 +36,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 export default function AboutPage(props: StoryPage): JSX.Element {
   const story = useStoryblok(props.story);
   return (
-    <Container
-      my="auto"
-      sx={{
-        width: "100%",
-        height: "100%",
-      }}
-    >
+    <Container p={[2, 3]}>
       <Heading>{story.content.title}</Heading>
       <Subheading>{story.content.subtitle}</Subheading>
 

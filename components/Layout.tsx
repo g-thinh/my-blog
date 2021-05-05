@@ -22,6 +22,7 @@ const Layout: React.FC = (props) => (
     >
       <Box
         sx={{
+          width: "100%",
           maxWidth: "48em",
           mx: "auto",
           px: [1, 3],
