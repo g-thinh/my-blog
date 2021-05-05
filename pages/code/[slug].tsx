@@ -1,7 +1,6 @@
 import { Container, Text, Box, Badge, Divider } from "theme-ui";
 import { GetStaticPaths, GetStaticProps } from "next";
 import Storyblok, { useStoryblok } from "@utils/storyblok";
-import { Story } from "storyblok-js-client";
 import { format } from "date-fns";
 import { calculateReadTime } from "@utils/calculateReadTime";
 import { Heading, Subheading } from "@components/index";
@@ -52,11 +51,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   };
 };
 
-interface Props {
-  story: Story;
-}
-
-export default function CodePostPage(props: Props): JSX.Element {
+export default function CodePostPage(props: StoryPage): JSX.Element {
   const story = useStoryblok(props.story);
   return (
     <Container p={[2, 3]} sx={{ width: "100%" }}>

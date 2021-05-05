@@ -35,7 +35,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   }
 };
 
-export default function CodePage(props): JSX.Element {
+export default function CodePage(props: StoriesPage): JSX.Element {
   const stories = useStoryblok(props.stories);
   return (
     <Container p={[2, 3]}>

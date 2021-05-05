@@ -36,7 +36,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   }
 };
 
-export default function HomePage(props): JSX.Element {
+export default function HomePage(props: StoryPage): JSX.Element {
   const story = useStoryblok(props.story);
   const [colorMode] = useColorMode();
   const isDark = colorMode === "dark";
