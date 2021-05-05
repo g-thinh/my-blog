@@ -1,35 +1,48 @@
 import { Container, Box, Text, Paragraph, Flex } from "theme-ui";
 import { Heading, Subheading } from "@components/index";
-import { GetServerSideProps } from "next";
+import { GetStaticProps } from "next";
 import { useColorMode } from "theme-ui";
-import absoluteUrl from "next-absolute-url";
+import Storyblok, { useStoryblok } from "@utils/storyblok";
 
 import reactDark from "public/reactDark.json";
 import reactLight from "public/reactLight.json";
 import Lottie from "react-lottie";
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  try {
-    const { origin } = absoluteUrl(context.req);
-    const apiURL = `${origin}/api/`;
-    const res = await fetch(apiURL);
-    const data = await res.json();
+interface Params {
+  version: string;
+  cv?: number;
+}
 
-    return { props: { data } };
+export const getStaticProps: GetStaticProps = async (context) => {
+  try {
+    const slug = "landing";
+    const params: Params = {
+      version: "draft",
+    };
+
+    if (context.preview) {
+      params.version = "draft";
+      params.cv = Date.now();
+    }
+
+    const { data } = await Storyblok.get(`cdn/stories/${slug}`, params);
+
+    return {
+      props: {
+        story: data ? data.story : false,
+        preview: context.preview || false,
+      },
+      revalidate: 10,
+    };
   } catch (error) {
-    console.log("Error", error);
     return {
       notFound: true,
-      redirect: {
-        destination: "/404",
-        permanent: false,
-      },
-      props: {},
     };
   }
 };
 
-export default function HomePage({ data }: any): JSX.Element {
+export default function HomePage(props): JSX.Element {
+  const story = useStoryblok(props.story);
   const [colorMode] = useColorMode();
   const isDark = colorMode === "dark";
 
@@ -50,7 +63,7 @@ export default function HomePage({ data }: any): JSX.Element {
           justifyContent: "center",
         }}
       >
-        <Heading>{data.content.title}</Heading>
+        <Heading>{story ? story.content.title : "My Title"}</Heading>
         <Flex
           sx={{
             justifyContent: "center",
@@ -60,38 +73,39 @@ export default function HomePage({ data }: any): JSX.Element {
           <Lottie options={defaultOptions} height={150} width={150} />
         </Flex>
       </Flex>
-      <Subheading>{data.content.subtitle}</Subheading>
+      <Subheading>{story ? story.content.subtitle : "My Subtitle"}</Subheading>
       <Box p={2} sx={{ borderRadius: "card" }}>
         <Paragraph as="p" variant="block" my={3}>
-          {data.content.description}
+          {story ? story.content.description : "description"}
         </Paragraph>
         <Paragraph as="p" variant="block" my={3}>
-          {data.content.header_tags}
+          {story ? story.content.header_tags : "header tags"}
         </Paragraph>
-        {data.content.tags.map((tag: any) => {
-          return (
-            <Text
-              as="span"
-              key={tag}
-              px={1}
-              sx={{
-                filter: "brightness(57%)",
-                userSelect: "none",
-                "&::before": {
-                  content: '"#"',
-                },
+        {story &&
+          story.content.tags.map((tag: any) => {
+            return (
+              <Text
+                as="span"
+                key={tag}
+                px={1}
+                sx={{
+                  filter: "brightness(57%)",
+                  userSelect: "none",
+                  "&::before": {
+                    content: '"#"',
+                  },
 
-                "&:hover": {
-                  cursor: "pointer",
-                  transition: "all 0.3s",
-                  color: "primary",
-                },
-              }}
-            >
-              {tag}
-            </Text>
-          );
-        })}
+                  "&:hover": {
+                    cursor: "pointer",
+                    transition: "all 0.3s",
+                    color: "primary",
+                  },
+                }}
+              >
+                {tag}
+              </Text>
+            );
+          })}
       </Box>
     </Container>
   );
