@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "es6",
     "lib": ["dom", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
@@ -20,6 +20,6 @@
       "@utils/*": ["./utils/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "utils/storyblok.js"],
   "exclude": ["node_modules"]
 }
