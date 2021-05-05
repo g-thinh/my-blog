@@ -8,11 +8,6 @@ import reactDark from "public/reactDark.json";
 import reactLight from "public/reactLight.json";
 import Lottie from "react-lottie";
 
-interface Params {
-  version: string;
-  cv?: number;
-}
-
 export const getStaticProps: GetStaticProps = async (context) => {
   try {
     const slug = "landing";
