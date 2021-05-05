@@ -5,7 +5,7 @@ export const Subheading = ({ children }) => (
     as="h2"
     color="text"
     mb={[3, 4]}
-    sx={{ textAlign: "center", fontSize: [3] }}
+    sx={{ textAlign: "center", fontSize: [2, 3] }}
   >
     {children}
   </Text>
