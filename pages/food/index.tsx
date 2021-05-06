@@ -1,11 +1,11 @@
 import { Container, Grid } from "theme-ui";
 import { GetStaticProps } from "next";
 import Storyblok, { useStoryblok } from "@utils/storyblok";
-import { Heading, Subheading, BlogPostCard } from "@components/index";
+import { FoodCard, Heading, Subheading } from "@components/index";
 
 export const getStaticProps: GetStaticProps = async (context) => {
   try {
-    const slug = "blog";
+    const slug = "food";
     const params: Params = {
       version: "draft",
     };
@@ -33,17 +33,21 @@ export const getStaticProps: GetStaticProps = async (context) => {
     };
   }
 };
-export default function BlogPage(props: StoriesPage): JSX.Element {
+
+export default function AboutPage(props: StoriesPage): JSX.Element {
   const stories = useStoryblok(props.stories);
   return (
     <Container p={[2, 3]}>
-      <Heading>Blog Posts</Heading>
+      <Heading>Food stuff 🤤</Heading>
       <Subheading>
-        Some of the discoveries I've made working as a front-end dev lately.
+        Here are some of the recipes I've been cooking up lately that were worth
+        sharing.
       </Subheading>
-      <Grid sx={{ gridTemplateColumns: ["1fr"], gridAutoRows: "1fr" }}>
+      <Grid
+        sx={{ gridTemplateColumns: ["1fr", "1fr 1fr"], gridAutoRows: "1fr" }}
+      >
         {stories.map((post) => {
-          return <BlogPostCard key={post.id} data={post} />;
+          return <FoodCard key={post.id} data={post} />;
         })}
       </Grid>
     </Container>

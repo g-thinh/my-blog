@@ -36,7 +36,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   }
 };
 
-export default function HomePage(props): JSX.Element {
+export default function HomePage(props: StoryPage): JSX.Element {
   const story = useStoryblok(props.story);
   const [colorMode] = useColorMode();
   const isDark = colorMode === "dark";
@@ -58,7 +58,7 @@ export default function HomePage(props): JSX.Element {
           justifyContent: "center",
         }}
       >
-        <Heading>{story ? story.content.title : "My Title"}</Heading>
+        <Heading>{story.content.title}</Heading>
         <Flex
           sx={{
             justifyContent: "center",
@@ -68,15 +68,15 @@ export default function HomePage(props): JSX.Element {
           <Lottie options={defaultOptions} height={150} width={150} />
         </Flex>
       </Flex>
-      <Subheading>{story ? story.content.subtitle : "My Subtitle"}</Subheading>
+      <Subheading>{story.content.subtitle}</Subheading>
       <Box p={2} sx={{ borderRadius: "card" }}>
         <Paragraph as="p" variant="block" my={3}>
-          {story ? story.content.description : "description"}
+          {story.content.description}
         </Paragraph>
         <Paragraph as="p" variant="block" my={3}>
-          {story ? story.content.header_tags : "header tags"}
+          {story.content.header_tags}
         </Paragraph>
-        {story &&
+        {story.content.tags &&
           story.content.tags.map((tag: any) => {
             return (
               <Text

@@ -75,7 +75,7 @@ export const FoodCard = ({ data }) => {
               flexGrow: 1,
             }}
           >
-            {data.content.description}
+            {data.content.preview}
           </Text>
           <Flex sx={{ justifyContent: "center" }}>
             <Link href={data.full_slug} passHref>

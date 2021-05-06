@@ -8,7 +8,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   try {
     const slug = "code";
     const params: Params = {
-      version: "published",
+      version: "draft",
     };
 
     if (context.preview) {
@@ -35,7 +35,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   }
 };
 
-export default function CodePage(props): JSX.Element {
+export default function CodePage(props: StoriesPage): JSX.Element {
   const stories = useStoryblok(props.stories);
   return (
     <Container p={[2, 3]}>
@@ -49,7 +49,7 @@ export default function CodePage(props): JSX.Element {
         {stories &&
           stories.map((post) => {
             return (
-              <Card>
+              <Card key={post.id}>
                 <Divider />
                 <Flex py={3} sx={{ flexFlow: ["column nowrap", "row nowrap"] }}>
                   <Flex

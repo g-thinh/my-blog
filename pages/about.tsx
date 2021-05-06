@@ -1,44 +1,47 @@
 import { Container, Box } from "theme-ui";
 import { Heading, Subheading } from "@components/index";
-import { GetServerSideProps } from "next";
+import { GetStaticProps } from "next";
 import { render } from "storyblok-rich-text-react-renderer";
 import { resolvers } from "@utils/StoryblokResolvers";
-import absoluteUrl from "next-absolute-url";
+import Storyblok, { useStoryblok } from "@utils/storyblok";
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
+export const getStaticProps: GetStaticProps = async (context) => {
   try {
-    const { origin } = absoluteUrl(context.req);
-    const apiURL = `${origin}/api/about`;
-    const res = await fetch(apiURL);
-    const data = await res.json();
-    return { props: { data } };
+    const slug = "about";
+    const params: Params = {
+      version: "draft",
+    };
+
+    if (context.preview) {
+      params.version = "draft";
+      params.cv = Date.now();
+    }
+
+    const { data } = await Storyblok.get(`cdn/stories/${slug}`, params);
+
+    return {
+      props: {
+        story: data ? data.story : false,
+        preview: context.preview || false,
+      },
+      revalidate: 10,
+    };
   } catch (error) {
-    console.log("Error", error);
     return {
       notFound: true,
-      redirect: {
-        destination: "/404",
-        permanent: false,
-      },
-      props: {},
     };
   }
 };
 
-export default function AboutPage({ data }: any): JSX.Element {
+export default function AboutPage(props: StoryPage): JSX.Element {
+  const story = useStoryblok(props.story);
   return (
-    <Container
-      my="auto"
-      sx={{
-        width: "100%",
-        height: "100%",
-      }}
-    >
-      <Heading>{data.content.title}</Heading>
-      <Subheading>{data.content.subtitle}</Subheading>
+    <Container p={[2, 3]}>
+      <Heading>{story.content.title}</Heading>
+      <Subheading>{story.content.subtitle}</Subheading>
 
       <Box as="section" mt={[3, 4]} p={[3, 0]}>
-        {render(data.content.description, resolvers)}
+        {render(story.content.description, resolvers)}
       </Box>
     </Container>
   );

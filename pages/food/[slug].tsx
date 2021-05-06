@@ -1,13 +1,13 @@
-import { Container, Text, Box, Flex, Badge, Divider, Button } from "theme-ui";
+import { Container, Text, Box, Badge, Flex, Button, Divider } from "theme-ui";
 import { GetStaticPaths, GetStaticProps } from "next";
 import Storyblok, { useStoryblok } from "@utils/storyblok";
 import { format } from "date-fns";
+import Image from "next/image";
+import { useRouter } from "next/router";
 import { calculateReadTime } from "@utils/calculateReadTime";
-import { Heading, Subheading } from "@components/index";
+import { Heading } from "@components/index";
 import { render } from "storyblok-rich-text-react-renderer";
 import { resolvers } from "@utils/StoryblokResolvers";
-
-import { useRouter } from "next/router";
 
 export const getStaticProps: GetStaticProps = async (context) => {
   try {
@@ -21,7 +21,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
       params.cv = Date.now();
     }
 
-    const { data } = await Storyblok.get(`cdn/stories/code/${slug}`, params);
+    const { data } = await Storyblok.get(`cdn/stories/food/${slug}`, params);
 
     return {
       props: {
@@ -35,7 +35,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const { data } = await Storyblok.get("cdn/links", {
-    starts_with: "code",
+    starts_with: "food",
   });
 
   const paths = [];
@@ -44,7 +44,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
       return;
     }
 
-    const slug = data.links[linkKey].slug.replace("code", "");
+    const slug = data.links[linkKey].slug.replace("food", "");
     paths.push({ params: { slug } });
   });
   return {
@@ -57,35 +57,46 @@ export default function CodePostPage(props: StoryPage): JSX.Element {
   const router = useRouter();
   const story = useStoryblok(props.story);
   return (
-    <Container p={[2, 3]} sx={{ width: "100%" }}>
-      <Flex sx={{ flexFlow: "column nowrap" }}>
+    <Container p={[2, 3]}>
+      <Flex sx={{ flexFlow: "column nowrap", alignItems: "center" }}>
         <Button variant="back" onClick={() => router.back()}>
-          <span>Code</span>
+          <span>Food</span>
         </Button>
-        <Heading isCenter={false}>{story.name}</Heading>
+        <Heading>{story.content.title}</Heading>
       </Flex>
-
-      <Text as="h2" color="grey" sx={{ textAlign: "left" }}>
-        {format(new Date(story.first_published_at), "MMM d")} •{"  "}
+      <Flex my={2} sx={{ justifyContent: "center", flexFlow: "row wrap" }}>
+        {story.content.tags &&
+          story.content.tags.map((tag) => (
+            <Badge
+              key={tag}
+              mr={story.content.tags.length > 1 ? 3 : 0}
+              px={2}
+              sx={{
+                backgroundColor: "primary",
+                color: "text",
+                borderRadius: "1rem",
+              }}
+            >
+              {tag}
+            </Badge>
+          ))}
+      </Flex>
+      <Text as="h2" color="grey" sx={{ textAlign: "center" }}>
+        {format(new Date(story.content.date), "MMM d, yyyy")} •{"  "}
         {calculateReadTime(story.content.long_text.content)}
       </Text>
-      {story.content.tags &&
-        story.content.tags.map((tag) => (
-          <Badge
-            key={tag}
-            mr={story.content.tags.length > 1 ? 3 : 0}
-            px={2}
-            sx={{
-              backgroundColor: "primary",
-              color: "text",
-              borderRadius: "1rem",
-            }}
-          >
-            {tag}
-          </Badge>
-        ))}
+
       <Divider />
-      <Subheading>{story.content.title}</Subheading>
+
+      <Box mb={[3, 4]}>
+        <Image
+          src={story.content.image.filename}
+          alt={story.content.image.alt}
+          width="48em"
+          height="35em"
+          layout="responsive"
+        />
+      </Box>
       <Box pb={[3, 4]}>{render(story.content.long_text, resolvers)}</Box>
     </Container>
   );
