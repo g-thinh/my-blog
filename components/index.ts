@@ -6,4 +6,5 @@ export { default as NavButtons } from "./NavButtons";
 export { default as Navbar } from "./Navbar";
 export * from "./RouteLink";
 export { default as ScrollButton } from "./ScrollButton";
+export { default as FeaturedList } from "./FeaturedList";
 export * from "./Subheading";
