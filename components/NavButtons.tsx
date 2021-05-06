@@ -56,7 +56,7 @@ const NavButtons: React.FC = () => {
         </Box>
       </Link>
       <Link
-        href="www.linkedin.com/in/gthinh-nguyen"
+        href="https://linkedin.com/in/gthinh-nguyen"
         target="_blank"
         px={2}
         sx={{

@@ -13,7 +13,6 @@ export default function ScrollButton(): JSX.Element {
 
   useEffect(() => {
     const toggleVisibility = () => {
-      console.log(window.pageYOffset);
       if (window.pageYOffset > 400) {
         setIsVisible(true);
       } else {
