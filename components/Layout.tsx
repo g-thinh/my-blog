@@ -1,6 +1,5 @@
 import { Flex, Box, Text } from "theme-ui";
-import Navbar from "@components/Navbar";
-import NavButtons from "@components/NavButtons";
+import { Navbar, NavButtons, ScrollButton } from "@components/index";
 
 const Layout: React.FC = (props) => (
   <Flex
@@ -31,6 +30,10 @@ const Layout: React.FC = (props) => (
         {props.children}
       </Box>
     </Flex>
+    <Flex my={[2, 3]} sx={{ justifyContent: "center" }}>
+      <ScrollButton />
+    </Flex>
+
     <Box
       as="footer"
       sx={{
