@@ -1,5 +1,5 @@
 import { Container, Box, Text, Paragraph, Flex } from "theme-ui";
-import { Heading, Subheading } from "@components/index";
+import { Heading, Subheading, FeaturedList } from "@components/index";
 import { GetStaticProps } from "next";
 import { useColorMode } from "theme-ui";
 import Storyblok, { useStoryblok } from "@utils/storyblok";
@@ -69,7 +69,7 @@ export default function HomePage(props: StoryPage): JSX.Element {
         </Flex>
       </Flex>
       <Subheading>{story.content.subtitle}</Subheading>
-      <Box p={2} sx={{ borderRadius: "card" }}>
+      <Box p={3} sx={{ borderRadius: "card" }}>
         <Paragraph as="p" variant="block" my={3}>
           {story.content.description}
         </Paragraph>
@@ -102,6 +102,7 @@ export default function HomePage(props: StoryPage): JSX.Element {
             );
           })}
       </Box>
+      <FeaturedList />
     </Container>
   );
 }

@@ -1,10 +1,5 @@
 import { Flex, Box, Text } from "theme-ui";
-import {
-  Navbar,
-  NavButtons,
-  ScrollButton,
-  FeaturedList,
-} from "@components/index";
+import { Navbar, NavButtons, ScrollButton } from "@components/index";
 
 const Layout: React.FC = (props) => (
   <Flex
@@ -21,17 +16,13 @@ const Layout: React.FC = (props) => (
       sx={{
         marginTop: [2, 4],
         width: "100%",
-        display: ["flex", "grid"],
+        display: "flex",
         flexDirection: "column",
         flex: "1 1 auto",
-        gridTemplateColumns: "1fr 48em 1fr",
-        gridAutoRows: "1fr",
       }}
     >
-      <Box as="aside" sx={{ gridArea: ["none", "1 / 1 / 2 / 2"] }}></Box>
       <Box
         sx={{
-          gridArea: ["none", "1 / 2 / 2 / 3"],
           width: "100%",
           maxWidth: "48em",
           mx: "auto",
@@ -39,25 +30,6 @@ const Layout: React.FC = (props) => (
         }}
       >
         {props.children}
-      </Box>
-      <Box
-        as="aside"
-        sx={{
-          gridArea: ["none", "1 / 3 / 2 / 4"],
-        }}
-      >
-        <Flex
-          pt={[3, 4]}
-          px={3}
-          sx={{
-            justifyContent: "flex-start",
-            alignItems: "center",
-            flexFlow: "column",
-            height: "100%",
-          }}
-        >
-          <FeaturedList />
-        </Flex>
       </Box>
     </Box>
     <Flex my={[2, 3]} sx={{ justifyContent: "center" }}>

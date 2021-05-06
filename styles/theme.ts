@@ -39,22 +39,10 @@ export const theme: Theme = {
       cursor: "pointer",
       "&:hover": {
         color: "primary",
-        "&::before": {
-          content: "'👋 bye'",
-        },
-        "& span": {
-          display: "none",
-        },
       },
 
       "&:focus": {
         color: "primary",
-        "&::before": {
-          content: "'go back'",
-        },
-        "& span": {
-          display: "none",
-        },
       },
     },
     scrollToTop: {
@@ -68,12 +56,6 @@ export const theme: Theme = {
       },
       "&:focus": {
         color: "primary",
-        "&::before": {
-          content: "'go up'",
-        },
-        "& span": {
-          display: "none",
-        },
       },
     },
     link: {

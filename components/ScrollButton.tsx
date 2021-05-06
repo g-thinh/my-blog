@@ -31,7 +31,7 @@ export default function ScrollButton(): JSX.Element {
       onClick={scrollToTop}
       sx={{ visibility: isVisible ? "visible" : "hidden" }}
     >
-      <span>Bring me up please ☝️</span>
+      <span>Go up ☝️</span>
     </Button>
   );
 }

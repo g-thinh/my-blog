@@ -80,7 +80,6 @@ export default function CodePage(props: StoriesPage): JSX.Element {
                     </Link>
                   </Flex>
                 </Flex>
-                <Divider />
               </Card>
             );
           })}
