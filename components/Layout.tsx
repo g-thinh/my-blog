@@ -23,9 +23,9 @@ const Layout: React.FC = (props) => (
         width: "100%",
         display: ["flex", "grid"],
         flexDirection: "column",
-        flex: ["1 1 auto", "none"],
+        flex: "1 1 auto",
         gridTemplateColumns: "1fr 48em 1fr",
-        gridTemplateRows: "1fr",
+        gridAutoRows: "1fr",
       }}
     >
       <Box as="aside" sx={{ gridArea: ["none", "1 / 1 / 2 / 2"] }}></Box>
@@ -54,7 +54,6 @@ const Layout: React.FC = (props) => (
             alignItems: "center",
             flexFlow: "column",
             height: "100%",
-            // backgroundColor: "goldenrod",
           }}
         >
           <FeaturedList />
