@@ -3,10 +3,12 @@ export function calculateReadTime(content): string {
   let resultReadTime = 0;
   content.forEach((item) => {
     item.content?.forEach((c) => {
-      const wordsLength = c.text.split(" ").length as number;
-      if (wordsLength > 0) {
-        const value: number = wordsLength / wordsPerMinute;
-        resultReadTime += value;
+      if (c.text !== undefined) {
+        const wordsLength = c.text.split(" ").length as number;
+        if (wordsLength > 0) {
+          const value: number = wordsLength / wordsPerMinute;
+          resultReadTime += value;
+        }
       }
     });
   });

@@ -1,5 +1,4 @@
 import { InternalLink, TableLinks } from "@components/index";
-import Image from "next/image";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { atomOneDarkReasonable } from "react-syntax-highlighter/dist/cjs/styles/hljs";
 import {
@@ -11,12 +10,12 @@ import {
   NODE_PARAGRAPH,
 } from "storyblok-rich-text-react-renderer";
 import styled from "styled-components";
-import { Box, Link, Message, Text } from "theme-ui";
+import { Box, Link, Message, Text, AspectImage } from "theme-ui";
 
 export const resolvers = {
   nodeResolvers: {
-    [NODE_IMAGE]: (props): JSX.Element => (
-      <Image src={props.src} height={200} width={200} {...props} />
+    [NODE_IMAGE]: (children, { src }): JSX.Element => (
+      <AspectImage ratio={4 / 3} my={2} p={[0, 5]} src={src} />
     ),
     [NODE_PARAGRAPH]: (children: React.ReactNode): JSX.Element => {
       return (
