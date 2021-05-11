@@ -1,17 +1,17 @@
+import { InternalLink, TableLinks } from "@components/index";
 import Image from "next/image";
-import styled from "styled-components";
-import { Link, Text, Box, Message } from "theme-ui";
+import SyntaxHighlighter from "react-syntax-highlighter";
+import { atomOneDarkReasonable } from "react-syntax-highlighter/dist/cjs/styles/hljs";
 import {
-  NODE_IMAGE,
-  NODE_PARAGRAPH,
+  MARK_CODE,
   MARK_LINK,
   NODE_CODEBLOCK,
   NODE_HEADING,
-  MARK_CODE,
+  NODE_IMAGE,
+  NODE_PARAGRAPH,
 } from "storyblok-rich-text-react-renderer";
-import SyntaxHighlighter from "react-syntax-highlighter";
-import { atomOneDarkReasonable } from "react-syntax-highlighter/dist/cjs/styles/hljs";
-import React from "react";
+import styled from "styled-components";
+import { Box, Link, Message, Text } from "theme-ui";
 
 export const resolvers = {
   nodeResolvers: {
@@ -83,6 +83,12 @@ export const resolvers = {
     ["Note"]: (props): JSX.Element => (
       <Message my={[3, 4]}>{props.text}</Message>
     ),
+    ["Table of Contents"]: (props): JSX.Element => {
+      return <TableLinks items={props.Sections} />;
+    },
+    ["Internal Link"]: (props): JSX.Element => {
+      return <InternalLink data={props} />;
+    },
   },
   defaultBlokResolver: (name: string, props): JSX.Element => {
     return (

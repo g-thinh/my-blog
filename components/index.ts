@@ -8,3 +8,5 @@ export * from "./RouteLink";
 export { default as ScrollButton } from "./ScrollButton";
 export { default as FeaturedList } from "./FeaturedList";
 export * from "./Subheading";
+export * from "./TableLinks";
+export * from "./InternalLink";
