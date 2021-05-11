@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Flex, Box, Link, Button, useColorMode } from "theme-ui";
+import { Flex, Link, useColorMode, IconButton } from "theme-ui";
 import { DarkModeSwitch } from "react-toggle-dark-mode";
 import { FiGithub, FiTwitter, FiLinkedin } from "react-icons/fi";
 
@@ -32,88 +32,67 @@ const NavButtons: React.FC = () => {
         alignItems: "center",
       }}
     >
-      <Link
-        href="https://twitter.com/GThinhNguyen"
-        target="_blank"
-        px={2}
-        sx={{
-          textDecoration: "none",
-          color: "text",
-          "&:hover": {
-            color: "primary",
-          },
-          "&:focus": {
-            color: "primary",
-          },
-        }}
-      >
-        <Box
+      <Link href="https://twitter.com/GThinhNguyen" target="_blank" px={2}>
+        <IconButton
           sx={{
-            marginTop: "6px",
+            cursor: "pointer",
+            textDecoration: "none",
+            color: "text",
+            "&:hover": {
+              color: "primary",
+            },
+            "&:focus": {
+              color: "primary",
+            },
           }}
         >
-          <FiTwitter />
-        </Box>
+          <FiTwitter size={18} />
+        </IconButton>
       </Link>
-      <Link
-        href="https://linkedin.com/in/gthinh-nguyen"
-        target="_blank"
-        px={2}
-        sx={{
-          textDecoration: "none",
-          color: "text",
-          "&:hover": {
-            color: "primary",
-          },
-          "&:focus": {
-            color: "primary",
-          },
-        }}
-      >
-        <Box
+      <Link href="https://linkedin.com/in/gthinh-nguyen" target="_blank" px={2}>
+        <IconButton
           sx={{
-            marginTop: "6px",
+            cursor: "pointer",
+            textDecoration: "none",
+            color: "text",
+            "&:hover": {
+              color: "primary",
+            },
+            "&:focus": {
+              color: "primary",
+            },
           }}
         >
-          <FiLinkedin size="1rem" />
-        </Box>
+          <FiLinkedin size={18} />
+        </IconButton>
       </Link>
-      <Link
-        href="https://github.com/g-thinh/"
-        target="_blank"
-        px={2}
-        sx={{
-          textDecoration: "none",
-          color: "text",
-          "&:hover": {
-            color: "primary",
-          },
-          "&:focus": {
-            color: "primary",
-          },
-        }}
-      >
-        <Box
+      <Link href="https://github.com/g-thinh/" target="_blank" px={2}>
+        <IconButton
           sx={{
-            marginTop: "6px",
+            cursor: "pointer",
+            textDecoration: "none",
+            color: "text",
+            "&:hover": {
+              color: "primary",
+            },
+            "&:focus": {
+              color: "primary",
+            },
           }}
         >
           <FiGithub size={18} />
-        </Box>
+        </IconButton>
       </Link>
       <Flex px={2} sx={{ justifyContent: "center", alignContent: "center" }}>
-        <Button bg="transparent" p={0} px={1} onClick={handleColorChange}>
+        <IconButton bg="transparent" p={0} px={1} onClick={handleColorChange}>
           <DarkModeSwitch
-            style={{
-              marginTop: "6px",
-            }}
             moonColor="var(--theme-ui-colors-primary)"
             sunColor="var(--theme-ui-colors-primary)"
             size={18}
             checked={isDark}
             onChange={handleColorChange}
           />
-        </Button>
+        </IconButton>
       </Flex>
     </Flex>
   );
