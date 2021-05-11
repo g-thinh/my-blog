@@ -78,5 +78,16 @@ export const theme: Theme = {
         backgroundColor: "black",
       },
     },
+    navButton: {
+      cursor: "pointer",
+      textDecoration: "none",
+      color: "text",
+      "&:hover": {
+        color: "primary",
+      },
+      "&:focus": {
+        color: "primary",
+      },
+    },
   },
 };

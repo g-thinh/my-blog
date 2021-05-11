@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Flex, Link, useColorMode, IconButton } from "theme-ui";
 import { DarkModeSwitch } from "react-toggle-dark-mode";
-import { FiGithub, FiTwitter, FiLinkedin } from "react-icons/fi";
+import { FiGithub, FiTwitter, FiLinkedin, FiLink } from "react-icons/fi";
 
 const NavButtons: React.FC = () => {
   const [colorMode, setColorMode] = useColorMode();
@@ -33,53 +33,17 @@ const NavButtons: React.FC = () => {
       }}
     >
       <Link href="https://twitter.com/GThinhNguyen" target="_blank" px={2}>
-        <IconButton
-          sx={{
-            cursor: "pointer",
-            textDecoration: "none",
-            color: "text",
-            "&:hover": {
-              color: "primary",
-            },
-            "&:focus": {
-              color: "primary",
-            },
-          }}
-        >
+        <IconButton tabIndex={-1} variant="navButton">
           <FiTwitter size={18} />
         </IconButton>
       </Link>
       <Link href="https://linkedin.com/in/gthinh-nguyen" target="_blank" px={2}>
-        <IconButton
-          sx={{
-            cursor: "pointer",
-            textDecoration: "none",
-            color: "text",
-            "&:hover": {
-              color: "primary",
-            },
-            "&:focus": {
-              color: "primary",
-            },
-          }}
-        >
+        <IconButton tabIndex={-1} variant="navButton">
           <FiLinkedin size={18} />
         </IconButton>
       </Link>
       <Link href="https://github.com/g-thinh/" target="_blank" px={2}>
-        <IconButton
-          sx={{
-            cursor: "pointer",
-            textDecoration: "none",
-            color: "text",
-            "&:hover": {
-              color: "primary",
-            },
-            "&:focus": {
-              color: "primary",
-            },
-          }}
-        >
+        <IconButton tabIndex={-1} variant="navButton">
           <FiGithub size={18} />
         </IconButton>
       </Link>
