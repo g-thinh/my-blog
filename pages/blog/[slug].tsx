@@ -1,7 +1,14 @@
-import { Container, Text, Box, Badge, Flex, Button } from "theme-ui";
+import {
+  Container,
+  Text,
+  Box,
+  Badge,
+  Flex,
+  Button,
+  AspectImage,
+} from "theme-ui";
 import { GetStaticPaths, GetStaticProps } from "next";
 import Storyblok, { useStoryblok } from "@utils/storyblok";
-import Image from "next/image";
 import { useRouter } from "next/router";
 import { format } from "date-fns";
 import { calculateReadTime } from "@utils/calculateReadTime";
@@ -85,15 +92,12 @@ export default function BlogPostPage(props: StoryPage): JSX.Element {
           ))}
       </Box>
 
-      <Box mb={[3, 4]}>
-        <Image
-          src={story.content.image.filename}
-          alt={story.content.image.alt}
-          width="48em"
-          height="25em"
-          layout="responsive"
-        />
-      </Box>
+      <AspectImage
+        ratio={4 / 3}
+        sx={{ borderRadius: "0.5rem", objectFit: "cover" }}
+        src={story.content.image.filename}
+        alt={story.content.image.alt}
+      />
       <Box pb={[3, 4]}>{render(story.content.long_text, resolvers)}</Box>
     </Container>
   );

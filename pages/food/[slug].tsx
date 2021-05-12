@@ -1,8 +1,16 @@
-import { Container, Text, Box, Badge, Flex, Button, Divider } from "theme-ui";
+import {
+  Container,
+  Text,
+  Box,
+  Badge,
+  Flex,
+  Button,
+  Divider,
+  AspectImage,
+} from "theme-ui";
 import { GetStaticPaths, GetStaticProps } from "next";
 import Storyblok, { useStoryblok } from "@utils/storyblok";
 import { format } from "date-fns";
-import Image from "next/image";
 import { useRouter } from "next/router";
 import { calculateReadTime } from "@utils/calculateReadTime";
 import { Heading } from "@components/index";
@@ -89,12 +97,11 @@ export default function CodePostPage(props: StoryPage): JSX.Element {
       <Divider />
 
       <Box mb={[3, 4]}>
-        <Image
+        <AspectImage
+          ratio={1 / 1}
+          sx={{ borderRadius: "0.5rem" }}
           src={story.content.image.filename}
           alt={story.content.image.alt}
-          width="48em"
-          height="35em"
-          layout="responsive"
         />
       </Box>
       <Box pb={[3, 4]}>{render(story.content.long_text, resolvers)}</Box>

@@ -1,8 +1,6 @@
-import { Text, Button, Box, Card, Flex } from "theme-ui";
-import styled from "styled-components";
+import { Text, Button, Box, Card, Flex, Image } from "theme-ui";
 import { format } from "date-fns";
 import Link from "next/link";
-import Image from "next/image";
 
 export const FoodCard = ({ data }) => {
   return (
@@ -41,11 +39,15 @@ export const FoodCard = ({ data }) => {
             justifyContent: "center",
           }}
         >
-          <StyledImage
+          <Image
+            sx={{
+              borderRadius: "0.5rem",
+              objectFit: "cover",
+              width: "120px",
+              height: "120px",
+            }}
             src={data.content.image.filename}
             alt={data.content.image.alt}
-            width={120}
-            height={120}
           />
         </Box>
         <Flex sx={{ flex: "1", flexFlow: "column nowrap" }}>
@@ -87,7 +89,3 @@ export const FoodCard = ({ data }) => {
     </Link>
   );
 };
-
-const StyledImage = styled(Image)({
-  borderRadius: "1.5rem",
-});
