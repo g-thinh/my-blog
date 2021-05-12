@@ -24,7 +24,7 @@ export const TableLinks = (props: Props): JSX.Element => {
           {props.items.map((item, index) => {
             return (
               <Link
-                id={item._uid}
+                key={item._uid}
                 color="text"
                 p={[2, 3]}
                 sx={{
@@ -57,9 +57,7 @@ export const TableLinks = (props: Props): JSX.Element => {
                   >
                     {index + 1}
                   </IconButton>
-                  <Text as="a" sx={{ fontWeight: "bold" }}>
-                    {item.text}
-                  </Text>
+                  <Text sx={{ fontWeight: "bold" }}>{item.text}</Text>
                 </Flex>
               </Link>
             );

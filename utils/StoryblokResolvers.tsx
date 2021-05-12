@@ -10,12 +10,12 @@ import {
   NODE_PARAGRAPH,
 } from "storyblok-rich-text-react-renderer";
 import styled from "styled-components";
-import { Box, Link, Message, Text, AspectImage } from "theme-ui";
+import { Box, Link, Message, Text, Image } from "theme-ui";
 
 export const resolvers = {
   nodeResolvers: {
     [NODE_IMAGE]: (children, { src }): JSX.Element => (
-      <AspectImage ratio={4 / 3} my={2} p={[0, 5]} src={src} />
+      <Image my={2} p={[0, 4]} src={src} />
     ),
     [NODE_PARAGRAPH]: (children: React.ReactNode): JSX.Element => {
       return (
@@ -44,6 +44,15 @@ export const resolvers = {
         </Box>
       );
     },
+  },
+  defaultNodeResolvers: (name: string, props): JSX.Element => {
+    return (
+      <div>
+        <pre>
+          <code>{JSON.stringify(props, undefined, 2)}</code>
+        </pre>
+      </div>
+    );
   },
   markResolvers: {
     [MARK_LINK]: (children: React.ReactNode, props): JSX.Element => (
