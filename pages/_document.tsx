@@ -9,7 +9,11 @@ import { InitializeColorMode } from "theme-ui";
 import { ServerStyleSheet } from "styled-components";
 
 export default class extends Document {
-  static async getInitialProps(ctx: DocumentContext): Promise<any> {
+  static async getInitialProps(ctx: DocumentContext): Promise<{
+    styles: JSX.Element;
+    html: string;
+    head?: JSX.Element[];
+  }> {
     const sheet = new ServerStyleSheet();
     const originalRenderPage = ctx.renderPage;
 
@@ -38,7 +42,14 @@ export default class extends Document {
   render(): JSX.Element {
     return (
       <Html>
-        <Head />
+        <Head>
+          <link rel="canonical" href={process.env.baseUrl} />
+          <meta name="robots" content="index, follow" />
+          <meta property="og:site_name" content={process.env.baseUrl} />
+          <meta property="og:type" content="article" />
+          <meta name="twitter:site" content="@GThinhNguyen" />
+          <meta name="twitter:creator" content="@GThinhNguyen" />
+        </Head>
         <body>
           <Main />
           <NextScript />

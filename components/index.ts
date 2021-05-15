@@ -10,3 +10,4 @@ export { default as FeaturedList } from "./FeaturedList";
 export * from "./Subheading";
 export * from "./TableLinks";
 export * from "./InternalLink";
+export { default as SEO } from "./SEO";
