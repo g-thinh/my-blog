@@ -1,5 +1,5 @@
 import { Container, Box, Text, Paragraph, Flex } from "theme-ui";
-import { Heading, Subheading, FeaturedList } from "@components/index";
+import { Heading, Subheading, FeaturedList, SEO } from "@components/index";
 import { GetStaticProps } from "next";
 import { useColorMode } from "theme-ui";
 import Storyblok, { useStoryblok } from "@utils/storyblok";
@@ -38,6 +38,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
 export default function HomePage(props: StoryPage): JSX.Element {
   const story = useStoryblok(props.story);
+  const { meta } = story.content;
   const [colorMode] = useColorMode();
   const isDark = colorMode === "dark";
 
@@ -52,6 +53,7 @@ export default function HomePage(props: StoryPage): JSX.Element {
 
   return (
     <Container p={[2, 3]}>
+      <SEO meta={meta} />
       <Flex
         sx={{
           flexFlow: "column",

@@ -1,5 +1,5 @@
 import { Container, Box } from "theme-ui";
-import { Heading, Subheading } from "@components/index";
+import { Heading, Subheading, SEO } from "@components/index";
 import { GetStaticProps } from "next";
 import { render } from "storyblok-rich-text-react-renderer";
 import { resolvers } from "@utils/StoryblokResolvers";
@@ -35,8 +35,10 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
 export default function AboutPage(props: StoryPage): JSX.Element {
   const story = useStoryblok(props.story);
+  const { meta } = story.content;
   return (
     <Container p={[2, 3]}>
+      <SEO meta={meta} />
       <Heading>{story.content.title}</Heading>
       <Subheading>{story.content.subtitle}</Subheading>
 
