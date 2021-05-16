@@ -12,7 +12,7 @@ import Storyblok, { useStoryblok } from "@utils/storyblok";
 import { useRouter } from "next/router";
 import { format } from "date-fns";
 import { calculateReadTime } from "@utils/calculateReadTime";
-import { Heading } from "@components/index";
+import { Heading, SEO } from "@components/index";
 import { render } from "storyblok-rich-text-react-renderer";
 import { resolvers } from "@utils/StoryblokResolvers";
 
@@ -60,8 +60,10 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export default function BlogPostPage(props: StoryPage): JSX.Element {
   const router = useRouter();
   const story = useStoryblok(props.story);
+  const { meta } = story.content;
   return (
     <Container p={[2, 3]}>
+      <SEO meta={meta} />
       <Box mb={[3, 4]}>
         <Flex sx={{ flexFlow: "column nowrap" }}>
           <Button variant="back" onClick={() => router.back()}>
