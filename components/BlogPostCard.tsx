@@ -37,7 +37,11 @@ export const BlogPostCard = ({ data }): JSX.Element => {
               alignContent: "center",
             }}
           >
-            <Text as="h3" mt={1} sx={{ textAlign: "center", color: "grey" }}>
+            <Text
+              as="h3"
+              mt={[0, 1]}
+              sx={{ textAlign: "center", color: "grey" }}
+            >
               {format(new Date(data.first_published_at), "do MMMM, yyyy")}
             </Text>
           </Flex>
