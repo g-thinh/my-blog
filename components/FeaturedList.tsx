@@ -3,30 +3,21 @@ import Storyblok from "@utils/storyblok";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { Container, Box, Text, Divider, Spinner } from "theme-ui";
+import { format } from "date-fns";
 
 export default function NewsList(): JSX.Element {
   const [posts, setPosts] = useState([]);
   const router = useRouter();
 
   async function fetchPosts() {
-    const { data } = await Storyblok.get("cdn/links");
-    const paths = [];
-    Object.keys(data.links).forEach((linkKey) => {
-      if (
-        data.links[linkKey].is_folder ||
-        data.links[linkKey].slug === "about" ||
-        data.links[linkKey].slug === "landing"
-      ) {
-        return;
-      }
-      paths.push({
-        slug: data.links[linkKey].real_path,
-        name: data.links[linkKey].name,
-      });
+    const { data } = await Storyblok.get("cdn/stories", {
+      by_slugs: "blog/*,code/*",
+      per_page: 5,
+      sort_by: "published_at:desc",
     });
-    const top5 = paths.slice(0, 4);
-
-    setPosts(top5);
+    if (data.stories) {
+      setPosts(data.stories);
+    }
   }
 
   useEffect(() => {
@@ -57,7 +48,7 @@ export default function NewsList(): JSX.Element {
         posts.map((post, index) => {
           return (
             <Box key={index}>
-              <Link href={post.slug} passHref>
+              <Link href={post.full_slug} passHref>
                 <Text
                   as="a"
                   color="text"
@@ -67,7 +58,10 @@ export default function NewsList(): JSX.Element {
                   }}
                 >
                   •{"  "}
-                  {post.name}
+                  {post.name}{" "}
+                  <Text as="span" color="grey">
+                    - {format(new Date(post.published_at), "MMM d")}
+                  </Text>
                 </Text>
               </Link>
             </Box>
