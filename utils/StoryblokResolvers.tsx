@@ -19,14 +19,20 @@ export const resolvers = {
     ),
     [NODE_PARAGRAPH]: (children: React.ReactNode): JSX.Element => {
       return (
-        <Text as="p" mb={[2, 3]}>
+        <Text as="p" mb={[3, 4]}>
           {children}
         </Text>
       );
     },
     [NODE_HEADING]: (children: React.ReactNode): JSX.Element => {
       return (
-        <Text as="h3" color="primary" my={[3, 4]}>
+        <Text
+          as="h3"
+          color="primary"
+          mt={[3, 4]}
+          mb={[1, 2]}
+          sx={{ fontSize: 3 }}
+        >
           {children}
         </Text>
       );
