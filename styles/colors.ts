@@ -6,6 +6,7 @@ const colors = {
   muted: "#f6f6f6",
   highlight: "#48a9e2",
   hover: "#d9d9d9",
+  grayness: "#f8f9fa",
   modes: {
     dark: {
       text: "#F0F5FA",
@@ -15,6 +16,7 @@ const colors = {
       highlight: "#5F527A",
       muted: "rgba(0, 0, 0, 0.2)",
       hover: "#0b090a",
+      grayness: "#343a40",
     },
   },
 };

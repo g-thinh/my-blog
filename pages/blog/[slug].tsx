@@ -77,15 +77,15 @@ export default function BlogPostPage(props: StoryPage): JSX.Element {
           {format(new Date(story.first_published_at), "MMM d")} •{"  "}
           {calculateReadTime(story.content.long_text.content)}
         </Text>
-        {story.content.tags &&
-          story.content.tags.map((tag) => (
+        {story.tag_list &&
+          story.tag_list.map((tag) => (
             <Badge
               key={tag}
               mr={story.content.tags.length > 1 ? 3 : 0}
               px={2}
               sx={{
                 backgroundColor: "primary",
-                color: "text",
+                color: "grayness",
                 borderRadius: "1rem",
               }}
             >

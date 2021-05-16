@@ -75,15 +75,15 @@ export default function CodePostPage(props: StoryPage): JSX.Element {
         <Heading>{story.content.title}</Heading>
       </Flex>
       <Flex my={2} sx={{ justifyContent: "center", flexFlow: "row wrap" }}>
-        {story.content.tags &&
-          story.content.tags.map((tag) => (
+        {story.tag_list &&
+          story.tag_list.map((tag) => (
             <Badge
               key={tag}
-              mr={story.content.tags.length > 1 ? 3 : 0}
+              mr={story.tag_list.length > 1 ? 3 : 0}
               px={2}
               sx={{
                 backgroundColor: "primary",
-                color: "text",
+                color: "grayness",
                 borderRadius: "1rem",
               }}
             >
