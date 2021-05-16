@@ -16,7 +16,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
       params.cv = Date.now();
     }
 
-    const { data: post } = await Storyblok.get(
+    const { data: posts } = await Storyblok.get(
       `cdn/stories?starts_with=${slug}`,
       params
     );
@@ -25,12 +25,11 @@ export const getStaticProps: GetStaticProps = async (context) => {
       `cdn/stories/${page_slug}`,
       params
     );
-    console.log(page);
 
     return {
       props: {
         page: page ? page.story : false,
-        stories: post ? post.stories : false,
+        stories: posts ? posts.stories : false,
         preview: context.preview || false,
       },
       revalidate: 10,
