@@ -7,6 +7,7 @@ interface StoryPage {
 
 interface StoriesPage {
   stories: Stories;
+  page?: Story;
 }
 
 interface Params {

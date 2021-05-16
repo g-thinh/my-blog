@@ -2,14 +2,13 @@ import { Text, Card, Flex } from "theme-ui";
 import { format } from "date-fns";
 import Link from "next/link";
 
-export const BlogPostCard = ({ data }) => {
+export const BlogPostCard = ({ data }): JSX.Element => {
   return (
     <Link href={data.full_slug}>
       <Card
         bg="muted"
         p={[2, 3]}
         mb={[3, 4]}
-        mx={[3, 4]}
         sx={{
           display: ["flex", "block"],
           justifyContent: "center",
@@ -17,14 +16,14 @@ export const BlogPostCard = ({ data }) => {
           "&:hover": {
             cursor: "pointer",
             boxShadow: "card",
-            "& h2": {
+            "& h3": {
               color: "primary",
             },
           },
           "&:focus-within": {
             cursor: "pointer",
             boxShadow: "card",
-            "& h2": {
+            "& h3": {
               color: "primary",
             },
           },
@@ -38,13 +37,17 @@ export const BlogPostCard = ({ data }) => {
               alignContent: "center",
             }}
           >
-            <Text as="h3" mt={1} sx={{ textAlign: "center", color: "grey" }}>
+            <Text
+              as="h3"
+              mt={[0, 1]}
+              sx={{ textAlign: "center", color: "grey" }}
+            >
               {format(new Date(data.first_published_at), "do MMMM, yyyy")}
             </Text>
           </Flex>
           <Flex sx={{ flexDirection: "column", flex: "3" }}>
             <Text
-              as="h2"
+              as="h3"
               color="text"
               sx={{
                 fontSize: [2, 3],
