@@ -6,7 +6,6 @@ export const CodePostCard = ({ data }): JSX.Element => {
   return (
     <Link href={post.full_slug}>
       <Card
-        key={post.id}
         p={[2, 3]}
         sx={{
           display: "flex",

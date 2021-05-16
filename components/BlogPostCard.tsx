@@ -6,7 +6,6 @@ export const BlogPostCard = ({ data }): JSX.Element => {
   return (
     <Link href={data.full_slug}>
       <Card
-        key={data.id}
         bg="muted"
         p={[2, 3]}
         mb={[3, 4]}

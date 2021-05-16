@@ -47,7 +47,7 @@ export default function CodePage(props: StoriesPage): JSX.Element {
       <Grid sx={{ gridTemplateColumns: ["1fr"], gridAutoRows: "1fr" }}>
         {stories &&
           stories.map((post) => {
-            return <CodePostCard data={post} />;
+            return <CodePostCard key={post.id} data={post} />;
           })}
       </Grid>
     </Container>
