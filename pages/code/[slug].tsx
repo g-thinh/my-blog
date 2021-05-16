@@ -3,7 +3,7 @@ import { GetStaticPaths, GetStaticProps } from "next";
 import Storyblok, { useStoryblok } from "@utils/storyblok";
 import { format } from "date-fns";
 import { calculateReadTime } from "@utils/calculateReadTime";
-import { Heading, Subheading } from "@components/index";
+import { Heading, Subheading, SEO } from "@components/index";
 import { render } from "storyblok-rich-text-react-renderer";
 import { resolvers } from "@utils/StoryblokResolvers";
 
@@ -56,8 +56,10 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export default function CodePostPage(props: StoryPage): JSX.Element {
   const router = useRouter();
   const story = useStoryblok(props.story);
+  const { meta } = story.content;
   return (
     <Container p={[2, 3]} sx={{ width: "100%" }}>
+      <SEO meta={meta} />
       <Flex sx={{ flexFlow: "column nowrap" }}>
         <Button variant="back" onClick={() => router.back()}>
           <span>Code</span>
@@ -69,11 +71,11 @@ export default function CodePostPage(props: StoryPage): JSX.Element {
         {format(new Date(story.first_published_at), "MMM d")} •{"  "}
         {calculateReadTime(story.content.long_text.content)}
       </Text>
-      {story.content.tags &&
-        story.content.tags.map((tag) => (
+      {story.tag_list &&
+        story.tag_list.map((tag) => (
           <Badge
             key={tag}
-            mr={story.content.tags.length > 1 ? 3 : 0}
+            mr={story.tag_list.length > 1 ? 3 : 0}
             px={2}
             sx={{
               backgroundColor: "primary",

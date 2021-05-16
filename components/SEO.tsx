@@ -20,7 +20,6 @@ interface Props {
 
 export default function SEO({ meta }: Props): JSX.Element {
   const router = useRouter();
-  console.log(router);
   return (
     <Head>
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
