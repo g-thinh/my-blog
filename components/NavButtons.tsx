@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Flex, Link, useColorMode, IconButton } from "theme-ui";
 import { DarkModeSwitch } from "react-toggle-dark-mode";
-import { FiGithub, FiTwitter, FiLinkedin, FiLink } from "react-icons/fi";
+import { FiGithub, FiTwitter, FiLinkedin } from "react-icons/fi";
 
 const NavButtons: React.FC = () => {
   const [colorMode, setColorMode] = useColorMode();
