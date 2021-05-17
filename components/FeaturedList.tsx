@@ -1,28 +1,26 @@
-import { useState, useEffect } from "react";
-import Storyblok from "@utils/storyblok";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import useSWR from "swr";
 import { Container, Box, Text, Divider, Spinner } from "theme-ui";
 import { format } from "date-fns";
 
+function useFeatured() {
+  const { data: posts, error } = useSWR("/api/featured", (url) =>
+    fetch(url).then((res) => res.json())
+  );
+  return {
+    posts,
+    isLoading: !posts && !error,
+  };
+}
+
 export default function NewsList(): JSX.Element {
-  const [posts, setPosts] = useState([]);
+  const { posts, isLoading } = useFeatured();
   const router = useRouter();
 
-  async function fetchPosts() {
-    const { data } = await Storyblok.get("cdn/stories", {
-      by_slugs: "blog/*,code/*",
-      per_page: 5,
-      sort_by: "published_at:desc",
-    });
-    if (data.stories) {
-      setPosts(data.stories);
-    }
+  if (isLoading) {
+    return <Spinner />;
   }
-
-  useEffect(() => {
-    fetchPosts();
-  }, []);
 
   return (
     <Container
@@ -44,32 +42,28 @@ export default function NewsList(): JSX.Element {
         Latest Posts
       </Text>
       <Divider />
-      {posts.length > 0 ? (
-        posts.map((post, index) => {
-          return (
-            <Box key={index}>
-              <Link href={post.full_slug} passHref>
-                <Text
-                  as="a"
-                  color="text"
-                  sx={{
-                    textDecoration: "none",
-                    "&:hover": { color: "primary" },
-                  }}
-                >
-                  •{"  "}
-                  {post.name}{" "}
-                  <Text as="span" color="grey">
-                    - {format(new Date(post.published_at), "MMM d")}
-                  </Text>
+      {posts.map((post, index) => {
+        return (
+          <Box key={index}>
+            <Link href={post.full_slug} passHref>
+              <Text
+                as="a"
+                color="text"
+                sx={{
+                  textDecoration: "none",
+                  "&:hover": { color: "primary" },
+                }}
+              >
+                •{"  "}
+                {post.name}{" "}
+                <Text as="span" color="grey">
+                  - {format(new Date(post.published_at), "MMM d")}
                 </Text>
-              </Link>
-            </Box>
-          );
-        })
-      ) : (
-        <Spinner />
-      )}
+              </Text>
+            </Link>
+          </Box>
+        );
+      })}
     </Container>
   );
 }
