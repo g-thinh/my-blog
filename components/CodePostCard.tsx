@@ -1,4 +1,5 @@
 import { Box, Card, Divider, Text, Flex } from "theme-ui";
+import { format } from "date-fns";
 import Link from "next/link";
 
 export const CodePostCard = ({ data }): JSX.Element => {
@@ -31,11 +32,10 @@ export const CodePostCard = ({ data }): JSX.Element => {
       >
         <Divider />
         <Flex sx={{ flex: "1", flexFlow: "column nowrap" }}>
-          <Box>
+          <Box mb={2}>
             <Text
               as="h3"
               color="secondary"
-              mb={2}
               sx={{
                 fontSize: [2, 3],
                 fontWeight: "bold",
@@ -43,7 +43,11 @@ export const CodePostCard = ({ data }): JSX.Element => {
             >
               {post.name}
             </Text>
+            <Text color="grey">
+              {format(new Date(post.published_at), "MMM d, yyyy")}
+            </Text>
           </Box>
+
           <Text
             as="p"
             color="text"

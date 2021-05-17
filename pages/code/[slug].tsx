@@ -79,7 +79,7 @@ export default function CodePostPage(props: StoryPage): JSX.Element {
             px={2}
             sx={{
               backgroundColor: "primary",
-              color: "text",
+              color: "grayness",
               borderRadius: "1rem",
             }}
           >

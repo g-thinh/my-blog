@@ -10,23 +10,35 @@ import {
   NODE_PARAGRAPH,
 } from "storyblok-rich-text-react-renderer";
 import styled from "styled-components";
-import { Box, Link, Message, Text, Image } from "theme-ui";
+import { Flex, Box, Link, Message, Text, Image } from "theme-ui";
 
 export const resolvers = {
   nodeResolvers: {
     [NODE_IMAGE]: (children, { src }): JSX.Element => (
-      <Image my={2} p={[0, 4]} src={src} />
+      <Flex
+        sx={{
+          justifyContent: "center",
+        }}
+      >
+        <Image my={2} p={[0, 4]} src={src} />
+      </Flex>
     ),
     [NODE_PARAGRAPH]: (children: React.ReactNode): JSX.Element => {
       return (
-        <Text as="p" mb={[2, 3]}>
+        <Text as="p" mb={[3, 4]}>
           {children}
         </Text>
       );
     },
     [NODE_HEADING]: (children: React.ReactNode): JSX.Element => {
       return (
-        <Text as="h3" color="primary" my={[3, 4]}>
+        <Text
+          as="h3"
+          color="primary"
+          mt={[3, 4]}
+          mb={[1, 2]}
+          sx={{ fontSize: 3 }}
+        >
           {children}
         </Text>
       );
