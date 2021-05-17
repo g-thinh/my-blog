@@ -26,7 +26,7 @@ export const InternalLink = (props): JSX.Element => {
         },
       }}
     >
-      <Text id={id.url} color="primary" sx={{ fontSize: [2, 3] }}>
+      <Text id={id.url} color="secondary" sx={{ fontSize: [3, 4] }}>
         {text}
       </Text>
       <Tippy content="Copied" placement="right" trigger="click">
