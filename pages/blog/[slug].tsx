@@ -1,20 +1,16 @@
-import { MainHeading, PostTags, SEO } from "@components/index";
-import { calculateReadTime } from "@utils/calculateReadTime";
+import {
+  MainHeading,
+  PostTags,
+  SEO,
+  TextBlock,
+  DateReadTime,
+} from "@components/index";
 import Storyblok, { useStoryblok } from "@utils/storyblok";
 import { resolvers } from "@utils/StoryblokResolvers";
-import { format } from "date-fns";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { useRouter } from "next/router";
 import { render } from "storyblok-rich-text-react-renderer";
-import {
-  AspectImage,
-  Box,
-  Button,
-  Container,
-  Divider,
-  Flex,
-  Text,
-} from "theme-ui";
+import { AspectImage, Box, Button, Container, Divider, Flex } from "theme-ui";
 
 export const getStaticProps: GetStaticProps = async (context) => {
   try {
@@ -71,12 +67,15 @@ export default function BlogPostPage(props: StoryPage): JSX.Element {
           </Button>
           <MainHeading isCenter={false}>{story.content.title}</MainHeading>
         </Flex>
-        <Text as="h2" color="grey" sx={{ textAlign: "left" }}>
-          {format(new Date(story.first_published_at), "MMM d")} •{"  "}
-          {calculateReadTime(story.content.long_text.content)}
-        </Text>
+        <DateReadTime
+          date={story.first_published_at}
+          text={story.content.long_text.content}
+        />
         <PostTags tags={story.tag_list} />
-        <Text>{story.content.intro}</Text>
+        <Flex my={2}>
+          <TextBlock>{story.content.intro}</TextBlock>
+        </Flex>
+
         <Divider />
       </Box>
       <AspectImage

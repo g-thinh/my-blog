@@ -1,18 +1,8 @@
-import {
-  Container,
-  Text,
-  Box,
-  Flex,
-  Button,
-  Divider,
-  AspectImage,
-} from "theme-ui";
+import { Container, Box, Flex, Button, Divider, AspectImage } from "theme-ui";
 import { GetStaticPaths, GetStaticProps } from "next";
 import Storyblok, { useStoryblok } from "@utils/storyblok";
-import { format } from "date-fns";
 import { useRouter } from "next/router";
-import { calculateReadTime } from "@utils/calculateReadTime";
-import { MainHeading, SEO, PostTags } from "@components/index";
+import { MainHeading, SEO, PostTags, DateReadTime } from "@components/index";
 import { render } from "storyblok-rich-text-react-renderer";
 import { resolvers } from "@utils/StoryblokResolvers";
 
@@ -76,16 +66,18 @@ export default function FoodPostPage(props: StoryPage): JSX.Element {
       <Flex my={2} sx={{ justifyContent: "center", flexFlow: "row wrap" }}>
         <PostTags tags={story.tag_list} />
       </Flex>
-      <Text as="h2" color="grey" sx={{ textAlign: "center" }}>
-        {format(new Date(story.content.date), "MMM d, yyyy")} •{"  "}
-        {calculateReadTime(story.content.long_text.content)}
-      </Text>
-      <PostTags tags={story.tag_list} />
+      <Box sx={{ textAlign: "center" }}>
+        <DateReadTime
+          date={story.content.date}
+          text={story.content.long_text.content}
+        />
+      </Box>
+
       <Divider />
       <Box mb={[3, 4]}>
         <AspectImage
           ratio={1 / 1}
-          sx={{ borderRadius: "0.5rem" }}
+          sx={{ borderRadius: "0.5rem", objectFit: "cover" }}
           src={story.content.image.filename}
           alt={story.content.image.alt}
         />

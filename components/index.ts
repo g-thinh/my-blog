@@ -12,3 +12,4 @@ export * from "./TableLinks";
 export * from "./InternalLink";
 export { default as SEO } from "./SEO";
 export * from "./CodePostCard";
+export * from "./DateReadTime";
