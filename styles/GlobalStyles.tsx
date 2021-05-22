@@ -104,12 +104,8 @@ const GlobalStyles = (props: GlobalProps): JSX.Element => {
           margin: 0;
           padding: 0;
           border: 0;
-          font-size: 100%;
 
           vertical-align: baseline;
-          font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI",
-            Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
-            sans-serif;
           ::-webkit-scrollbar {
             width: 12px;
             background-color: ${theme.colors.background};
@@ -123,17 +119,6 @@ const GlobalStyles = (props: GlobalProps): JSX.Element => {
             border: 3px solid ${theme.colors.background};
             background-color: ${theme.colors.primary};
           }
-        }
-
-        p,
-        h1,
-        h2,
-        h3,
-        h4,
-        h5,
-        h6,
-        a {
-          font-weight: 400;
         }
 
         /* HTML5 display-role reset for older browsers */
@@ -150,45 +135,9 @@ const GlobalStyles = (props: GlobalProps): JSX.Element => {
         section {
           display: block;
         }
-        body {
-          line-height: 1.6;
-        }
         ol,
         ul {
           list-style: none;
-        }
-        blockquote,
-        q {
-          quotes: none;
-        }
-        blockquote:before,
-        blockquote:after,
-        q:before,
-        q:after {
-          content: "";
-          content: none;
-        }
-        table {
-          border-collapse: collapse;
-          border-spacing: 0;
-        }
-
-        select {
-          -webkit-appearance: none;
-          -moz-appearance: none;
-          appearance: none;
-          padding: 0.3rem 0.5rem;
-          border: 1px solid rgba(145, 145, 145, 0.5);
-          font-size: 1rem;
-          line-height: 1.6;
-          border-radius: 12px;
-          cursor: pointer;
-          width: 8rem;
-          text-align: center;
-          outline: none;
-        }
-        option {
-          text-align: center;
         }
       `}
     />
