@@ -1,7 +1,7 @@
 import { Container, Grid } from "theme-ui";
 import { GetStaticProps } from "next";
 import Storyblok, { useStoryblok } from "@utils/storyblok";
-import { FoodCard, Heading, Subheading, SEO } from "@components/index";
+import { FoodCard, MainHeading, Subheading, SEO } from "@components/index";
 
 export const getStaticProps: GetStaticProps = async (context) => {
   try {
@@ -48,7 +48,7 @@ export default function AboutPage(props: StoriesPage): JSX.Element {
   return (
     <Container p={[2, 3]}>
       <SEO meta={meta} />
-      <Heading>{page.content.title}</Heading>
+      <MainHeading>{page.content.title}</MainHeading>
       <Subheading>{page.content.description}</Subheading>
       <Grid
         sx={{ gridTemplateColumns: ["1fr", "1fr 1fr"], gridAutoRows: "1fr" }}

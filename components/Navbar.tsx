@@ -1,4 +1,4 @@
-import { Box, Flex, Text } from "theme-ui";
+import { Box, Flex, Heading, Text } from "theme-ui";
 import { RouteLink } from "@components/RouteLink";
 import NavButtons from "@components/NavButtons";
 
@@ -13,20 +13,20 @@ const Navbar: React.FC = () => (
       }}
     >
       <RouteLink isActive={false} href="/" index={1}>
-        <Text
-          as="p"
+        <Heading
           my={[2, 0]}
           sx={{
+            fontWeight: "body",
             userSelect: "none",
             fontSize: [3, 4],
             textAlign: "center",
           }}
         >
           Gia Thinh Nguyen
-          <Text color="primary" sx={{ fontWeight: "bold" }}>
+          <Text as="span" color="primary" sx={{ fontWeight: "bold" }}>
             .
           </Text>
-        </Text>
+        </Heading>
       </RouteLink>
       <Flex
         as="ul"

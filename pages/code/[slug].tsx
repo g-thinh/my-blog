@@ -3,7 +3,7 @@ import { GetStaticPaths, GetStaticProps } from "next";
 import Storyblok, { useStoryblok } from "@utils/storyblok";
 import { format } from "date-fns";
 import { calculateReadTime } from "@utils/calculateReadTime";
-import { Heading, Subheading, SEO } from "@components/index";
+import { MainHeading, Subheading, SEO } from "@components/index";
 import { render } from "storyblok-rich-text-react-renderer";
 import { resolvers } from "@utils/StoryblokResolvers";
 
@@ -64,7 +64,7 @@ export default function CodePostPage(props: StoryPage): JSX.Element {
         <Button variant="back" onClick={() => router.back()}>
           <span>Code</span>
         </Button>
-        <Heading isCenter={false}>{story.name}</Heading>
+        <MainHeading isCenter={false}>{story.name}</MainHeading>
       </Flex>
 
       <Text as="h2" color="grey" sx={{ textAlign: "left" }}>

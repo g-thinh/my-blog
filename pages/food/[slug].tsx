@@ -13,7 +13,7 @@ import Storyblok, { useStoryblok } from "@utils/storyblok";
 import { format } from "date-fns";
 import { useRouter } from "next/router";
 import { calculateReadTime } from "@utils/calculateReadTime";
-import { Heading, SEO } from "@components/index";
+import { MainHeading, SEO } from "@components/index";
 import { render } from "storyblok-rich-text-react-renderer";
 import { resolvers } from "@utils/StoryblokResolvers";
 
@@ -72,7 +72,7 @@ export default function CodePostPage(props: StoryPage): JSX.Element {
         <Button variant="back" onClick={() => router.back()}>
           <span>Food</span>
         </Button>
-        <Heading>{story.content.title}</Heading>
+        <MainHeading>{story.content.title}</MainHeading>
       </Flex>
       <Flex my={2} sx={{ justifyContent: "center", flexFlow: "row wrap" }}>
         {story.tag_list &&

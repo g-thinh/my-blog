@@ -1,5 +1,5 @@
-import { Container, Box, Text, Paragraph, Flex } from "theme-ui";
-import { Heading, Subheading, FeaturedList, SEO } from "@components/index";
+import { Container, Box, Text, Flex } from "theme-ui";
+import { MainHeading, Subheading, FeaturedList, SEO } from "@components/index";
 import { GetStaticProps } from "next";
 import { useColorMode } from "theme-ui";
 import Storyblok, { useStoryblok } from "@utils/storyblok";
@@ -60,7 +60,7 @@ export default function HomePage(props: StoryPage): JSX.Element {
           justifyContent: "center",
         }}
       >
-        <Heading>{story.content.title}</Heading>
+        <MainHeading>{story.content.title}</MainHeading>
         <Flex
           sx={{
             justifyContent: "center",
@@ -72,12 +72,12 @@ export default function HomePage(props: StoryPage): JSX.Element {
       </Flex>
       <Subheading>{story.content.subtitle}</Subheading>
       <Box p={3} sx={{ borderRadius: "card" }}>
-        <Paragraph as="p" variant="block" my={3}>
+        <Text as="p" my={3}>
           {story.content.description}
-        </Paragraph>
-        <Paragraph as="p" variant="block" my={3}>
+        </Text>
+        <Text as="p" my={3}>
           {story.content.header_tags}
-        </Paragraph>
+        </Text>
         {story.content.tags &&
           story.content.tags.map((tag: any) => {
             return (

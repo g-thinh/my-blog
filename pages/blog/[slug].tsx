@@ -12,7 +12,7 @@ import Storyblok, { useStoryblok } from "@utils/storyblok";
 import { useRouter } from "next/router";
 import { format } from "date-fns";
 import { calculateReadTime } from "@utils/calculateReadTime";
-import { Heading, SEO } from "@components/index";
+import { MainHeading, SEO } from "@components/index";
 import { render } from "storyblok-rich-text-react-renderer";
 import { resolvers } from "@utils/StoryblokResolvers";
 
@@ -69,7 +69,7 @@ export default function BlogPostPage(props: StoryPage): JSX.Element {
           <Button variant="back" onClick={() => router.back()}>
             <span>Blog</span>
           </Button>
-          <Heading isCenter={false}>{story.content.title}</Heading>
+          <MainHeading isCenter={false}>{story.content.title}</MainHeading>
         </Flex>
 
         <Text>{story.content.intro}</Text>
