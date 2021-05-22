@@ -104,7 +104,9 @@ const GlobalStyles = (props: GlobalProps): JSX.Element => {
           margin: 0;
           padding: 0;
           border: 0;
-
+          font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI",
+            Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+            sans-serif;
           vertical-align: baseline;
           ::-webkit-scrollbar {
             width: 12px;
