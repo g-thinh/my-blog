@@ -1,16 +1,18 @@
-import { Text, Card, Flex } from "theme-ui";
+import { Text, Card, Flex, Box } from "theme-ui";
 import { format } from "date-fns";
 import Link from "next/link";
 
 export const BlogPostCard = ({ data }): JSX.Element => {
   return (
-    <Link href={data.full_slug}>
+    <Link href={data.full_slug} passHref>
       <Card
+        as="a"
         bg="muted"
         p={[2, 3]}
         mb={[3, 4]}
         sx={{
-          display: ["flex", "block"],
+          textDecoration: "none",
+          display: "flex",
           justifyContent: "center",
           borderRadius: "card",
           "&:hover": {
@@ -31,6 +33,7 @@ export const BlogPostCard = ({ data }): JSX.Element => {
       >
         <Flex sx={{ width: "100%" }}>
           <Flex
+            mx={3}
             sx={{
               flex: "1",
               justifyContent: "center",
@@ -39,40 +42,41 @@ export const BlogPostCard = ({ data }): JSX.Element => {
           >
             <Text
               as="h3"
-              mt={[0, 1]}
-              sx={{ textAlign: "center", color: "grey" }}
+              sx={{ fontSize: [2, 3], textAlign: "center", color: "grey" }}
             >
               {format(new Date(data.first_published_at), "do MMMM, yyyy")}
             </Text>
           </Flex>
-          <Flex sx={{ flexDirection: "column", flex: "3" }}>
-            <Text
-              as="h3"
-              color="text"
-              sx={{
-                fontSize: [2, 3],
-                textAlign: "left",
-                fontWeight: "bold",
-              }}
-            >
-              {data.name}
-            </Text>
+          <Flex sx={{ flexFlow: "column nowrap", flex: "3" }}>
+            <Box mb={2}>
+              <Text
+                as="h3"
+                color="text"
+                sx={{
+                  fontSize: [2, 3],
+                  textAlign: "left",
+                  fontWeight: "bold",
+                }}
+              >
+                {data.name}
+              </Text>
+            </Box>
             <Text
               as="p"
               color="text"
-              my={[1, 3]}
               sx={{
-                textAlign: "left",
-                fontSize: [1],
+                flexGrow: 1,
+                fontSize: [2, 3],
               }}
             >
               {data.content.preview}
             </Text>
-            <Link href={data.full_slug} passHref>
+            <Flex>
               <Text
                 as="a"
                 color="grey"
                 sx={{
+                  fontSize: [2, 3],
                   width: "fit-content",
                   textDecoration: "none",
                   "&:hover": { textDecoration: "underline" },
@@ -80,7 +84,7 @@ export const BlogPostCard = ({ data }): JSX.Element => {
               >
                 Read More
               </Text>
-            </Link>
+            </Flex>
           </Flex>
         </Flex>
       </Card>

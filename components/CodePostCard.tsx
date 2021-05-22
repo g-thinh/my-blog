@@ -5,10 +5,12 @@ import Link from "next/link";
 export const CodePostCard = ({ data }): JSX.Element => {
   const post = data;
   return (
-    <Link href={post.full_slug}>
+    <Link href={post.full_slug} passHref>
       <Card
+        as="a"
         p={[2, 3]}
         sx={{
+          textDecoration: "none",
           display: "flex",
           flexFlow: "column nowrap",
           borderRadius: "card",
@@ -43,7 +45,7 @@ export const CodePostCard = ({ data }): JSX.Element => {
             >
               {post.name}
             </Text>
-            <Text color="grey">
+            <Text color="grey" sx={{ fontSize: [2, 3] }}>
               {format(new Date(post.published_at), "MMM d, yyyy")}
             </Text>
           </Box>
@@ -52,27 +54,26 @@ export const CodePostCard = ({ data }): JSX.Element => {
             as="p"
             color="text"
             sx={{
-              fontSize: [1],
+              fontSize: [2, 3],
               flexGrow: 1,
             }}
           >
             {post.content.preview}
           </Text>
           <Flex>
-            <Link href={post.full_slug} passHref>
-              <Text
-                as="a"
-                color="grey"
-                my={2}
-                sx={{
-                  width: "fit-content",
-                  textDecoration: "none",
-                  "&:hover": { textDecoration: "underline" },
-                }}
-              >
-                Show Me⏵
-              </Text>
-            </Link>
+            <Text
+              as="a"
+              color="grey"
+              my={2}
+              sx={{
+                fontSize: [2, 3],
+                width: "fit-content",
+                textDecoration: "none",
+                "&:hover": { textDecoration: "underline" },
+              }}
+            >
+              Show Me⏵
+            </Text>
           </Flex>
         </Flex>
       </Card>

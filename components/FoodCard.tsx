@@ -4,13 +4,15 @@ import Link from "next/link";
 
 export const FoodCard = ({ data }) => {
   return (
-    <Link href={data.full_slug}>
+    <Link href={data.full_slug} passHref>
       <Card
+        as="a"
         bg="muted"
         p={[2, 3]}
         mb={[3, 4]}
         mx={[3, 4]}
         sx={{
+          textDecoration: "none",
           display: ["flex", "flex"],
           justifyContent: "center",
           alignItems: "center",
@@ -63,7 +65,7 @@ export const FoodCard = ({ data }) => {
             >
               {data.content.title}
             </Text>
-            <Text as="h3" sx={{ textAlign: "center" }}>
+            <Text as="h3" sx={{ fontSize: [2, 3], textAlign: "center" }}>
               {format(new Date(data.content.date), "do MMMM, yyyy")}
             </Text>
           </Box>
@@ -73,16 +75,16 @@ export const FoodCard = ({ data }) => {
             my={[1, 3]}
             sx={{
               textAlign: "center",
-              fontSize: [1],
+              fontSize: 2,
               flexGrow: 1,
             }}
           >
             {data.content.preview}
           </Text>
-          <Flex sx={{ justifyContent: "center" }}>
-            <Link href={data.full_slug} passHref>
-              <Button variant="link">Read More</Button>
-            </Link>
+          <Flex py={2} sx={{ justifyContent: "center" }}>
+            <Button as="a" variant="link" sx={{ fontSize: [2, 3] }}>
+              Read More
+            </Button>
           </Flex>
         </Flex>
       </Card>
