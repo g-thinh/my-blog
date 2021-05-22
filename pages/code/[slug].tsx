@@ -1,9 +1,9 @@
-import { Container, Text, Box, Flex, Badge, Divider, Button } from "theme-ui";
+import { Container, Text, Box, Flex, Divider, Button } from "theme-ui";
 import { GetStaticPaths, GetStaticProps } from "next";
 import Storyblok, { useStoryblok } from "@utils/storyblok";
 import { format } from "date-fns";
 import { calculateReadTime } from "@utils/calculateReadTime";
-import { MainHeading, Subheading, SEO } from "@components/index";
+import { MainHeading, Subheading, SEO, PostTags } from "@components/index";
 import { render } from "storyblok-rich-text-react-renderer";
 import { resolvers } from "@utils/StoryblokResolvers";
 
@@ -71,21 +71,7 @@ export default function CodePostPage(props: StoryPage): JSX.Element {
         {format(new Date(story.first_published_at), "MMM d")} •{"  "}
         {calculateReadTime(story.content.long_text.content)}
       </Text>
-      {story.tag_list &&
-        story.tag_list.map((tag) => (
-          <Badge
-            key={tag}
-            mr={story.tag_list.length > 1 ? 3 : 0}
-            px={2}
-            sx={{
-              backgroundColor: "primary",
-              color: "grayness",
-              borderRadius: "1rem",
-            }}
-          >
-            {tag}
-          </Badge>
-        ))}
+      <PostTags tags={story.tag_list} />
       <Divider />
       <Subheading>{story.content.title}</Subheading>
       <Box pb={[3, 4]}>{render(story.content.long_text, resolvers)}</Box>

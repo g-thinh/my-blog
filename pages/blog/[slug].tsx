@@ -1,20 +1,20 @@
-import {
-  Container,
-  Text,
-  Box,
-  Badge,
-  Flex,
-  Button,
-  AspectImage,
-} from "theme-ui";
-import { GetStaticPaths, GetStaticProps } from "next";
-import Storyblok, { useStoryblok } from "@utils/storyblok";
-import { useRouter } from "next/router";
-import { format } from "date-fns";
+import { MainHeading, PostTags, SEO } from "@components/index";
 import { calculateReadTime } from "@utils/calculateReadTime";
-import { MainHeading, SEO } from "@components/index";
-import { render } from "storyblok-rich-text-react-renderer";
+import Storyblok, { useStoryblok } from "@utils/storyblok";
 import { resolvers } from "@utils/StoryblokResolvers";
+import { format } from "date-fns";
+import { GetStaticPaths, GetStaticProps } from "next";
+import { useRouter } from "next/router";
+import { render } from "storyblok-rich-text-react-renderer";
+import {
+  AspectImage,
+  Box,
+  Button,
+  Container,
+  Divider,
+  Flex,
+  Text,
+} from "theme-ui";
 
 export const getStaticProps: GetStaticProps = async (context) => {
   try {
@@ -71,29 +71,14 @@ export default function BlogPostPage(props: StoryPage): JSX.Element {
           </Button>
           <MainHeading isCenter={false}>{story.content.title}</MainHeading>
         </Flex>
-
-        <Text>{story.content.intro}</Text>
         <Text as="h2" color="grey" sx={{ textAlign: "left" }}>
           {format(new Date(story.first_published_at), "MMM d")} •{"  "}
           {calculateReadTime(story.content.long_text.content)}
         </Text>
-        {story.tag_list &&
-          story.tag_list.map((tag) => (
-            <Badge
-              key={tag}
-              mr={story.content.tags.length > 1 ? 3 : 0}
-              px={2}
-              sx={{
-                backgroundColor: "primary",
-                color: "grayness",
-                borderRadius: "1rem",
-              }}
-            >
-              {tag}
-            </Badge>
-          ))}
+        <PostTags tags={story.tag_list} />
+        <Text>{story.content.intro}</Text>
+        <Divider />
       </Box>
-
       <AspectImage
         ratio={4 / 3}
         sx={{ borderRadius: "0.5rem", objectFit: "cover" }}
