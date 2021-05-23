@@ -16,7 +16,7 @@ export const theme: Theme = {
   },
   lineHeights: {
     body: 1.8,
-    heading: 1.125,
+    heading: 1.5,
   },
   letterSpacings: {
     body: "normal",
@@ -29,18 +29,19 @@ export const theme: Theme = {
       color: "text",
       fontFamily: "body",
       fontWeight: "body",
-      lineHeight: 1.8,
+      lineHeight: "body",
       fontSize: 3,
     },
     block: {
       variant: "paragraph",
       fontFamily: "body",
       lineHeight: "body",
+      fontSize: 3,
     },
     heading: {
       fontFamily: "heading",
       fontWeight: "heading",
-      lineHeight: "body",
+      lineHeight: "heading",
     },
   },
   radii: {

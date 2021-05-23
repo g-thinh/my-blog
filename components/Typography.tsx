@@ -27,15 +27,28 @@ export const Subheading = ({ children }: Props): JSX.Element => (
   <Heading
     as="h2"
     color="text"
-    mb={[3, 4]}
-    sx={{ textAlign: "center", fontSize: [2, 3] }}
+    mb={4}
+    sx={{
+      textAlign: "center",
+      fontSize: [3, 4],
+      fontWeight: "body",
+    }}
   >
     {children}
   </Heading>
 );
 
 export const TextBlock = ({ children }: Props): JSX.Element => (
-  <Paragraph mb={[3, 4]} sx={{ fontSize: [2, 3] }}>
+  <Paragraph sx={{ fontSize: [2, 3] }}>{children}</Paragraph>
+);
+
+export const TextHeading = ({ children }: Props): JSX.Element => (
+  <Heading
+    as="h4"
+    color="primary"
+    mb={[1, 2]}
+    sx={{ fontWeight: "body", fontSize: [3, 4] }}
+  >
     {children}
-  </Paragraph>
+  </Heading>
 );

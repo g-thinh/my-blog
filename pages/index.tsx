@@ -1,5 +1,11 @@
-import { Container, Box, Text, Flex } from "theme-ui";
-import { MainHeading, Subheading, FeaturedList, SEO } from "@components/index";
+import { Container, Box, Flex } from "theme-ui";
+import {
+  MainHeading,
+  Subheading,
+  FeaturedList,
+  SEO,
+  TextBlock,
+} from "@components/index";
 import { GetStaticProps } from "next";
 import { useColorMode } from "theme-ui";
 import Storyblok, { useStoryblok } from "@utils/storyblok";
@@ -72,37 +78,7 @@ export default function HomePage(props: StoryPage): JSX.Element {
       </Flex>
       <Subheading>{story.content.subtitle}</Subheading>
       <Box p={3} sx={{ borderRadius: "card" }}>
-        <Text as="p" my={3}>
-          {story.content.description}
-        </Text>
-        <Text as="p" my={3}>
-          {story.content.header_tags}
-        </Text>
-        {story.content.tags &&
-          story.content.tags.map((tag: any) => {
-            return (
-              <Text
-                as="span"
-                key={tag}
-                px={1}
-                sx={{
-                  filter: "brightness(57%)",
-                  userSelect: "none",
-                  "&::before": {
-                    content: '"#"',
-                  },
-
-                  "&:hover": {
-                    cursor: "pointer",
-                    transition: "all 0.3s",
-                    color: "primary",
-                  },
-                }}
-              >
-                {tag}
-              </Text>
-            );
-          })}
+        <TextBlock>{story.content.description}</TextBlock>
       </Box>
       <FeaturedList />
     </Container>

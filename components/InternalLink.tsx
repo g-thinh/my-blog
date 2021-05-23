@@ -1,4 +1,4 @@
-import { Flex, Text, IconButton } from "theme-ui";
+import { Flex, Heading, IconButton } from "theme-ui";
 import { FiLink } from "react-icons/fi";
 import { useEffect } from "react";
 import Tippy from "@tippyjs/react";
@@ -18,7 +18,7 @@ export const InternalLink = (props): JSX.Element => {
 
   return (
     <Flex
-      my={3}
+      mb={[1, 2]}
       sx={{
         alignItems: "center",
         "&:hover button": {
@@ -26,9 +26,9 @@ export const InternalLink = (props): JSX.Element => {
         },
       }}
     >
-      <Text id={id.url} color="secondary" sx={{ fontSize: [3, 4] }}>
+      <Heading as="h3" id={id.url} color="secondary" sx={{ fontSize: [4, 5] }}>
         {text}
-      </Text>
+      </Heading>
       <Tippy content="Copied" placement="right" trigger="click">
         <IconButton
           onClick={handleClick}
