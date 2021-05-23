@@ -26,7 +26,6 @@ export const getStaticProps: GetStaticProps = async (context) => {
     }
 
     const { data } = await Storyblok.get(`cdn/stories/code/${slug}`, params);
-
     return {
       props: {
         story: data ? data.story : false,
@@ -34,7 +33,11 @@ export const getStaticProps: GetStaticProps = async (context) => {
       },
       revalidate: 10,
     };
-  } catch (error) {}
+  } catch (error) {
+    return {
+      notFound: true,
+    };
+  }
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {

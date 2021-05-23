@@ -27,7 +27,11 @@ export const getStaticProps: GetStaticProps = async (context) => {
       },
       revalidate: 10,
     };
-  } catch (error) {}
+  } catch (error) {
+    return {
+      notFound: true,
+    };
+  }
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
