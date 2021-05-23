@@ -27,7 +27,7 @@ export default function SEO({ meta }: Props): JSX.Element {
     <Head>
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       <title>{meta.title}</title>
-      <link rel="icon" href={`${isDark ? "dark" : "light"}.png`} />
+      <link rel="icon" href={`${isDark ? "/dark" : "/light"}.png`} />
       <meta name="theme-color" content={`${isDark ? "#222639" : "#fff"}`} />
       <meta name="description" content={meta.description} />
       <meta property="og:title" content={meta.og_title} />
