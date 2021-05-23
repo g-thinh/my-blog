@@ -32,7 +32,7 @@ export const InternalLink = (props): JSX.Element => {
       <Tippy content="Copied" placement="right" trigger="click">
         <IconButton
           onClick={handleClick}
-          color="grey"
+          color="grayness"
           sx={{
             cursor: "pointer",
             visibility: "hidden",

@@ -45,7 +45,7 @@ export const CodePostCard = ({ data }): JSX.Element => {
             >
               {post.name}
             </Text>
-            <Text color="grey" sx={{ fontSize: [2, 3] }}>
+            <Text color="grayness" sx={{ fontSize: [2, 3] }}>
               {format(new Date(post.published_at), "MMM d, yyyy")}
             </Text>
           </Box>
@@ -63,7 +63,7 @@ export const CodePostCard = ({ data }): JSX.Element => {
           <Flex>
             <Text
               as="a"
-              color="grey"
+              color="grayness"
               my={2}
               sx={{
                 fontSize: [2, 3],

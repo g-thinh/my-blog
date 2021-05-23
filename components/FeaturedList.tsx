@@ -54,7 +54,7 @@ export default function NewsList(): JSX.Element {
                 >
                   •{"  "}
                   {post.name}{" "}
-                  <Text as="span" color="grey" sx={{ fontSize: [2, 3] }}>
+                  <Text as="span" color="grayness" sx={{ fontSize: [2, 3] }}>
                     - {format(new Date(post.published_at), "MMM d")}
                   </Text>
                 </Text>

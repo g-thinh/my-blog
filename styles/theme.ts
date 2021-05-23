@@ -52,7 +52,7 @@ export const theme: Theme = {
     back: {
       backgroundColor: "transparent",
       padding: 0,
-      color: "grey",
+      color: "grayness",
       width: "fit-content",
       cursor: "pointer",
       "&:hover": {
@@ -66,7 +66,7 @@ export const theme: Theme = {
     scrollToTop: {
       backgroundColor: "transparent",
       padding: 0,
-      color: "grey",
+      color: "grayness",
       width: "fit-content",
       cursor: "pointer",
       "&:hover": {

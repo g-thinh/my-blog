@@ -42,7 +42,7 @@ export const BlogPostCard = ({ data }): JSX.Element => {
           >
             <Text
               as="h3"
-              sx={{ fontSize: [2, 3], textAlign: "center", color: "grey" }}
+              sx={{ fontSize: [2, 3], textAlign: "center", color: "grayness" }}
             >
               {format(new Date(data.first_published_at), "do MMMM, yyyy")}
             </Text>
@@ -74,7 +74,7 @@ export const BlogPostCard = ({ data }): JSX.Element => {
             <Flex>
               <Text
                 as="a"
-                color="grey"
+                color="grayness"
                 sx={{
                   fontSize: [2, 3],
                   width: "fit-content",
