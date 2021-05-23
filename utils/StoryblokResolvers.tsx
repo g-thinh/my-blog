@@ -11,18 +11,14 @@ import {
 } from "storyblok-rich-text-react-renderer";
 import styled from "styled-components";
 import { TextBlock, TextHeading } from "@components/index";
-import { Flex, Box, Link, Message, Text, Image } from "theme-ui";
+import { Box, Link, Message, Text, Image } from "theme-ui";
 
 export const resolvers = {
   nodeResolvers: {
     [NODE_IMAGE]: (_children, { src }): JSX.Element => (
-      <Flex
-        sx={{
-          justifyContent: "center",
-        }}
-      >
-        <Image my={2} p={[0, 4]} src={src} />
-      </Flex>
+      <Text as="span" sx={{ display: "block", textAlign: "center" }}>
+        <Image p={[0, 4]} src={src} />
+      </Text>
     ),
     [NODE_PARAGRAPH]: (children: React.ReactNode): JSX.Element => {
       return (

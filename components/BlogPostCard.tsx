@@ -73,7 +73,6 @@ export const BlogPostCard = ({ data }): JSX.Element => {
             </Text>
             <Flex>
               <Text
-                as="a"
                 color="grayness"
                 sx={{
                   fontSize: [2, 3],

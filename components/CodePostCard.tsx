@@ -62,7 +62,6 @@ export const CodePostCard = ({ data }): JSX.Element => {
           </Text>
           <Flex>
             <Text
-              as="a"
               color="grayness"
               my={2}
               sx={{

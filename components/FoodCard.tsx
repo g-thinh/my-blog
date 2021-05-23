@@ -82,7 +82,7 @@ export const FoodCard = ({ data }) => {
             {data.content.preview}
           </Text>
           <Flex py={2} sx={{ justifyContent: "center" }}>
-            <Button as="a" variant="link" sx={{ fontSize: [2, 3] }}>
+            <Button variant="link" sx={{ fontSize: [2, 3] }}>
               Read More
             </Button>
           </Flex>
