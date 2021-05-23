@@ -32,13 +32,13 @@ export const TableLinks = (props: Props): JSX.Element => {
                   cursor: "pointer",
                   "&:hover": {
                     bg: "hover",
-                    "& a": {
+                    "& span": {
                       color: "primary",
                     },
                   },
                   "&:focus": {
                     bg: "hover",
-                    "& a": {
+                    "& span": {
                       color: "primary",
                     },
                   },
@@ -56,7 +56,7 @@ export const TableLinks = (props: Props): JSX.Element => {
                   >
                     {index + 1}
                   </IconButton>
-                  <Text as="a" sx={{ fontWeight: "bold", fontSize: [2, 3] }}>
+                  <Text as="span" sx={{ fontWeight: "bold", fontSize: [2, 3] }}>
                     {item.text}
                   </Text>
                 </Flex>
