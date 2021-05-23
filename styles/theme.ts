@@ -7,7 +7,6 @@ export const theme: Theme = {
   fontSizes: [12, 14, 16, 18, 20, 24, 32, 48, 64, 96],
   fonts: {
     body: '"Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI",Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif',
-    heading: '"Poppins", serif',
   },
   fontWeights: {
     body: 400,
@@ -39,7 +38,7 @@ export const theme: Theme = {
       fontSize: 3,
     },
     heading: {
-      fontFamily: "heading",
+      fontFamily: "body",
       fontWeight: "heading",
       lineHeight: "heading",
     },
