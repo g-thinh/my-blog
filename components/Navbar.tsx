@@ -3,22 +3,22 @@ import { RouteLink } from "@components/RouteLink";
 import NavButtons from "@components/NavButtons";
 
 const Navbar: React.FC = () => (
-  <Box as="header" mx={[0, 1]} my={[0, 3]} px={[0, 3]}>
+  <Box as="header" p={[0, 3]}>
     <Flex
       sx={{
         flexDirection: ["column", "row"],
-        flex: "5",
-        alignContent: "center",
+        alignItems: "center",
+        justifyContent: "space-between",
         height: "100%",
       }}
     >
       <RouteLink isActive={false} href="/" index={1}>
         <Heading
-          my={[2, 0]}
+          py={[2, 0]}
           sx={{
             fontWeight: "body",
             userSelect: "none",
-            fontSize: [3, 4],
+            fontSize: 4,
             textAlign: "center",
           }}
         >
@@ -28,34 +28,32 @@ const Navbar: React.FC = () => (
           </Text>
         </Heading>
       </RouteLink>
-      <Flex
+      <Box
         as="ul"
         py={[2, 0]}
         sx={{
-          alignItems: "center",
-          justifyContent: "center",
-          flex: ["auto", "4"],
-          width: "100%",
+          width: ["100%", "auto"],
           backgroundColor: ["muted", "transparent"],
         }}
       >
-        <RouteLink href="/about" index={2}>
-          About
-        </RouteLink>
-        <RouteLink href="/blog" index={3}>
-          Blog
-        </RouteLink>
-        <RouteLink href="/code" index={4}>
-          Code
-        </RouteLink>
-        <RouteLink href="/food" index={5}>
-          Food
-        </RouteLink>
-      </Flex>
+        <Flex sx={{ alignItems: "center", justifyContent: "center" }}>
+          <RouteLink href="/about" index={2}>
+            About
+          </RouteLink>
+          <RouteLink href="/blog" index={3}>
+            Blog
+          </RouteLink>
+          <RouteLink href="/code" index={4}>
+            Code
+          </RouteLink>
+          <RouteLink href="/food" index={5}>
+            Food
+          </RouteLink>
+        </Flex>
+      </Box>
       <Box
         sx={{
-          display: ["none", "flex"],
-          flex: "1",
+          display: ["none", "block"],
           justifyContent: "flex-end",
         }}
       >
