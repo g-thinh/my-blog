@@ -1,19 +1,8 @@
-import {
-  Container,
-  Text,
-  Box,
-  Badge,
-  Flex,
-  Button,
-  Divider,
-  AspectImage,
-} from "theme-ui";
+import { Container, Box, Flex, Button, Divider, AspectImage } from "theme-ui";
 import { GetStaticPaths, GetStaticProps } from "next";
 import Storyblok, { useStoryblok } from "@utils/storyblok";
-import { format } from "date-fns";
 import { useRouter } from "next/router";
-import { calculateReadTime } from "@utils/calculateReadTime";
-import { Heading, SEO } from "@components/index";
+import { MainHeading, SEO, PostTags, DateReadTime } from "@components/index";
 import { render } from "storyblok-rich-text-react-renderer";
 import { resolvers } from "@utils/StoryblokResolvers";
 
@@ -38,7 +27,11 @@ export const getStaticProps: GetStaticProps = async (context) => {
       },
       revalidate: 10,
     };
-  } catch (error) {}
+  } catch (error) {
+    return {
+      notFound: true,
+    };
+  }
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -61,7 +54,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   };
 };
 
-export default function CodePostPage(props: StoryPage): JSX.Element {
+export default function FoodPostPage(props: StoryPage): JSX.Element {
   const router = useRouter();
   const story = useStoryblok(props.story);
   const { meta } = story.content;
@@ -72,36 +65,23 @@ export default function CodePostPage(props: StoryPage): JSX.Element {
         <Button variant="back" onClick={() => router.back()}>
           <span>Food</span>
         </Button>
-        <Heading>{story.content.title}</Heading>
+        <MainHeading>{story.content.title}</MainHeading>
       </Flex>
       <Flex my={2} sx={{ justifyContent: "center", flexFlow: "row wrap" }}>
-        {story.tag_list &&
-          story.tag_list.map((tag) => (
-            <Badge
-              key={tag}
-              mr={story.tag_list.length > 1 ? 3 : 0}
-              px={2}
-              sx={{
-                backgroundColor: "primary",
-                color: "grayness",
-                borderRadius: "1rem",
-              }}
-            >
-              {tag}
-            </Badge>
-          ))}
+        <PostTags tags={story.tag_list} />
       </Flex>
-      <Text as="h2" color="grey" sx={{ textAlign: "center" }}>
-        {format(new Date(story.content.date), "MMM d, yyyy")} •{"  "}
-        {calculateReadTime(story.content.long_text.content)}
-      </Text>
+      <Box sx={{ textAlign: "center" }}>
+        <DateReadTime
+          date={story.content.date}
+          text={story.content.long_text.content}
+        />
+      </Box>
 
       <Divider />
-
       <Box mb={[3, 4]}>
         <AspectImage
           ratio={1 / 1}
-          sx={{ borderRadius: "0.5rem" }}
+          sx={{ borderRadius: "0.5rem", objectFit: "cover" }}
           src={story.content.image.filename}
           alt={story.content.image.alt}
         />

@@ -1,5 +1,5 @@
 import { Container, Box } from "theme-ui";
-import { Heading, Subheading, SEO } from "@components/index";
+import { MainHeading, Subheading, SEO } from "@components/index";
 import { GetStaticProps } from "next";
 import { render } from "storyblok-rich-text-react-renderer";
 import { resolvers } from "@utils/StoryblokResolvers";
@@ -39,7 +39,7 @@ export default function AboutPage(props: StoryPage): JSX.Element {
   return (
     <Container p={[2, 3]}>
       <SEO meta={meta} />
-      <Heading>{story.content.title}</Heading>
+      <MainHeading>{story.content.title}</MainHeading>
       <Subheading>{story.content.subtitle}</Subheading>
 
       <Box as="section" mt={[3, 4]} p={[3, 0]}>

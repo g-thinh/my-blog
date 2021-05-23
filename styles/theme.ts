@@ -1,30 +1,48 @@
 import { Theme } from "theme-ui";
 import colors from "./colors";
 import shadows from "./shadows";
-import typography from "./typography";
 
 export const theme: Theme = {
   space: [0, 4, 8, 16, 32, 64, 128, 256, 512],
-  fontSizes: [12, 14, 16, 20, 24, 32, 48, 64, 96],
+  fontSizes: [12, 14, 16, 18, 20, 24, 32, 48, 64, 96],
+  fonts: {
+    body: '"Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI",Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif',
+    heading: '"Poppins", serif',
+  },
   fontWeights: {
     body: 400,
     heading: 700,
     bold: 700,
   },
   lineHeights: {
-    body: 1.5,
-    heading: 1.125,
+    body: 1.8,
+    heading: 1.5,
+  },
+  letterSpacings: {
+    body: "normal",
+    caps: "0.2em",
   },
   colors,
   shadows,
   text: {
-    block: {
-      fontFamily: "inherit",
+    default: {
+      color: "text",
+      fontFamily: "body",
+      fontWeight: "body",
       lineHeight: "body",
+      fontSize: 3,
     },
-  },
-  styles: {
-    typography,
+    block: {
+      variant: "paragraph",
+      fontFamily: "body",
+      lineHeight: "body",
+      fontSize: 3,
+    },
+    heading: {
+      fontFamily: "heading",
+      fontWeight: "heading",
+      lineHeight: "heading",
+    },
   },
   radii: {
     card: "1rem",

@@ -28,7 +28,6 @@ export const TableLinks = (props: Props): JSX.Element => {
                 color="text"
                 p={[2, 3]}
                 sx={{
-                  fontSize: 2,
                   textDecoration: "none",
                   cursor: "pointer",
                   "&:hover": {
@@ -49,15 +48,17 @@ export const TableLinks = (props: Props): JSX.Element => {
                 <Flex sx={{ alignItems: "center" }}>
                   <IconButton
                     tabIndex={-1}
-                    p={3}
-                    mr={2}
+                    p={[2, 3]}
+                    mr={3}
                     bg="primary"
                     color="black"
                     sx={{ fontWeight: "bold", borderRadius: "50%" }}
                   >
                     {index + 1}
                   </IconButton>
-                  <Text sx={{ fontWeight: "bold" }}>{item.text}</Text>
+                  <Text as="a" sx={{ fontWeight: "bold", fontSize: [2, 3] }}>
+                    {item.text}
+                  </Text>
                 </Flex>
               </Link>
             );

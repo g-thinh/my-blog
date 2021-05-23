@@ -1,20 +1,16 @@
 import {
-  Container,
-  Text,
-  Box,
-  Badge,
-  Flex,
-  Button,
-  AspectImage,
-} from "theme-ui";
-import { GetStaticPaths, GetStaticProps } from "next";
+  MainHeading,
+  PostTags,
+  SEO,
+  TextBlock,
+  DateReadTime,
+} from "@components/index";
 import Storyblok, { useStoryblok } from "@utils/storyblok";
-import { useRouter } from "next/router";
-import { format } from "date-fns";
-import { calculateReadTime } from "@utils/calculateReadTime";
-import { Heading, SEO } from "@components/index";
-import { render } from "storyblok-rich-text-react-renderer";
 import { resolvers } from "@utils/StoryblokResolvers";
+import { GetStaticPaths, GetStaticProps } from "next";
+import { useRouter } from "next/router";
+import { render } from "storyblok-rich-text-react-renderer";
+import { AspectImage, Box, Button, Container, Divider, Flex } from "theme-ui";
 
 export const getStaticProps: GetStaticProps = async (context) => {
   try {
@@ -37,7 +33,11 @@ export const getStaticProps: GetStaticProps = async (context) => {
       },
       revalidate: 10,
     };
-  } catch (error) {}
+  } catch (error) {
+    return {
+      notFound: true,
+    };
+  }
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -69,31 +69,19 @@ export default function BlogPostPage(props: StoryPage): JSX.Element {
           <Button variant="back" onClick={() => router.back()}>
             <span>Blog</span>
           </Button>
-          <Heading isCenter={false}>{story.content.title}</Heading>
+          <MainHeading isCenter={false}>{story.content.title}</MainHeading>
+        </Flex>
+        <DateReadTime
+          date={story.first_published_at}
+          text={story.content.long_text.content}
+        />
+        <PostTags tags={story.tag_list} />
+        <Flex my={2}>
+          <TextBlock>{story.content.intro}</TextBlock>
         </Flex>
 
-        <Text>{story.content.intro}</Text>
-        <Text as="h2" color="grey" sx={{ textAlign: "left" }}>
-          {format(new Date(story.first_published_at), "MMM d")} •{"  "}
-          {calculateReadTime(story.content.long_text.content)}
-        </Text>
-        {story.tag_list &&
-          story.tag_list.map((tag) => (
-            <Badge
-              key={tag}
-              mr={story.content.tags.length > 1 ? 3 : 0}
-              px={2}
-              sx={{
-                backgroundColor: "primary",
-                color: "grayness",
-                borderRadius: "1rem",
-              }}
-            >
-              {tag}
-            </Badge>
-          ))}
+        <Divider />
       </Box>
-
       <AspectImage
         ratio={4 / 3}
         sx={{ borderRadius: "0.5rem", objectFit: "cover" }}

@@ -1,9 +1,13 @@
-import { Container, Text, Box, Flex, Badge, Divider, Button } from "theme-ui";
+import { Container, Box, Flex, Divider, Button } from "theme-ui";
 import { GetStaticPaths, GetStaticProps } from "next";
 import Storyblok, { useStoryblok } from "@utils/storyblok";
-import { format } from "date-fns";
-import { calculateReadTime } from "@utils/calculateReadTime";
-import { Heading, Subheading, SEO } from "@components/index";
+import {
+  MainHeading,
+  Subheading,
+  SEO,
+  PostTags,
+  DateReadTime,
+} from "@components/index";
 import { render } from "storyblok-rich-text-react-renderer";
 import { resolvers } from "@utils/StoryblokResolvers";
 
@@ -22,7 +26,6 @@ export const getStaticProps: GetStaticProps = async (context) => {
     }
 
     const { data } = await Storyblok.get(`cdn/stories/code/${slug}`, params);
-
     return {
       props: {
         story: data ? data.story : false,
@@ -30,7 +33,11 @@ export const getStaticProps: GetStaticProps = async (context) => {
       },
       revalidate: 10,
     };
-  } catch (error) {}
+  } catch (error) {
+    return {
+      notFound: true,
+    };
+  }
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -64,28 +71,13 @@ export default function CodePostPage(props: StoryPage): JSX.Element {
         <Button variant="back" onClick={() => router.back()}>
           <span>Code</span>
         </Button>
-        <Heading isCenter={false}>{story.name}</Heading>
+        <MainHeading isCenter={false}>{story.name}</MainHeading>
       </Flex>
-
-      <Text as="h2" color="grey" sx={{ textAlign: "left" }}>
-        {format(new Date(story.first_published_at), "MMM d")} •{"  "}
-        {calculateReadTime(story.content.long_text.content)}
-      </Text>
-      {story.tag_list &&
-        story.tag_list.map((tag) => (
-          <Badge
-            key={tag}
-            mr={story.tag_list.length > 1 ? 3 : 0}
-            px={2}
-            sx={{
-              backgroundColor: "primary",
-              color: "grayness",
-              borderRadius: "1rem",
-            }}
-          >
-            {tag}
-          </Badge>
-        ))}
+      <DateReadTime
+        date={story.first_published_at}
+        text={story.content.long_text.content}
+      />
+      <PostTags tags={story.tag_list} />
       <Divider />
       <Subheading>{story.content.title}</Subheading>
       <Box pb={[3, 4]}>{render(story.content.long_text, resolvers)}</Box>

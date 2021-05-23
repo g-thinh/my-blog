@@ -21,12 +21,12 @@ export const RouteLink = ({
     <Link href={href} passHref>
       <Text
         as="a"
-        px={[3, 4]}
+        px={[2, 3]}
         tabIndex={index}
         sx={{
           color: isActiveLink ? "primary" : "text",
           textDecoration: "none",
-          fontSize: [2, 3],
+          fontSize: [3, 4],
           cursor: "pointer",
           "&:hover": {
             color: "primary",

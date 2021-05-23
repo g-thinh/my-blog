@@ -1,5 +1,5 @@
 import { Container, Grid } from "theme-ui";
-import { Heading, Subheading, CodePostCard, SEO } from "@components/index";
+import { MainHeading, Subheading, CodePostCard, SEO } from "@components/index";
 import Storyblok, { useStoryblok } from "@utils/storyblok";
 import { GetStaticProps } from "next";
 
@@ -48,7 +48,7 @@ export default function CodePage(props: StoriesPage): JSX.Element {
   return (
     <Container p={[2, 3]}>
       <SEO meta={meta} />
-      <Heading>{page.content.title}</Heading>
+      <MainHeading>{page.content.title}</MainHeading>
       <Subheading>{page.content.description}</Subheading>
       <Grid sx={{ gridTemplateColumns: ["1fr"], gridAutoRows: "1fr" }}>
         {stories &&
