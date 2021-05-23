@@ -30,7 +30,7 @@ export default function NewsList(): JSX.Element {
       <Text
         py={[2, 3]}
         sx={{
-          fontSize: 4,
+          fontSize: [3, 4],
           textAlign: "left",
           width: "100%",
         }}
@@ -47,13 +47,14 @@ export default function NewsList(): JSX.Element {
                   as="a"
                   color="text"
                   sx={{
+                    fontSize: [2, 3],
                     textDecoration: "none",
                     "&:hover": { color: "primary" },
                   }}
                 >
                   •{"  "}
                   {post.name}{" "}
-                  <Text as="span" color="grey">
+                  <Text as="span" color="grey" sx={{ fontSize: [2, 3] }}>
                     - {format(new Date(post.published_at), "MMM d")}
                   </Text>
                 </Text>
