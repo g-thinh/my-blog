@@ -6,8 +6,9 @@ export const theme: Theme = {
   space: [0, 4, 8, 16, 32, 64, 128, 256, 512],
   fontSizes: [12, 14, 16, 18, 20, 24, 32, 48, 64, 96],
   fonts: {
-    body: '"Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI",Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif',
-    heading: '"Poppins", serif',
+    heading:
+      '"Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI",Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif',
+    body: '"Catamaran", -apple-system, BlinkMacSystemFont, "Segoe UI",Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif',
   },
   fontWeights: {
     body: 400,
@@ -15,7 +16,7 @@ export const theme: Theme = {
     bold: 700,
   },
   lineHeights: {
-    body: 1.8,
+    body: 1.6,
     heading: 1.5,
   },
   letterSpacings: {
@@ -52,7 +53,7 @@ export const theme: Theme = {
     back: {
       backgroundColor: "transparent",
       padding: 0,
-      color: "grey",
+      color: "grayness",
       width: "fit-content",
       cursor: "pointer",
       "&:hover": {
@@ -66,7 +67,7 @@ export const theme: Theme = {
     scrollToTop: {
       backgroundColor: "transparent",
       padding: 0,
-      color: "grey",
+      color: "grayness",
       width: "fit-content",
       cursor: "pointer",
       "&:hover": {

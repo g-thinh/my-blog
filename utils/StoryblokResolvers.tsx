@@ -4,6 +4,8 @@ import { atomOneDarkReasonable } from "react-syntax-highlighter/dist/cjs/styles/
 import {
   MARK_CODE,
   MARK_LINK,
+  MARK_BOLD,
+  MARK_ITALIC,
   NODE_CODEBLOCK,
   NODE_HEADING,
   NODE_IMAGE,
@@ -11,18 +13,14 @@ import {
 } from "storyblok-rich-text-react-renderer";
 import styled from "styled-components";
 import { TextBlock, TextHeading } from "@components/index";
-import { Flex, Box, Link, Message, Text, Image } from "theme-ui";
+import { Box, Link, Message, Text, Image } from "theme-ui";
 
 export const resolvers = {
   nodeResolvers: {
     [NODE_IMAGE]: (_children, { src }): JSX.Element => (
-      <Flex
-        sx={{
-          justifyContent: "center",
-        }}
-      >
-        <Image my={2} p={[0, 4]} src={src} />
-      </Flex>
+      <Text as="span" sx={{ display: "block", textAlign: "center" }}>
+        <Image p={[0, 4]} src={src} />
+      </Text>
     ),
     [NODE_PARAGRAPH]: (children: React.ReactNode): JSX.Element => {
       return (
@@ -59,24 +57,43 @@ export const resolvers = {
   },
   markResolvers: {
     [MARK_LINK]: (children: React.ReactNode, props): JSX.Element => (
-      <Link
-        href={props.href}
-        target="_blank"
+      <Link href={props.href} target="_blank" sx={{ textDecoration: "none" }}>
+        <Text
+          sx={{
+            color: "primary",
+            "&:hover": {
+              color: "secondary",
+            },
+            fontSize: [3, 4],
+          }}
+        >
+          {children}
+        </Text>
+      </Link>
+    ),
+    [MARK_BOLD]: (children: React.ReactNode): JSX.Element => (
+      <Text
         sx={{
-          textDecoration: "none",
-          color: "primary",
-          "&:hover": {
-            color: "secondary",
-          },
+          fontWeight: 600,
+          fontSize: [3, 4],
         }}
       >
         {children}
-      </Link>
+      </Text>
+    ),
+    [MARK_ITALIC]: (children: React.ReactNode): JSX.Element => (
+      <Text
+        sx={{
+          fontSize: [3, 4],
+        }}
+      >
+        {children}
+      </Text>
     ),
     [MARK_CODE]: (children: React.ReactNode): JSX.Element => (
       <Text
         as="code"
-        p={1}
+        px={1}
         sx={{
           borderRadius: "0.475rem",
           filter: "brightness(90%)",
@@ -91,13 +108,11 @@ export const resolvers = {
     ),
   },
   blokResolvers: {
-    ["Note"]: (props): JSX.Element => (
-      <Message my={[3, 4]}>{props.text}</Message>
-    ),
-    ["Table of Contents"]: (props): JSX.Element => {
+    Note: (props): JSX.Element => <Message my={[3, 4]}>{props.text}</Message>,
+    "Table of Contents": (props): JSX.Element => {
       return <TableLinks items={props.Sections} />;
     },
-    ["Internal Link"]: (props): JSX.Element => {
+    "Internal Link": (props): JSX.Element => {
       return <InternalLink data={props} />;
     },
   },
