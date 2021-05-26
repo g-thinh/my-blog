@@ -3,14 +3,17 @@ import GlobalStyles from "@styles/GlobalStyles";
 import { theme } from "@styles/theme";
 import Layout from "@components/Layout";
 import { ThemeProvider } from "theme-ui";
+import { ToastProvider } from "@components/ToastContext";
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   return (
     <ThemeProvider theme={theme}>
-      <GlobalStyles styles />
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
+      <ToastProvider>
+        <GlobalStyles styles />
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </ToastProvider>
     </ThemeProvider>
   );
 }
