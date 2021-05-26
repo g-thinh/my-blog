@@ -1,20 +1,21 @@
 import { Flex, Heading, IconButton } from "theme-ui";
+import { useToast } from "@components/index";
 import { FiLink } from "react-icons/fi";
-import { useEffect } from "react";
-import Tippy from "@tippyjs/react";
-import "tippy.js/dist/tippy.css";
+import { useEffect, useRef } from "react";
 
 export const InternalLink = (props): JSX.Element => {
+  const { dispatch } = useToast();
   const { text, id } = props.data;
-  let pathToCopy = "";
+  const pathToCopy = useRef("");
 
   function handleClick() {
-    navigator.clipboard.writeText(pathToCopy);
+    navigator.clipboard.writeText(pathToCopy.current);
+    dispatch({ type: "ADD", text: "Copied link to clipboard" });
   }
 
   useEffect(() => {
-    pathToCopy = window.location.href + "#" + id.url;
-  }, []);
+    pathToCopy.current = window.location.href + "#" + id.url;
+  }, [pathToCopy, id.url]);
 
   return (
     <Flex
@@ -29,21 +30,19 @@ export const InternalLink = (props): JSX.Element => {
       <Heading as="h3" id={id.url} color="secondary" sx={{ fontSize: [4, 5] }}>
         {text}
       </Heading>
-      <Tippy content="Copied" placement="right" trigger="click">
-        <IconButton
-          onClick={handleClick}
-          color="grayness"
-          sx={{
-            cursor: "pointer",
-            visibility: "hidden",
-            "&:hover": {
-              color: "lightgrey",
-            },
-          }}
-        >
-          <FiLink size={18} />
-        </IconButton>
-      </Tippy>
+      <IconButton
+        onClick={handleClick}
+        color="grayness"
+        sx={{
+          cursor: "pointer",
+          visibility: "hidden",
+          "&:hover": {
+            color: "lightgrey",
+          },
+        }}
+      >
+        <FiLink size={18} />
+      </IconButton>
     </Flex>
   );
 };
