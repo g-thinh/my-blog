@@ -1,11 +1,4 @@
-import React, {
-  createContext,
-  useContext,
-  useEffect,
-  useRef,
-  useReducer,
-  useCallback,
-} from "react";
+import React, { createContext, useContext, useReducer } from "react";
 import { Toast } from "@components/Toast";
 
 interface ProviderProps {
@@ -31,13 +24,14 @@ interface InitialState {
 interface Context {
   state: InitialState;
   dispatch: React.Dispatch<DispatchAction>;
-  timer: React.MutableRefObject<NodeJS.Timeout>;
-  autoClearToasts: () => void;
 }
 
 const ToastContext = createContext({} as Context);
 
-const initialState: InitialState = { list: [], duration: 3000 };
+const initialState: InitialState = {
+  list: [],
+  duration: 3000,
+};
 
 function reducer(state = initialState, action: DispatchAction) {
   switch (action.type) {
@@ -46,7 +40,10 @@ function reducer(state = initialState, action: DispatchAction) {
         id: state.list.length + 1,
         text: action.text,
       };
-      return { ...state, list: [...state.list, newToast] };
+      return {
+        ...state,
+        list: [...state.list, newToast],
+      };
     }
 
     case "DELETE": {
@@ -54,7 +51,10 @@ function reducer(state = initialState, action: DispatchAction) {
       const updatedIndex = state.list.findIndex((item) => id === item.id);
       const newList = state.list;
       newList.splice(updatedIndex, 1);
-      return { ...state, list: newList };
+      return {
+        ...state,
+        list: newList,
+      };
     }
 
     default:
@@ -64,23 +64,9 @@ function reducer(state = initialState, action: DispatchAction) {
 
 export const ToastProvider = ({ children }: ProviderProps) => {
   const [state, dispatch] = useReducer(reducer, initialState);
-  const timer = useRef<ReturnType<typeof setTimeout>>(null);
-
-  const autoClearToasts = useCallback(() => {
-    if (!state.list[0]) return;
-    const firstToastId = state.list[0].id;
-    dispatch({ type: "DELETE", id: firstToastId });
-  }, [state.list, dispatch]);
-
-  useEffect(() => {
-    if (state.list.length > 0) {
-      timer.current = setTimeout(autoClearToasts, state.duration);
-    }
-    return () => clearTimeout(timer.current);
-  }, [state, autoClearToasts]);
 
   return (
-    <ToastContext.Provider value={{ state, dispatch, timer, autoClearToasts }}>
+    <ToastContext.Provider value={{ state, dispatch }}>
       {children}
       <Toast />
     </ToastContext.Provider>
