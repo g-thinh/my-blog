@@ -39,7 +39,7 @@ export const Subheading = ({ children }: Props): JSX.Element => (
 );
 
 export const TextBlock = ({ children }: Props): JSX.Element => (
-  <Paragraph sx={{ fontSize: [2, 3] }}>{children}</Paragraph>
+  <Paragraph sx={{ fontSize: [3, 4] }}>{children}</Paragraph>
 );
 
 export const TextHeading = ({ children }: Props): JSX.Element => (
@@ -47,7 +47,7 @@ export const TextHeading = ({ children }: Props): JSX.Element => (
     as="h4"
     color="primary"
     mb={[1, 2]}
-    sx={{ fontWeight: "body", fontSize: [3, 4] }}
+    sx={{ fontWeight: 600, fontSize: [3, 4] }}
   >
     {children}
   </Heading>

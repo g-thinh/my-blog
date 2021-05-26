@@ -8,7 +8,7 @@ import Document, {
 import { InitializeColorMode } from "theme-ui";
 import { ServerStyleSheet } from "styled-components";
 
-export default class extends Document {
+export default class AppDocument extends Document {
   static async getInitialProps(ctx: DocumentContext): Promise<{
     styles: JSX.Element;
     html: string;
@@ -39,7 +39,7 @@ export default class extends Document {
     }
   }
 
-  render(): JSX.Element {
+  render() {
     return (
       <Html>
         <Head>
@@ -47,6 +47,10 @@ export default class extends Document {
           <link rel="preconnect" href="https://fonts.gstatic.com" />
           <link
             href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+            rel="stylesheet"
+          />
+          <link
+            href="https://fonts.googleapis.com/css2?family=Catamaran&display=swap"
             rel="stylesheet"
           />
           <meta name="robots" content="index, follow" />

@@ -22,7 +22,7 @@ export const PostTags = (props: Props): JSX.Element => {
               borderRadius: "1rem",
             }}
           >
-            <Text color="text" sx={{ fontWeight: "bold", fontSize: 0 }}>
+            <Text color="text" sx={{ fontSize: 2 }}>
               {tag}
             </Text>
           </Badge>
