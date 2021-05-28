@@ -1,18 +1,6 @@
-import {
-  Card,
-  Box,
-  Flex,
-  AspectImage,
-  Image,
-  Avatar,
-  Text,
-  useThemeUI,
-} from "theme-ui";
-import { TextBlock } from "@components/index";
+import { Card, Box, Flex, Image, Text } from "theme-ui";
 
 export const AuthorInfo = (props) => {
-  const theme = useThemeUI();
-  console.log(theme);
   const { content } = props;
 
   return (

@@ -61,7 +61,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export default function BlogPostPage(props: StoryPage): JSX.Element {
   const router = useRouter();
   const story = useStoryblok(props.story);
-  console.log(story.content);
   const { meta } = story.content;
   return (
     <Container p={[2, 3]}>
