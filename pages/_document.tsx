@@ -44,15 +44,6 @@ export default class AppDocument extends Document {
       <Html>
         <Head>
           <link rel="canonical" href={process.env.baseUrl} />
-          <link rel="preconnect" href="https://fonts.gstatic.com" />
-          <link
-            href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
-            rel="stylesheet"
-          />
-          <link
-            href="https://fonts.googleapis.com/css2?family=Catamaran&display=swap"
-            rel="stylesheet"
-          />
           <meta name="robots" content="index, follow" />
           <meta property="og:site_name" content={process.env.baseUrl} />
           <meta property="og:type" content="article" />
