@@ -91,9 +91,9 @@ export default function BlogPostPage(props: StoryPage): JSX.Element {
       />
       <Box pb={[3, 4]}>{render(story.content.long_text, resolvers)}</Box>
       {story.content.author.length >= 1 &&
-        story.content.author.map((content) => {
-          return <AuthorInfo content={content} />;
-        })}
+        story.content.author.map((content) => (
+          <AuthorInfo key={content._uid} content={content} />
+        ))}
     </Container>
   );
 }
