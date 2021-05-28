@@ -7,6 +7,7 @@ import {
   SEO,
   PostTags,
   DateReadTime,
+  AuthorInfo,
 } from "@components/index";
 import { render } from "storyblok-rich-text-react-renderer";
 import { resolvers } from "@utils/StoryblokResolvers";
@@ -63,6 +64,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export default function CodePostPage(props: StoryPage): JSX.Element {
   const router = useRouter();
   const story = useStoryblok(props.story);
+  console.log(story.content);
   const { meta } = story.content;
   return (
     <Container p={[2, 3]} sx={{ width: "100%" }}>
@@ -81,6 +83,10 @@ export default function CodePostPage(props: StoryPage): JSX.Element {
       <Divider />
       <Subheading>{story.content.title}</Subheading>
       <Box pb={[3, 4]}>{render(story.content.long_text, resolvers)}</Box>
+      {story.content.author &
+        story.content.author.map((content) => {
+          return <AuthorInfo content={content} />;
+        })}
     </Container>
   );
 }

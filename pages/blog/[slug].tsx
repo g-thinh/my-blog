@@ -4,6 +4,7 @@ import {
   SEO,
   TextBlock,
   DateReadTime,
+  AuthorInfo,
 } from "@components/index";
 import Storyblok, { useStoryblok } from "@utils/storyblok";
 import { resolvers } from "@utils/StoryblokResolvers";
@@ -60,6 +61,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export default function BlogPostPage(props: StoryPage): JSX.Element {
   const router = useRouter();
   const story = useStoryblok(props.story);
+  console.log(story.content);
   const { meta } = story.content;
   return (
     <Container p={[2, 3]}>
@@ -89,6 +91,10 @@ export default function BlogPostPage(props: StoryPage): JSX.Element {
         alt={story.content.image.alt}
       />
       <Box pb={[3, 4]}>{render(story.content.long_text, resolvers)}</Box>
+      {story.content.author &
+        story.content.author.map((content) => {
+          return <AuthorInfo content={content} />;
+        })}
     </Container>
   );
 }
