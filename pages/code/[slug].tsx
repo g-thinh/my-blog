@@ -83,7 +83,7 @@ export default function CodePostPage(props: StoryPage): JSX.Element {
       <Divider />
       <Subheading>{story.content.title}</Subheading>
       <Box pb={[3, 4]}>{render(story.content.long_text, resolvers)}</Box>
-      {story.content.author &
+      {story.content.author.length >= 1 &&
         story.content.author.map((content) => {
           return <AuthorInfo content={content} />;
         })}

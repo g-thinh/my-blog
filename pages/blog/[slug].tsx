@@ -91,7 +91,7 @@ export default function BlogPostPage(props: StoryPage): JSX.Element {
         alt={story.content.image.alt}
       />
       <Box pb={[3, 4]}>{render(story.content.long_text, resolvers)}</Box>
-      {story.content.author &
+      {story.content.author.length >= 1 &&
         story.content.author.map((content) => {
           return <AuthorInfo content={content} />;
         })}
