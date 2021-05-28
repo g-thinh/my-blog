@@ -14,7 +14,7 @@ function useFeatured() {
   };
 }
 
-export default function NewsList(): JSX.Element {
+export default function NewsList() {
   const { posts, isLoading } = useFeatured();
   const router = useRouter();
 
@@ -55,7 +55,7 @@ export default function NewsList(): JSX.Element {
                   •{"  "}
                   {post.name}{" "}
                   <Text as="span" color="grayness" sx={{ fontSize: [2, 3] }}>
-                    - {format(new Date(post.published_at), "MMM d")}
+                    - {format(new Date(post.first_published_at), "MMM d")}
                   </Text>
                 </Text>
               </Link>
