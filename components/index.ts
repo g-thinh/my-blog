@@ -15,3 +15,5 @@ export * from "./CodePostCard";
 export * from "./DateReadTime";
 export * from "./Toast";
 export * from "./ToastContext";
+export * from "./Note";
+export * from "./AuthorInfo";

@@ -12,8 +12,8 @@ import {
   NODE_PARAGRAPH,
 } from "storyblok-rich-text-react-renderer";
 import styled from "styled-components";
-import { TextBlock, TextHeading } from "@components/index";
-import { Box, Link, Message, Text, Image } from "theme-ui";
+import { TextBlock, TextHeading, Note } from "@components/index";
+import { Box, Link, Text, Image } from "theme-ui";
 
 export const resolvers = {
   nodeResolvers: {
@@ -34,7 +34,7 @@ export const resolvers = {
     },
     [NODE_CODEBLOCK]: (children: React.ReactNode): JSX.Element => {
       return (
-        <Box py={[2, 3]}>
+        <Box py={[2, 3]} mb={4}>
           <StyledCodeBlock
             language="javascript"
             style={atomOneDarkReasonable}
@@ -108,7 +108,7 @@ export const resolvers = {
     ),
   },
   blokResolvers: {
-    Note: (props): JSX.Element => <Message my={[3, 4]}>{props.text}</Message>,
+    Note: (props) => <Note data={props} />,
     "Table of Contents": (props): JSX.Element => {
       return <TableLinks items={props.Sections} />;
     },
