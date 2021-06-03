@@ -49,6 +49,9 @@ const Navbar: React.FC = () => (
           <RouteLink href="/food" index={5}>
             Food
           </RouteLink>
+          <RouteLink href="/projects" index={6}>
+            Projects
+          </RouteLink>
         </Flex>
       </Box>
       <Box
