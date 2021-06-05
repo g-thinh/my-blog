@@ -108,5 +108,27 @@ export const theme: Theme = {
         color: "primary",
       },
     },
+    tabButton: {
+      borderRadius: "0",
+      position: "relative",
+      outline: "transparent solid 2px",
+      outlineOffset: "0px",
+      background: "transparent",
+      "&:hover": { cursor: "pointer" },
+      "&:active": {
+        backgroundColor: "highlight",
+        transition: "background-color 0.3s ease-in",
+      },
+      "&:focus": {
+        outline: "solid 3px",
+        outlineColor: "secondary",
+        zIndex: 1,
+      },
+      borderTop: "none",
+      borderRight: "none",
+      borderLeft: "none",
+      borderBottom: "2px solid",
+      marginBottom: "-2px",
+    },
   },
 };
