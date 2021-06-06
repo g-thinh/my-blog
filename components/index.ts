@@ -19,3 +19,4 @@ export * from "./Note";
 export * from "./AuthorInfo";
 export * from "./ProjectCard";
 export * from "./Tabs";
+export * from "./Dropdown";
