@@ -1,8 +1,8 @@
 import { Box, Flex, Heading, Text } from "theme-ui";
-import { RouteLink } from "@components/RouteLink";
+import { RouteLink } from "@components/index";
 import NavButtons from "@components/NavButtons";
 
-const Navbar: React.FC = () => (
+const Navbar = () => (
   <Box as="header" p={[0, 3]}>
     <Flex
       sx={{
@@ -57,7 +57,6 @@ const Navbar: React.FC = () => (
       <Box
         sx={{
           display: ["none", "block"],
-          justifyContent: "flex-end",
         }}
       >
         <NavButtons />
