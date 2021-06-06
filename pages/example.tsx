@@ -42,17 +42,30 @@ export default function ExamplePage(): JSX.Element {
           for the animation
         </TextBlock>
         <Box mt={3}>
-          <Dropdown>
-            <DropdownButton>
-              <Text pr={3}>Posts</Text>
-              <FiChevronDown />
-            </DropdownButton>
-            <DropdownMenu>
-              <DropdownItem href="/blog">Blog</DropdownItem>
-              <DropdownItem href="/code">Code</DropdownItem>
-              <DropdownItem href="/food">Food</DropdownItem>
-            </DropdownMenu>
-          </Dropdown>
+          <Flex sx={{ justifyContent: "space-around" }}>
+            <Dropdown>
+              <DropdownButton isDefault={true}>
+                <Text pr={3}>Default</Text>
+                <FiChevronDown />
+              </DropdownButton>
+              <DropdownMenu>
+                <DropdownItem href="#">Item 1</DropdownItem>
+                <DropdownItem href="#">Item 2</DropdownItem>
+                <DropdownItem href="#">Item 3</DropdownItem>
+              </DropdownMenu>
+            </Dropdown>
+            <Dropdown>
+              <DropdownButton>
+                <Text pr={3}>Without Fill</Text>
+                <FiChevronDown />
+              </DropdownButton>
+              <DropdownMenu>
+                <DropdownItem href="#">Item 1</DropdownItem>
+                <DropdownItem href="#">Item 2</DropdownItem>
+                <DropdownItem href="#">Item 3</DropdownItem>
+              </DropdownMenu>
+            </Dropdown>
+          </Flex>
         </Box>
       </Box>
       <Divider mb={3} />

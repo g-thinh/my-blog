@@ -2,18 +2,21 @@ import { Box, Link, Text, Flex } from "theme-ui";
 import { useState } from "react";
 import { motion } from "framer-motion";
 
-export const DropdownButton = ({ children }) => (
+export const DropdownButton = ({ children, isDefault = false }) => (
   <Box
+    px={2}
     sx={{
-      borderRadius: "card",
-      "&:hover": { backgroundColor: "muted", cursor: "pointer" },
+      backgroundColor: isDefault ? "muted" : "transparent",
+      borderRadius: isDefault ? "card" : null,
+      "&:hover": {
+        cursor: "pointer",
+      },
     }}
   >
     <Flex
-      bg="muted"
       p={2}
       sx={{
-        borderRadius: "card",
+        borderRadius: isDefault ? "card" : null,
         alignItems: "center",
       }}
     >
@@ -48,7 +51,7 @@ export const DropdownItem = ({ href, children }) => (
       href={href}
       sx={{
         width: "100%",
-        minWidth: "14rem",
+        minWidth: "10rem",
         textDecoration: "none",
         "&:hover": { backgroundColor: "muted" },
       }}
@@ -64,7 +67,6 @@ export const Dropdown = ({ children }) => {
   const animation = {
     enter: {
       opacity: 1,
-      rotateX: 0,
       transition: {
         duration: 0.5,
       },
@@ -72,7 +74,6 @@ export const Dropdown = ({ children }) => {
     },
     exit: {
       opacity: 0,
-      rotateX: -15,
       transition: {
         duration: 0.5,
         delay: 0.3,
@@ -88,8 +89,8 @@ export const Dropdown = ({ children }) => {
   }
 
   return (
-    <Box
-      sx={{ maxWidth: "max-content" }}
+    <motion.div
+      style={{ maxWidth: "max-content" }}
       onMouseEnter={toggleHoverMenu}
       onMouseLeave={toggleHoverMenu}
     >
@@ -97,7 +98,7 @@ export const Dropdown = ({ children }) => {
         child.type.name === "DropdownButton" ? child : null
       )}
       <motion.div
-        initial="enter"
+        initial="exit"
         animate={isHover ? "enter" : "exit"}
         variants={animation}
       >
@@ -105,6 +106,6 @@ export const Dropdown = ({ children }) => {
           child.type.name === "DropdownMenu" ? child : null
         )}
       </motion.div>
-    </Box>
+    </motion.div>
   );
 };
