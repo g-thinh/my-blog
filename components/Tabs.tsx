@@ -22,9 +22,9 @@ const Tab = ({ label, activeTab, handleClick }) => {
   );
 };
 
-export const TabContent = ({ label, children }) => {
-  return <Box key={label}>{children}</Box>;
-};
+export const TabContent = ({ label, children }) => (
+  <Box key={label}>{children}</Box>
+);
 
 export const Tabs = (props) => {
   const [activeTab, setActiveTab] = useState(props.children[0].props.label);
