@@ -41,7 +41,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   }
 };
 
-export default function AboutPage(props: StoriesPage): JSX.Element {
+export default function FoodPage(props: StoriesPage): JSX.Element {
   const stories = useStoryblok(props.stories);
   const page = useStoryblok(props.page);
   const { meta } = props.page.content;
