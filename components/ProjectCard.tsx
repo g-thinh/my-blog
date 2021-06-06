@@ -1,93 +1,99 @@
-import { Text, Button, Box, Card, Flex, Image, AspectRatio } from "theme-ui";
-import { format } from "date-fns";
+import { Text, Button, Box, Card, Flex, Image } from "theme-ui";
+import { PostTags } from "@components/index";
 import Link from "next/link";
 
-export const ProjectCard = ({ data }) => {
-  return (
-    <Link href={data.full_slug} passHref>
-      <Card
-        as="a"
-        bg="muted"
-        p={[2, 3]}
-        mb={[3, 4]}
-        mx={[3, 4]}
+export const ProjectCard = ({ data }) => (
+  <Card
+    as="a"
+    bg="muted"
+    p={[2, 3]}
+    mb={[3, 4]}
+    mx={[3, 4]}
+    sx={{
+      textDecoration: "none",
+      display: ["flex"],
+      justifyContent: "center",
+      alignItems: "center",
+      flexFlow: "column nowrap",
+      borderRadius: "card",
+      "&:hover": {
+        boxShadow: "card",
+        "& h2": {
+          color: "primary",
+        },
+      },
+      "&:focus-within": {
+        boxShadow: "card",
+        "& h2": {
+          color: "primary",
+        },
+      },
+    }}
+  >
+    <Box
+      sx={{
+        display: "flex",
+        margin: "auto",
+        justifyContent: "center",
+        flexGrow: 1,
+      }}
+    >
+      <Image
         sx={{
-          textDecoration: "none",
-          display: ["flex"],
-          justifyContent: "center",
-          alignItems: "center",
-          flexFlow: "column nowrap",
-          borderRadius: "card",
-          "&:hover": {
-            cursor: "pointer",
-            boxShadow: "card",
-            "& h2": {
-              color: "primary",
-            },
-          },
-          "&:focus-within": {
-            cursor: "pointer",
-            boxShadow: "card",
-            "& h2": {
-              color: "primary",
-            },
-          },
+          borderRadius: "0.5rem",
+          objectFit: "cover",
         }}
-      >
-        <Box
+        src={data.content.image.filename}
+        alt={data.content.image.alt}
+      />
+    </Box>
+    <Flex sx={{ flex: "1", flexFlow: "column nowrap" }}>
+      <Box my={[2, 3]}>
+        <Text
+          as="h2"
+          color="text"
+          my={2}
           sx={{
-            display: "flex",
-            margin: "auto",
-            justifyContent: "center",
-            flexGrow: 1,
+            fontSize: [3, 4],
+            textAlign: "center",
+            fontWeight: "bold",
           }}
         >
-          <Image
-            sx={{
-              borderRadius: "0.5rem",
-              objectFit: "cover",
-            }}
-            src={data.content.image.filename}
-            alt={data.content.image.alt}
-          />
-        </Box>
-        <Flex sx={{ flex: "1", flexFlow: "column nowrap" }}>
-          <Box my={[2, 3]}>
-            <Text
-              as="h2"
-              color="text"
-              my={2}
-              sx={{
-                fontSize: [3, 4],
-                textAlign: "center",
-                fontWeight: "bold",
-              }}
-            >
-              {data.content.title}
-            </Text>
-          </Box>
-          <Text
-            as="p"
-            color="text"
-            my={[1, 3]}
-            px={[2, 3]}
-            sx={{
-              textAlign: "center",
-              fontSize: 2,
-              flexGrow: 1,
-            }}
-          >
-            {data.content.preview}
-          </Text>
-          <Flex py={2} sx={{ justifyContent: "center" }}>
-            <Link href={data.content.demo.url}>
-              <Button variant="link" sx={{ fontSize: [2, 3] }}>
-                Demo
-              </Button>
-            </Link>
-          </Flex>
+          {data.content.title}
+        </Text>
+        <Flex sx={{ justifyContent: "center" }}>
+          <PostTags tags={data.tag_list} />
         </Flex>
-      </Card>
-    </Link>
-  );
-};
+      </Box>
+      <Text
+        as="p"
+        color="text"
+        my={[1, 3]}
+        px={[2, 3]}
+        sx={{
+          textAlign: "center",
+          fontSize: 2,
+          flexGrow: 1,
+        }}
+      >
+        {data.content.preview}
+      </Text>
+      <Flex sx={{ alignItems: "center", justifyContent: "center" }}>
+        <Box px={2}>
+          <Link href={data.content.demo.url}>
+            <Button variant="link" sx={{ fontSize: [1, 2] }}>
+              Demo
+            </Button>
+          </Link>
+        </Box>
+        <Box px={2}>
+          <Link href={data.content.github.url}>
+            <Button variant="link" sx={{ fontSize: [1, 2] }}>
+              Github
+            </Button>
+          </Link>
+        </Box>
+      </Flex>
+    </Flex>
+  </Card>
+);

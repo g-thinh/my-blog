@@ -1,8 +1,7 @@
-import { useEffect, useState } from "react";
 import { Container, Grid } from "theme-ui";
 import { GetStaticProps } from "next";
 import Storyblok, { useStoryblok } from "@utils/storyblok";
-import { MainHeading, Subheading, SEO, ProjectCard } from "@components/index";
+import { MainHeading, Subheading, ProjectCard, SEO } from "@components/index";
 
 export const getStaticProps: GetStaticProps = async (context) => {
   try {
@@ -43,18 +42,13 @@ export const getStaticProps: GetStaticProps = async (context) => {
 };
 
 export default function ProjectsPage(props: StoriesPage): JSX.Element {
-  const [list, setList] = useState([]);
   const stories = useStoryblok(props.stories);
-  console.log(stories);
   const page = useStoryblok(props.page);
   const { meta } = props.page.content;
 
-  useEffect(() => {
-    setList([stories[0]]);
-  }, []);
-
   return (
     <Container p={[2, 3]}>
+      <SEO meta={meta} />
       <MainHeading>{page.content.title}</MainHeading>
       <Subheading>{page.content.description}</Subheading>
       <Grid sx={{ gridTemplateColumns: ["1fr"], gridAutoRows: "1fr" }}>
