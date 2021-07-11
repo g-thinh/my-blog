@@ -50,6 +50,12 @@ export const theme: Theme = {
   },
   breakpoints: ["48em", "64em"],
   buttons: {
+    primary: {
+      "&:focus": {
+        outline: "none",
+        boxShadow: "0px 0px 1px 3px #CB82D9",
+      },
+    },
     back: {
       backgroundColor: "transparent",
       padding: 0,
@@ -88,6 +94,10 @@ export const theme: Theme = {
       "&:hover": {
         backgroundColor: "primary",
         color: "black",
+      },
+      "&:focus": {
+        outline: "none",
+        boxShadow: "0px 0px 1px 3px #CB82D9",
       },
     },
     secondary: {

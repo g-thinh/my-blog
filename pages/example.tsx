@@ -8,6 +8,7 @@ import {
   Text,
   Divider,
   Heading,
+  Link,
 } from "theme-ui";
 import {
   MainHeading,
@@ -16,12 +17,9 @@ import {
   TabContent,
   TextBlock,
   Dropdown,
-  DropdownButton,
-  DropdownItem,
-  DropdownMenu,
 } from "@components/index";
 import { useToast } from "@components/ToastContext";
-import { FiChevronDown } from "react-icons/fi";
+import { FiChevronRight } from "react-icons/fi";
 
 export default function ExamplePage(): JSX.Element {
   const { dispatch } = useToast();
@@ -44,26 +42,81 @@ export default function ExamplePage(): JSX.Element {
         <Box mt={3}>
           <Flex sx={{ justifyContent: "space-around" }}>
             <Dropdown>
-              <DropdownButton isDefault={true}>
-                <Text pr={3}>Default</Text>
-                <FiChevronDown />
-              </DropdownButton>
-              <DropdownMenu>
-                <DropdownItem href="#">Item 1</DropdownItem>
-                <DropdownItem href="#">Item 2</DropdownItem>
-                <DropdownItem href="#">Item 3</DropdownItem>
-              </DropdownMenu>
+              <Dropdown.Button rightIcon={<FiChevronRight />}>
+                Default
+              </Dropdown.Button>
+              <Dropdown.List>
+                <Dropdown.Item>
+                  <Link
+                    href="#"
+                    sx={{ textDecoration: "none", outline: "none" }}
+                  >
+                    <Text>Item 1</Text>
+                  </Link>
+                </Dropdown.Item>
+                <Dropdown.Item>
+                  <Link
+                    href="#"
+                    sx={{ textDecoration: "none", outline: "none" }}
+                  >
+                    <Text>Item 1</Text>
+                  </Link>
+                </Dropdown.Item>
+                <Dropdown.Item>
+                  <Button
+                    onClick={() => alert("hello there")}
+                    sx={{
+                      padding: 0,
+                      backgroundColor: "transparent",
+                      ":focus": {
+                        boxShadow: "none",
+                      },
+                    }}
+                  >
+                    <Text>Item 3</Text>
+                  </Button>
+                </Dropdown.Item>
+              </Dropdown.List>
             </Dropdown>
             <Dropdown>
-              <DropdownButton>
-                <Text pr={3}>Without Fill</Text>
-                <FiChevronDown />
-              </DropdownButton>
-              <DropdownMenu>
-                <DropdownItem href="#">Item 1</DropdownItem>
-                <DropdownItem href="#">Item 2</DropdownItem>
-                <DropdownItem href="#">Item 3</DropdownItem>
-              </DropdownMenu>
+              <Dropdown.Button
+                variant="transparent"
+                rightIcon={<FiChevronRight />}
+              >
+                Default
+              </Dropdown.Button>
+              <Dropdown.List>
+                <Dropdown.Item>
+                  <Link
+                    href="#"
+                    sx={{ textDecoration: "none", outline: "none" }}
+                  >
+                    <Text>Item 1</Text>
+                  </Link>
+                </Dropdown.Item>
+                <Dropdown.Item>
+                  <Link
+                    href="#"
+                    sx={{ textDecoration: "none", outline: "none" }}
+                  >
+                    <Text>Item 1</Text>
+                  </Link>
+                </Dropdown.Item>
+                <Dropdown.Item>
+                  <Button
+                    onClick={() => alert("hello there")}
+                    sx={{
+                      padding: 0,
+                      backgroundColor: "transparent",
+                      ":focus": {
+                        boxShadow: "none",
+                      },
+                    }}
+                  >
+                    <Text>Item 3</Text>
+                  </Button>
+                </Dropdown.Item>
+              </Dropdown.List>
             </Dropdown>
           </Flex>
         </Box>
