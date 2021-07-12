@@ -1,13 +1,14 @@
 import useScrollToView from "@styles/useScrollToView";
 import useOnClickOutside from "@utils/useOnClickOutside";
 import { motion } from "framer-motion";
-import React, {
+import {
   ComponentProps,
   PropsWithChildren,
   ReactElement,
   useRef,
+  FocusEvent,
 } from "react";
-import { Box, Button, Flex, Link, Text } from "theme-ui";
+import { Box, Button, Flex, Text, Divider } from "theme-ui";
 import { DropdownProvider, useDropdown } from "./DropdownContext";
 
 export function Dropdown({
@@ -19,7 +20,6 @@ export function Dropdown({
       <Box
         sx={{
           position: "relative",
-          display: "inline-block",
         }}
         {...props}
       >
@@ -29,14 +29,10 @@ export function Dropdown({
   );
 }
 
-export type MaybeRenderProp<P> =
-  | React.ReactNode
-  | ((props: P) => React.ReactNode);
-
 type DropdownButtonProps = PropsWithChildren<{
   rightIcon?: ReactElement<any>;
   leftIcon?: ReactElement<any>;
-  variant?: "default" | "transparent";
+  variant?: "fill" | "nofill";
 }> &
   ComponentProps<typeof Button>;
 
@@ -44,7 +40,7 @@ Dropdown.Button = function DropdownButton({
   children,
   rightIcon,
   leftIcon,
-  variant = "default",
+  variant = "fill",
   ...props
 }: DropdownButtonProps) {
   const DropdownButtonRef = useRef(null);
@@ -55,7 +51,7 @@ Dropdown.Button = function DropdownButton({
   return (
     <Button
       mb={2}
-      bg={variant === "default" ? "muted" : "transparent"}
+      bg={variant === "fill" ? "muted" : "transparent"}
       ref={DropdownButtonRef}
       onClick={() => {
         onTransitionEnd((c) => !c);
@@ -83,15 +79,42 @@ Dropdown.Button = function DropdownButton({
   );
 };
 
-Dropdown.List = function DropdownList({
+type DropdownList = {
+  icon?: ReactElement<any>;
+} & PropsWithChildren<ComponentProps<typeof Box>>;
+
+type DropdownListGroup = PropsWithChildren<{
+  title: string;
+}>;
+
+Dropdown.ListGroup = function DropdownListGroup({
   children,
+  title,
   ...props
-}: PropsWithChildren<ComponentProps<typeof Box>>) {
+}: DropdownListGroup) {
+  return (
+    <Box>
+      <Text
+        px={3}
+        py={2}
+        sx={{ fontSize: [2], fontWeight: "bolder" }}
+        {...props}
+      >
+        {title}
+      </Text>
+      {children}
+    </Box>
+  );
+};
+
+Dropdown.Divider = Divider;
+
+Dropdown.List = function DropdownList({ children, ...props }: DropdownList) {
   const { isOpen, dropdownAnimation, onTransitionEnd } = useDropdown();
 
   const DropdownListRef = useRef<HTMLDivElement>(null);
 
-  const handleOnBlur = (event: React.FocusEvent<HTMLDivElement>) => {
+  const handleOnBlur = (event: FocusEvent<HTMLDivElement>) => {
     if (!event.currentTarget.contains(event.relatedTarget as Node)) {
       onTransitionEnd(false);
     }
@@ -126,16 +149,22 @@ Dropdown.List = function DropdownList({
   );
 };
 
+type DropdownItem = PropsWithChildren<{
+  icon?: ReactElement<any>;
+}> &
+  ComponentProps<typeof Box>;
+
 Dropdown.Item = function DropdownItem({
   children,
+  icon,
   ...props
-}: PropsWithChildren<ComponentProps<typeof Box>>) {
+}: DropdownItem) {
   return (
     <Box
       as="li"
+      px={3}
+      py={2}
       sx={{
-        padding: 2,
-        textAlign: "center",
         ":hover": {
           backgroundColor: "muted",
           cursor: "pointer",
@@ -146,7 +175,10 @@ Dropdown.Item = function DropdownItem({
       }}
       {...props}
     >
-      {children}
+      <Flex sx={{ alignItems: "center" }}>
+        {icon}
+        {icon ? <Box pl={1}>{children}</Box> : children}
+      </Flex>
     </Box>
   );
 };

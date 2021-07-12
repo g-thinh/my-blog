@@ -79,43 +79,45 @@ export default function ExamplePage(): JSX.Element {
               </Dropdown.List>
             </Dropdown>
             <Dropdown>
-              <Dropdown.Button
-                variant="transparent"
-                rightIcon={<FiChevronRight />}
-              >
+              <Dropdown.Button variant="nofill" rightIcon={<FiChevronRight />}>
                 Default
               </Dropdown.Button>
               <Dropdown.List>
-                <Dropdown.Item>
-                  <Link
-                    href="#"
-                    sx={{ textDecoration: "none", outline: "none" }}
-                  >
-                    <Text>Item 1</Text>
-                  </Link>
-                </Dropdown.Item>
-                <Dropdown.Item>
-                  <Link
-                    href="#"
-                    sx={{ textDecoration: "none", outline: "none" }}
-                  >
-                    <Text>Item 1</Text>
-                  </Link>
-                </Dropdown.Item>
-                <Dropdown.Item>
-                  <Button
-                    onClick={() => alert("hello there")}
-                    sx={{
-                      padding: 0,
-                      backgroundColor: "transparent",
-                      ":focus": {
-                        boxShadow: "none",
-                      },
-                    }}
-                  >
-                    <Text>Item 3</Text>
-                  </Button>
-                </Dropdown.Item>
+                <Dropdown.ListGroup title="Main">
+                  <Dropdown.Item icon={<FiChevronRight />}>
+                    <Link
+                      href="#"
+                      sx={{ textDecoration: "none", outline: "none" }}
+                    >
+                      <Text>Item 1</Text>
+                    </Link>
+                  </Dropdown.Item>
+                </Dropdown.ListGroup>
+                <Dropdown.Divider />
+                <Dropdown.ListGroup title="Options">
+                  <Dropdown.Item>
+                    <Link
+                      href="#"
+                      sx={{ textDecoration: "none", outline: "none" }}
+                    >
+                      <Text>Item 2</Text>
+                    </Link>
+                  </Dropdown.Item>
+                  <Dropdown.Item>
+                    <Button
+                      onClick={() => alert("hello there")}
+                      sx={{
+                        padding: 0,
+                        backgroundColor: "transparent",
+                        ":focus": {
+                          boxShadow: "none",
+                        },
+                      }}
+                    >
+                      <Text>Item 3</Text>
+                    </Button>
+                  </Dropdown.Item>
+                </Dropdown.ListGroup>
               </Dropdown.List>
             </Dropdown>
           </Flex>
