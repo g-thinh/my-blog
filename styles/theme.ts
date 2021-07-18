@@ -54,6 +54,7 @@ export const theme: Theme = {
       "&:focus": {
         outline: "none",
         boxShadow: "0px 0px 1px 3px #CB82D9",
+        transition: "box-shadow 0.2s",
       },
     },
     back: {
@@ -119,7 +120,7 @@ export const theme: Theme = {
       },
     },
     tabButton: {
-      borderRadius: "0",
+      borderRadius: 0,
       position: "relative",
       outline: "transparent solid 2px",
       outlineOffset: "0px",
@@ -127,12 +128,11 @@ export const theme: Theme = {
       "&:hover": { cursor: "pointer" },
       "&:active": {
         backgroundColor: "highlight",
-        transition: "background-color 0.3s ease-in",
+        transition: "background-color 0.3s ease-out",
       },
       "&:focus": {
-        outline: "solid 3px",
-        outlineColor: "secondary",
-        zIndex: 1,
+        transition: "box-shadow 0.2s",
+        boxShadow: "0px 0px 1px 3px #CB82D9",
       },
       borderTop: "none",
       borderRight: "none",

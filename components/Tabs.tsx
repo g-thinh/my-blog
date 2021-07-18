@@ -1,67 +1,91 @@
-import { useState } from "react";
+import {
+  ComponentProps,
+  PropsWithChildren,
+  Children,
+  isValidElement,
+  cloneElement,
+} from "react";
 import { Box, Flex, Container, Text, Button } from "theme-ui";
+import { TabsProvider, useTabs } from "./TabsContext";
 
-const Tab = ({ label, activeTab, handleClick }) => {
-  const isActive = activeTab === label;
+export function Tabs({ children }: PropsWithChildren<{}>) {
+  return (
+    <TabsProvider>
+      <Container p={2} bg="muted" sx={{ borderRadius: "0.75rem" }}>
+        {children}
+      </Container>
+    </TabsProvider>
+  );
+}
+
+type TabProps = PropsWithChildren<{
+  tabIndex?: number;
+}> &
+  ComponentProps<typeof Button>;
+
+type TabsListProps = PropsWithChildren<{}> & ComponentProps<typeof Flex>;
+
+Tabs.List = function TabsList({ children }: TabsListProps) {
+  return (
+    <Flex sx={{ borderBottom: "2px solid", borderColor: "highlight" }}>
+      {Children.map(children, (child, tabIndex) => {
+        if (isValidElement(child)) {
+          return cloneElement(child, {
+            tabIndex,
+          });
+        }
+      })}
+    </Flex>
+  );
+};
+
+Tabs.ListItem = function Tab({ children, tabIndex, ...props }: TabProps) {
+  const { setActiveTab, activeTab } = useTabs();
+  const isActive = activeTab === tabIndex;
 
   return (
     <Button
       variant="tabButton"
       p={2}
-      onClick={() => handleClick(label)}
+      onClick={() => setActiveTab(tabIndex)}
       sx={{
         borderColor: isActive ? "primary" : "highlight",
       }}
+      {...props}
     >
       <Text
         sx={{ color: isActive ? "primary" : "text", fontWeight: "heading" }}
       >
-        {label}
+        {children}
       </Text>
     </Button>
   );
 };
 
-export const TabContent = ({ label, children }) => (
-  <Box key={label}>{children}</Box>
-);
+type TabsContentProps = PropsWithChildren<{
+  tabIndex?: number;
+  TabName?: string;
+}> &
+  ComponentProps<typeof Box>;
 
-export const Tabs = (props) => {
-  const [activeTab, setActiveTab] = useState(props.children[0].props.label);
-  function onClickTabItem(tab) {
-    setActiveTab(tab);
-  }
-
+Tabs.Sections = function TabsContent({ children, ...props }: TabsContentProps) {
   return (
-    <Container p={2} bg="muted" sx={{ borderRadius: "0.75rem" }}>
-      <Flex
-        sx={{
-          borderBottom: "2px solid",
-          borderColor: "highlight",
-        }}
-      >
-        {props.children.map((child) => {
-          const { label } = child.props;
-          return (
-            <Tab
-              activeTab={activeTab}
-              key={label}
-              label={label}
-              handleClick={onClickTabItem}
-            />
-          );
-        })}
-      </Flex>
-      <Box py={3}>
-        {props.children.map((child) => {
-          if (child.props.label !== activeTab) return undefined;
-          return (
-            <Box key={child.props.label} px={2} py={2}>
-              {child.props.children}
-            </Box>
-          );
-        })}
-      </Box>
-    </Container>
+    <Box my={2} {...props}>
+      {Children.map(children, (child, tabIndex) => {
+        if (isValidElement(child)) {
+          return cloneElement(child, { tabIndex });
+        }
+      })}
+    </Box>
   );
+};
+
+Tabs.SectionItem = function TabContent({
+  children,
+  tabIndex,
+  ...props
+}: TabsContentProps) {
+  const { activeTab } = useTabs();
+  const isActive = activeTab === tabIndex;
+  return isActive && <Box {...props}>{children}</Box>;
 };

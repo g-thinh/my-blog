@@ -14,7 +14,6 @@ import {
   MainHeading,
   Subheading,
   Tabs,
-  TabContent,
   TextBlock,
   Dropdown,
 } from "@components/index";
@@ -165,35 +164,44 @@ export default function ExamplePage(): JSX.Element {
           </TextBlock>
         </Box>
         <Tabs>
-          <TabContent label="One">
-            <Box mb={2}>
+          <Tabs.List>
+            <Tabs.ListItem>One</Tabs.ListItem>
+            <Tabs.ListItem>Two</Tabs.ListItem>
+            <Tabs.ListItem>Three</Tabs.ListItem>
+          </Tabs.List>
+          <Tabs.Sections>
+            <Tabs.SectionItem>
+              <Box mb={2}>
+                <TextBlock>
+                  Aliquam at sapien ante. Integer imperdiet pulvinar massa vitae
+                  finibus. Duis placerat ex nec convallis blandit. Aliquam
+                  sagittis metus et posuere bibendum. Vestibulum eget bibendum
+                  erat, sit amet volutpat ante. Suspendisse potenti. Nullam
+                  auctor massa non libero convallis suscipit. Mauris lacinia,
+                  diam et iaculis elementum, leo metus lobortis turpis, sed
+                  rhoncus leo diam quis purus. Vivamus facilisis lobortis
+                  lobortis.
+                </TextBlock>
+              </Box>
+              <Button>Read More</Button>
+            </Tabs.SectionItem>
+            <Tabs.SectionItem>
               <TextBlock>
-                Aliquam at sapien ante. Integer imperdiet pulvinar massa vitae
-                finibus. Duis placerat ex nec convallis blandit. Aliquam
-                sagittis metus et posuere bibendum. Vestibulum eget bibendum
-                erat, sit amet volutpat ante. Suspendisse potenti. Nullam auctor
-                massa non libero convallis suscipit. Mauris lacinia, diam et
-                iaculis elementum, leo metus lobortis turpis, sed rhoncus leo
-                diam quis purus. Vivamus facilisis lobortis lobortis.
+                Aenean cursus arcu in nibh dapibus, in mattis justo ullamcorper.
+                In vel facilisis sem. Aenean tempor justo quam. Aenean nisl
+                velit, fermentum id lacus non, facilisis accumsan est. In
+                hendrerit, dui eget dapibus tincidunt, enim augue cursus risus,
+                tempor auctor dolor arcu blandit urna. Vivamus sollicitudin in
+                erat a fermentum. Vivamus gravida dignissim mauris tristique
+                mollis.
               </TextBlock>
-            </Box>
-            <Button>Read More</Button>
-          </TabContent>
-          <TabContent label="Two">
-            <TextBlock>
-              Aenean cursus arcu in nibh dapibus, in mattis justo ullamcorper.
-              In vel facilisis sem. Aenean tempor justo quam. Aenean nisl velit,
-              fermentum id lacus non, facilisis accumsan est. In hendrerit, dui
-              eget dapibus tincidunt, enim augue cursus risus, tempor auctor
-              dolor arcu blandit urna. Vivamus sollicitudin in erat a fermentum.
-              Vivamus gravida dignissim mauris tristique mollis.
-            </TextBlock>
-          </TabContent>
-          <TabContent label="Three">
-            <TextBlock>
-              Nothing to see here, this tab is <em>extinct</em>!
-            </TextBlock>
-          </TabContent>
+            </Tabs.SectionItem>
+            <Tabs.SectionItem>
+              <TextBlock>
+                Nothing to see here, this tab is <em>extinct</em>!
+              </TextBlock>
+            </Tabs.SectionItem>
+          </Tabs.Sections>
         </Tabs>
       </Box>
     </Container>
