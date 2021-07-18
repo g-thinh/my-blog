@@ -6,9 +6,12 @@ export default function useScrollToView<T extends HTMLElement = HTMLElement>(
 ) {
   useEffect(() => {
     const Node = ref.current;
-    if (condition) {
-      const NodeDomRect = Node.getBoundingClientRect();
-      window.scrollTo(0, NodeDomRect.height);
+    if (condition && ref && ref.current) {
+      Node.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+        inline: "center",
+      });
     }
   }, [ref, condition]);
 }
