@@ -10,7 +10,10 @@ const Layout: React.FC = (props) => {
   return (
     <>
       <Head>
-        <link rel="icon" href={`${isDark ? "/dark.png" : "/light.png"}`} />
+        <link
+          rel="shortcut icon"
+          href={`${isDark ? "/dark.ico" : "/light.ico"}`}
+        />
         <meta name="theme-color" content={`${isDark ? "#222639" : "#fff"}`} />
       </Head>
       <Flex

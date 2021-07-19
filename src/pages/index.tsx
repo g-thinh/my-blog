@@ -4,8 +4,8 @@ import { GetStaticProps } from "next";
 import { useColorMode } from "theme-ui";
 import Storyblok, { useStoryblok } from "@utils/storyblok";
 
-import reactDark from "public/reactDark.json";
-import reactLight from "public/reactLight.json";
+import reactDark from "../../public/reactDark.json";
+import reactLight from "../../public/reactLight.json";
 import Lottie from "react-lottie";
 
 export const getStaticProps: GetStaticProps = async (context) => {
