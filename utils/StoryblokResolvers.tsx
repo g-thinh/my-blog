@@ -103,7 +103,7 @@ export const resolvers = {
         as="code"
         px={1}
         sx={{
-          borderRadius: "0.475rem",
+          borderRadius: "md",
           filter: "brightness(90%)",
           fontFamily:
             "Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New",

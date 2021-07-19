@@ -11,7 +11,7 @@ import { TabsProvider, useTabs } from "./TabsContext";
 export function Tabs({ children }: PropsWithChildren<{}>) {
   return (
     <TabsProvider>
-      <Container p={2} bg="muted" sx={{ borderRadius: "0.75rem" }}>
+      <Container p={2} bg="muted" sx={{ borderRadius: "lg" }}>
         {children}
       </Container>
     </TabsProvider>

@@ -31,10 +31,23 @@ export const theme = makeTheme({
   shadows,
   text,
   radii: {
-    card: "1rem",
+    sm: "0.25rem",
+    md: "0.5rem",
+    lg: "0.75rem",
+    xl: "1rem",
   },
   breakpoints: ["48em", "64em"],
   buttons,
+  styles: {
+    a: {
+      borderRadius: "sm",
+      "&:focus": {
+        outline: "none",
+        transition: "box-shadow 0.2s",
+        boxShadow: "0px 0px 1px 3px #4299e1",
+      },
+    },
+  },
 });
 
 export type ExactTheme = typeof theme;

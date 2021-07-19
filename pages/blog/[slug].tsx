@@ -89,7 +89,7 @@ export default function BlogPostPage(props: StoryPage): JSX.Element {
       </Box>
       <AspectImage
         ratio={4 / 3}
-        sx={{ borderRadius: "0.5rem", objectFit: "cover" }}
+        sx={{ borderRadius: "md", objectFit: "cover" }}
         src={story.content.image.filename}
         alt={story.content.image.alt}
       />

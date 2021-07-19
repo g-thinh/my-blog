@@ -14,7 +14,7 @@ export const BlogPostCard = ({ data }): JSX.Element => {
           textDecoration: "none",
           display: "flex",
           justifyContent: "center",
-          borderRadius: "card",
+          borderRadius: "xl",
           "&:hover": {
             cursor: "pointer",
             boxShadow: "card",

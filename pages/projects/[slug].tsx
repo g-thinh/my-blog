@@ -92,7 +92,7 @@ export default function FoodPostPage(props: StoryPage): JSX.Element {
       <Box mb={[3, 4]}>
         <AspectImage
           ratio={1 / 1}
-          sx={{ borderRadius: "0.5rem", objectFit: "cover" }}
+          sx={{ borderRadius: "md", objectFit: "cover" }}
           src={story.content.image.filename}
           alt={story.content.image.alt}
         />

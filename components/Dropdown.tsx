@@ -57,7 +57,7 @@ Dropdown.Button = function DropdownButton({
         onTransitionEnd((c) => !c);
       }}
       sx={{
-        borderRadius: "card",
+        borderRadius: "md",
       }}
       {...props}
     >
@@ -131,7 +131,7 @@ Dropdown.List = function DropdownList({ children, ...props }: DropdownList) {
           width: "100%",
           minWidth: "10rem",
           position: "absolute",
-          borderRadius: "0.75rem",
+          borderRadius: "lg",
           boxShadow: "menu",
         }}
         {...props}

@@ -12,7 +12,7 @@ export const TableLinks = (props: Props): JSX.Element => {
         bg="muted"
         sx={{
           width: ["100%", "80%"],
-          borderRadius: "card",
+          borderRadius: "lg",
           overflow: "hidden",
           boxShadow: "card",
         }}

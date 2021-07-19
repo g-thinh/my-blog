@@ -17,7 +17,7 @@ export const FoodCard = ({ data }) => {
           justifyContent: "center",
           alignItems: "center",
           flexFlow: "column nowrap",
-          borderRadius: "card",
+          borderRadius: "xl",
           "&:hover": {
             cursor: "pointer",
             boxShadow: "card",

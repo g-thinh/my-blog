@@ -15,7 +15,7 @@ export const ProjectCard = ({ data }) => (
       justifyContent: "center",
       alignItems: "center",
       flexFlow: "column nowrap",
-      borderRadius: "card",
+      borderRadius: "xl",
       "&:hover": {
         boxShadow: "card",
         "& h2": {
@@ -40,7 +40,7 @@ export const ProjectCard = ({ data }) => (
     >
       <Image
         sx={{
-          borderRadius: "0.5rem",
+          borderRadius: "md",
           objectFit: "cover",
         }}
         src={data.content.image.filename}

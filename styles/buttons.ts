@@ -1,5 +1,6 @@
 export const buttons = {
   primary: {
+    borderRadius: "md",
     "&:hover": {
       cursor: "pointer",
     },

@@ -13,7 +13,7 @@ export const CodePostCard = ({ data }): JSX.Element => {
           textDecoration: "none",
           display: "flex",
           flexFlow: "column nowrap",
-          borderRadius: "card",
+          borderRadius: "xl",
           "&:hover": {
             cursor: "pointer",
             boxShadow: "card",
