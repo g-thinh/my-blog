@@ -1,8 +1,16 @@
-import { Container, Box, Flex, Button, Divider, AspectImage } from "theme-ui";
+import {
+  Container,
+  Box,
+  Flex,
+  Button,
+  Divider,
+  AspectImage,
+  Heading,
+} from "theme-ui";
 import { GetStaticPaths, GetStaticProps } from "next";
 import Storyblok, { useStoryblok } from "@utils/storyblok";
 import { useRouter } from "next/router";
-import { MainHeading, SEO, PostTags, DateReadTime } from "@components/index";
+import { SEO, PostTags, DateReadTime } from "@components/index";
 import { render } from "storyblok-rich-text-react-renderer";
 import { resolvers } from "@utils/StoryblokResolvers";
 
@@ -68,7 +76,7 @@ export default function FoodPostPage(props: StoryPage): JSX.Element {
         <Button variant="back" onClick={() => router.back()}>
           <span>Projects</span>
         </Button>
-        <MainHeading>{story.content.title}</MainHeading>
+        <Heading>{story.content.title}</Heading>
       </Flex>
       {/* <Flex my={2} sx={{ justifyContent: "center", flexFlow: "row wrap" }}>
         <PostTags tags={story.tag_list} />

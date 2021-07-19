@@ -1,9 +1,9 @@
-import { Container, Box } from "theme-ui";
-import { MainHeading, Subheading, SEO } from "@components/index";
+import { SEO } from "@components/index";
+import Storyblok, { useStoryblok } from "@utils/storyblok";
+import { resolvers } from "@utils/StoryblokResolvers";
 import { GetStaticProps } from "next";
 import { render } from "storyblok-rich-text-react-renderer";
-import { resolvers } from "@utils/StoryblokResolvers";
-import Storyblok, { useStoryblok } from "@utils/storyblok";
+import { Box, Container, Heading } from "theme-ui";
 
 export const getStaticProps: GetStaticProps = async (context) => {
   try {
@@ -33,14 +33,23 @@ export const getStaticProps: GetStaticProps = async (context) => {
   }
 };
 
-export default function AboutPage(props: StoryPage): JSX.Element {
+export default function AboutPage(props: StoryPage) {
   const story = useStoryblok(props.story);
   const { meta } = story.content;
   return (
     <Container p={[2, 3]}>
       <SEO meta={meta} />
-      <MainHeading>{story.content.title}</MainHeading>
-      <Subheading>{story.content.subtitle}</Subheading>
+      <Heading as="h1" variant="main" sx={{ textAlign: "center" }}>
+        {story.content.title}
+      </Heading>
+      <Heading
+        as="h2"
+        variant="subheader"
+        mt={[2, 3]}
+        sx={{ textAlign: "center" }}
+      >
+        {story.content.subtitle}
+      </Heading>
 
       <Box as="section" mt={[3, 4]} p={[3, 0]}>
         {render(story.content.description, resolvers)}

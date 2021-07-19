@@ -1,7 +1,7 @@
-import { Container, Grid } from "theme-ui";
-import { GetStaticProps } from "next";
+import { ProjectCard, SEO } from "@components/index";
 import Storyblok, { useStoryblok } from "@utils/storyblok";
-import { MainHeading, Subheading, ProjectCard, SEO } from "@components/index";
+import { GetStaticProps } from "next";
+import { Container, Grid, Heading } from "theme-ui";
 
 export const getStaticProps: GetStaticProps = async (context) => {
   try {
@@ -49,9 +49,18 @@ export default function ProjectsPage(props: StoriesPage): JSX.Element {
   return (
     <Container p={[2, 3]}>
       <SEO meta={meta} />
-      <MainHeading>{page.content.title}</MainHeading>
-      <Subheading>{page.content.description}</Subheading>
-      <Grid sx={{ gridTemplateColumns: ["1fr"], gridAutoRows: "1fr" }}>
+      <Heading as="h1" variant="main" sx={{ textAlign: "center" }}>
+        {page.content.title}
+      </Heading>
+      <Heading
+        as="h2"
+        variant="subheader"
+        mt={[2, 3]}
+        sx={{ textAlign: "center" }}
+      >
+        {page.content.description}
+      </Heading>
+      <Grid mt={4} sx={{ gridTemplateColumns: ["1fr"], gridAutoRows: "1fr" }}>
         {stories &&
           stories.map((data) => {
             return <ProjectCard key={data.id} data={data} />;

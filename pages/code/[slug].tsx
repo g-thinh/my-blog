@@ -1,18 +1,10 @@
-import { Container, Box, Flex, Divider, Button } from "theme-ui";
-import { GetStaticPaths, GetStaticProps } from "next";
+import { AuthorInfo, DateReadTime, PostTags, SEO } from "@components/index";
 import Storyblok, { useStoryblok } from "@utils/storyblok";
-import {
-  MainHeading,
-  Subheading,
-  SEO,
-  PostTags,
-  DateReadTime,
-  AuthorInfo,
-} from "@components/index";
-import { render } from "storyblok-rich-text-react-renderer";
 import { resolvers } from "@utils/StoryblokResolvers";
-
+import { GetStaticPaths, GetStaticProps } from "next";
 import { useRouter } from "next/router";
+import { render } from "storyblok-rich-text-react-renderer";
+import { Box, Button, Container, Divider, Flex, Heading } from "theme-ui";
 
 export const getStaticProps: GetStaticProps = async (context) => {
   try {
@@ -72,7 +64,9 @@ export default function CodePostPage(props: StoryPage): JSX.Element {
         <Button variant="back" onClick={() => router.back()}>
           <span>Code</span>
         </Button>
-        <MainHeading isCenter={false}>{story.name}</MainHeading>
+        <Heading as="h1" variant="main">
+          {story.name}
+        </Heading>
       </Flex>
       <DateReadTime
         date={story.first_published_at}
@@ -80,7 +74,14 @@ export default function CodePostPage(props: StoryPage): JSX.Element {
       />
       <PostTags tags={story.tag_list} />
       <Divider />
-      <Subheading>{story.content.title}</Subheading>
+      <Heading
+        my={[2, 3]}
+        as="h2"
+        variant="subheader"
+        sx={{ textAlign: "center" }}
+      >
+        {story.content.title}
+      </Heading>
       <Box pb={[3, 4]}>{render(story.content.long_text, resolvers)}</Box>
       {story.content.author.length >= 1 &&
         story.content.author.map((content) => (

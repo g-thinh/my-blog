@@ -1,7 +1,7 @@
-import { Container, Grid } from "theme-ui";
-import { MainHeading, Subheading, CodePostCard, SEO } from "@components/index";
+import { CodePostCard, SEO } from "@components/index";
 import Storyblok, { useStoryblok } from "@utils/storyblok";
 import { GetStaticProps } from "next";
+import { Container, Grid, Heading } from "theme-ui";
 
 export const getStaticProps: GetStaticProps = async (context) => {
   try {
@@ -48,8 +48,17 @@ export default function CodePage(props: StoriesPage): JSX.Element {
   return (
     <Container p={[2, 3]}>
       <SEO meta={meta} />
-      <MainHeading>{page.content.title}</MainHeading>
-      <Subheading>{page.content.description}</Subheading>
+      <Heading as="h1" variant="main" sx={{ textAlign: "center" }}>
+        {page.content.title}
+      </Heading>
+      <Heading
+        as="h2"
+        variant="subheader"
+        mt={[2, 3]}
+        sx={{ textAlign: "center" }}
+      >
+        {page.content.description}
+      </Heading>
       <Grid sx={{ gridTemplateColumns: ["1fr"], gridAutoRows: "1fr" }}>
         {stories &&
           stories.map((post) => {

@@ -1,7 +1,7 @@
-import { Container, Grid } from "theme-ui";
+import { Container, Grid, Heading } from "theme-ui";
 import { GetStaticProps } from "next";
 import Storyblok, { useStoryblok } from "@utils/storyblok";
-import { MainHeading, Subheading, BlogPostCard, SEO } from "@components/index";
+import { BlogPostCard, SEO } from "@components/index";
 
 export const getStaticProps: GetStaticProps = async (context) => {
   try {
@@ -47,9 +47,13 @@ export default function BlogPage(props: StoriesPage): JSX.Element {
   return (
     <Container p={[2, 3]}>
       <SEO meta={meta} />
-      <MainHeading>{page.content.title}</MainHeading>
-      <Subheading>{page.content.description}</Subheading>
-      <Grid sx={{ gridTemplateColumns: ["1fr"], gridAutoRows: "1fr" }}>
+      <Heading as="h1" variant="main" sx={{ textAlign: "center" }}>
+        {page.content.title}
+      </Heading>
+      <Heading as="h2" variant="subheader" mt={[2, 3]}>
+        {page.content.description}
+      </Heading>
+      <Grid mt={4} sx={{ gridTemplateColumns: ["1fr"], gridAutoRows: "1fr" }}>
         {stories.map((post) => {
           return <BlogPostCard key={post.id} data={post} />;
         })}

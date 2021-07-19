@@ -1,24 +1,19 @@
-import { useState } from "react";
-import {
-  Container,
-  Button,
-  Flex,
-  Input,
-  Box,
-  Text,
-  Divider,
-  Heading,
-  Link,
-} from "theme-ui";
-import {
-  MainHeading,
-  Subheading,
-  Tabs,
-  TextBlock,
-  Dropdown,
-} from "@components/index";
+import { Dropdown, Tabs } from "@components/index";
 import { useToast } from "@components/ToastContext";
+import { useState } from "react";
 import { FiChevronRight } from "react-icons/fi";
+import {
+  Box,
+  Button,
+  Container,
+  Divider,
+  Flex,
+  Heading,
+  Input,
+  Link,
+  Paragraph,
+  Text,
+} from "theme-ui";
 
 export default function ExamplePage(): JSX.Element {
   const { dispatch } = useToast();
@@ -26,18 +21,25 @@ export default function ExamplePage(): JSX.Element {
 
   return (
     <Container p={[2, 3]}>
-      <MainHeading>Playground</MainHeading>
-      <Subheading>
+      <Heading as="h1" mb={[2, 3]} sx={{ textAlign: "center" }}>
+        Playground
+      </Heading>
+      <Heading
+        as="h2"
+        mt={[3, 4]}
+        variant="subheader"
+        sx={{ textAlign: "center" }}
+      >
         This is where build stuff that will be used on my blog! Mostly basic
         implementations of widely used web components.
-      </Subheading>
-      <Divider mb={3} />
+      </Heading>
+      <Divider mb={3} mt={3} />
       <Box py={4} px={3}>
         <Heading>Dropdown Menu</Heading>
-        <TextBlock>
+        <Paragraph>
           This is my implementation of the dropdown menu, using Framer-Motion
           for the animation
-        </TextBlock>
+        </Paragraph>
         <Box mt={3}>
           <Flex sx={{ justifyContent: "space-around" }}>
             <Dropdown>
@@ -125,12 +127,12 @@ export default function ExamplePage(): JSX.Element {
       <Divider mb={3} />
       <Box py={4} px={3}>
         <Heading>Toast Notification</Heading>
-        <TextBlock>
+        <Paragraph>
           The Snackbar or Toast notification, only renders to the bottom-center
           displaying a simple text message. Each message auto-disapears after a
           few seconds one after the other, can also be canceled on hover. Using
           Framer Motion and React Context + useReducer.
-        </TextBlock>
+        </Paragraph>
         <Box mt={3}>
           <Input
             defaultValue={value}
@@ -158,10 +160,10 @@ export default function ExamplePage(): JSX.Element {
       <Box py={4} px={3}>
         <Box mb={3}>
           <Heading>Tabs</Heading>
-          <TextBlock>
+          <Paragraph>
             Render any content thats organized via tabs that are given a label.
             Tabs themselves are keyboard accessible.
-          </TextBlock>
+          </Paragraph>
         </Box>
         <Tabs>
           <Tabs.List>
@@ -172,7 +174,7 @@ export default function ExamplePage(): JSX.Element {
           <Tabs.Sections>
             <Tabs.SectionItem>
               <Box mb={2}>
-                <TextBlock>
+                <Paragraph>
                   Aliquam at sapien ante. Integer imperdiet pulvinar massa vitae
                   finibus. Duis placerat ex nec convallis blandit. Aliquam
                   sagittis metus et posuere bibendum. Vestibulum eget bibendum
@@ -181,12 +183,12 @@ export default function ExamplePage(): JSX.Element {
                   diam et iaculis elementum, leo metus lobortis turpis, sed
                   rhoncus leo diam quis purus. Vivamus facilisis lobortis
                   lobortis.
-                </TextBlock>
+                </Paragraph>
               </Box>
               <Button>Read More</Button>
             </Tabs.SectionItem>
             <Tabs.SectionItem>
-              <TextBlock>
+              <Paragraph>
                 Aenean cursus arcu in nibh dapibus, in mattis justo ullamcorper.
                 In vel facilisis sem. Aenean tempor justo quam. Aenean nisl
                 velit, fermentum id lacus non, facilisis accumsan est. In
@@ -194,12 +196,12 @@ export default function ExamplePage(): JSX.Element {
                 tempor auctor dolor arcu blandit urna. Vivamus sollicitudin in
                 erat a fermentum. Vivamus gravida dignissim mauris tristique
                 mollis.
-              </TextBlock>
+              </Paragraph>
             </Tabs.SectionItem>
             <Tabs.SectionItem>
-              <TextBlock>
+              <Paragraph>
                 Nothing to see here, this tab is <em>extinct</em>!
-              </TextBlock>
+              </Paragraph>
             </Tabs.SectionItem>
           </Tabs.Sections>
         </Tabs>

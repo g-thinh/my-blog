@@ -1,6 +1,5 @@
 export * from "./BlogPostCard";
 export * from "./FoodCard";
-export * from "./Typography";
 export * from "./PostTags";
 export { default as Layout } from "./Layout";
 export { default as NavButtons } from "./NavButtons";
