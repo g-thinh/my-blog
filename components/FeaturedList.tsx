@@ -24,7 +24,7 @@ export default function NewsList() {
       bg="muted"
       sx={{
         display: router.route === "/" ? "block" : "none",
-        borderRadius: "card",
+        borderRadius: "md",
       }}
     >
       <Text

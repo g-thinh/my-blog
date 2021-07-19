@@ -1,18 +1,18 @@
-import { DateReadTime, PostTags, SEO } from "@components/index";
-import Storyblok, { useStoryblok } from "@utils/storyblok";
-import { resolvers } from "@utils/StoryblokResolvers";
-import { GetStaticPaths, GetStaticProps } from "next";
-import { useRouter } from "next/router";
-import { render } from "storyblok-rich-text-react-renderer";
 import {
-  AspectImage,
-  Box,
-  Button,
   Container,
-  Divider,
+  Box,
   Flex,
+  Button,
+  Divider,
+  AspectImage,
   Heading,
 } from "theme-ui";
+import { GetStaticPaths, GetStaticProps } from "next";
+import Storyblok, { useStoryblok } from "@utils/storyblok";
+import { useRouter } from "next/router";
+import { SEO, PostTags, DateReadTime } from "@components/index";
+import { render } from "storyblok-rich-text-react-renderer";
+import { resolvers } from "@utils/StoryblokResolvers";
 
 export const getStaticProps: GetStaticProps = async (context) => {
   try {
@@ -26,7 +26,10 @@ export const getStaticProps: GetStaticProps = async (context) => {
       params.cv = Date.now();
     }
 
-    const { data } = await Storyblok.get(`cdn/stories/food/${slug}`, params);
+    const { data } = await Storyblok.get(
+      `cdn/stories/projects/${slug}`,
+      params
+    );
 
     return {
       props: {
@@ -44,7 +47,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const { data } = await Storyblok.get("cdn/links", {
-    starts_with: "food",
+    starts_with: "projects",
   });
 
   const paths = [];
@@ -53,7 +56,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
       return;
     }
 
-    const slug = data.links[linkKey].slug.replace("food", "");
+    const slug = data.links[linkKey].slug.replace("projects", "");
     paths.push({ params: { slug } });
   });
   return {
@@ -68,24 +71,22 @@ export default function FoodPostPage(props: StoryPage): JSX.Element {
   const { meta } = story.content;
   return (
     <Container p={[2, 3]}>
-      <SEO meta={meta} />
+      {/* <SEO meta={meta} /> */}
       <Flex sx={{ flexFlow: "column nowrap", alignItems: "center" }}>
         <Button variant="back" onClick={() => router.back()}>
-          <span>Food</span>
+          <span>Projects</span>
         </Button>
-        <Heading as="h1" variant="main" sx={{ textAlign: "center" }}>
-          {story.content.title}
-        </Heading>
+        <Heading>{story.content.title}</Heading>
       </Flex>
-      <Flex my={2} sx={{ justifyContent: "center", flexFlow: "row wrap" }}>
+      {/* <Flex my={2} sx={{ justifyContent: "center", flexFlow: "row wrap" }}>
         <PostTags tags={story.tag_list} />
-      </Flex>
-      <Box sx={{ textAlign: "center" }}>
+      </Flex> */}
+      {/* <Box sx={{ textAlign: "center" }}>
         <DateReadTime
           date={story.content.date}
           text={story.content.long_text.content}
         />
-      </Box>
+      </Box> */}
 
       <Divider />
       <Box mb={[3, 4]}>
@@ -96,7 +97,7 @@ export default function FoodPostPage(props: StoryPage): JSX.Element {
           alt={story.content.image.alt}
         />
       </Box>
-      <Box pb={[3, 4]}>{render(story.content.long_text, resolvers)}</Box>
+      {/* <Box pb={[3, 4]}>{render(story.content.long_text, resolvers)}</Box> */}
     </Container>
   );
 }

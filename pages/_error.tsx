@@ -1,17 +1,18 @@
-import { Container } from "theme-ui";
-import { MainHeading } from "@components/index";
+import { Container, Heading } from "theme-ui";
 import { NextPageContext } from "next";
 
-interface Props {
+type ErrorProps = {
   statusCode: number;
-}
+};
 
 interface Context extends NextPageContext {}
 
-export default function DynamicErrorPage({ statusCode }: Props) {
+export default function DynamicErrorPage({ statusCode }: ErrorProps) {
   return (
     <Container p={[2, 3]}>
-      <MainHeading>{statusCode} Error</MainHeading>
+      <Heading as="h1" variant="main" sx={{ textAlign: "center" }}>
+        {statusCode} Error
+      </Heading>
     </Container>
   );
 }

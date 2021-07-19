@@ -1,8 +1,12 @@
 import { Theme } from "theme-ui";
-import colors from "./colors";
-import shadows from "./shadows";
+import { colors } from "./colors";
+import { text } from "./text";
+import { shadows } from "./shadows";
+import { buttons } from "./buttons";
 
-export const theme: Theme = {
+const makeTheme = <T extends Theme>(t: T) => t;
+
+export const theme = makeTheme({
   space: [0, 4, 8, 16, 32, 64, 128, 256, 512],
   fontSizes: [12, 14, 16, 18, 20, 24, 32, 48, 64, 96],
   fonts: {
@@ -25,88 +29,25 @@ export const theme: Theme = {
   },
   colors,
   shadows,
-  text: {
-    default: {
-      color: "text",
-      fontFamily: "body",
-      fontWeight: "body",
-      lineHeight: "body",
-      fontSize: 3,
-    },
-    block: {
-      variant: "paragraph",
-      fontFamily: "body",
-      lineHeight: "body",
-      fontSize: 3,
-    },
-    heading: {
-      fontFamily: "heading",
-      fontWeight: "heading",
-      lineHeight: "heading",
-    },
-  },
+  text,
   radii: {
-    card: "1rem",
+    sm: "0.25rem",
+    md: "0.5rem",
+    lg: "0.75rem",
+    xl: "1rem",
   },
   breakpoints: ["48em", "64em"],
-  buttons: {
-    back: {
-      backgroundColor: "transparent",
-      padding: 0,
-      color: "grayness",
-      width: "fit-content",
-      cursor: "pointer",
-      "&:hover": {
-        color: "primary",
-      },
-
+  buttons,
+  styles: {
+    a: {
+      borderRadius: "sm",
       "&:focus": {
-        color: "primary",
-      },
-    },
-    scrollToTop: {
-      backgroundColor: "transparent",
-      padding: 0,
-      color: "grayness",
-      width: "fit-content",
-      cursor: "pointer",
-      "&:hover": {
-        color: "primary",
-      },
-      "&:focus": {
-        color: "primary",
-      },
-    },
-    link: {
-      color: "text",
-      width: "fit-content",
-      boxShadow: "card",
-      marginTop: "auto",
-      cursor: "pointer",
-      textDecoration: "none",
-      backgroundColor: "highlight",
-      "&:hover": {
-        backgroundColor: "primary",
-        color: "black",
-      },
-    },
-    secondary: {
-      boxShadow: "card",
-      cursor: "pointer",
-      "&:hover": {
-        backgroundColor: "black",
-      },
-    },
-    navButton: {
-      cursor: "pointer",
-      textDecoration: "none",
-      color: "text",
-      "&:hover": {
-        color: "primary",
-      },
-      "&:focus": {
-        color: "primary",
+        outline: "none",
+        transition: "box-shadow 0.2s",
+        boxShadow: "0px 0px 1px 3px #4299e1",
       },
     },
   },
-};
+});
+
+export type ExactTheme = typeof theme;

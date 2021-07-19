@@ -1,19 +1,18 @@
-import { InternalLink, TableLinks } from "@components/index";
+import { InternalLink, Note, TableLinks } from "@components/index";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { atomOneDarkReasonable } from "react-syntax-highlighter/dist/cjs/styles/hljs";
 import {
-  MARK_CODE,
-  MARK_LINK,
   MARK_BOLD,
+  MARK_CODE,
   MARK_ITALIC,
+  MARK_LINK,
   NODE_CODEBLOCK,
   NODE_HEADING,
   NODE_IMAGE,
   NODE_PARAGRAPH,
 } from "storyblok-rich-text-react-renderer";
 import styled from "styled-components";
-import { TextBlock, TextHeading, Note } from "@components/index";
-import { Box, Link, Text, Image } from "theme-ui";
+import { Box, Heading, Image, Link, Paragraph, Text } from "theme-ui";
 
 export const resolvers = {
   nodeResolvers: {
@@ -25,12 +24,21 @@ export const resolvers = {
     [NODE_PARAGRAPH]: (children: React.ReactNode): JSX.Element => {
       return (
         <Box mb={4}>
-          <TextBlock>{children}</TextBlock>
+          <Paragraph>{children}</Paragraph>
         </Box>
       );
     },
     [NODE_HEADING]: (children: React.ReactNode): JSX.Element => {
-      return <TextHeading>{children}</TextHeading>;
+      return (
+        <Heading
+          as="h4"
+          color="primary"
+          mb={[1, 2]}
+          sx={{ fontWeight: 600, fontSize: [3, 4] }}
+        >
+          {children}
+        </Heading>
+      );
     },
     [NODE_CODEBLOCK]: (children: React.ReactNode): JSX.Element => {
       return (
@@ -95,7 +103,7 @@ export const resolvers = {
         as="code"
         px={1}
         sx={{
-          borderRadius: "0.475rem",
+          borderRadius: "md",
           filter: "brightness(90%)",
           fontFamily:
             "Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New",

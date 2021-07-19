@@ -1,17 +1,19 @@
-import {
-  MainHeading,
-  PostTags,
-  SEO,
-  TextBlock,
-  DateReadTime,
-  AuthorInfo,
-} from "@components/index";
+import { AuthorInfo, DateReadTime, PostTags, SEO } from "@components/index";
 import Storyblok, { useStoryblok } from "@utils/storyblok";
 import { resolvers } from "@utils/StoryblokResolvers";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { useRouter } from "next/router";
 import { render } from "storyblok-rich-text-react-renderer";
-import { AspectImage, Box, Button, Container, Divider, Flex } from "theme-ui";
+import {
+  AspectImage,
+  Box,
+  Button,
+  Container,
+  Divider,
+  Flex,
+  Heading,
+  Paragraph,
+} from "theme-ui";
 
 export const getStaticProps: GetStaticProps = async (context) => {
   try {
@@ -70,7 +72,9 @@ export default function BlogPostPage(props: StoryPage): JSX.Element {
           <Button variant="back" onClick={() => router.back()}>
             <span>Blog</span>
           </Button>
-          <MainHeading isCenter={false}>{story.content.title}</MainHeading>
+          <Heading as="h1" variant="main">
+            {story.content.title}
+          </Heading>
         </Flex>
         <DateReadTime
           date={story.first_published_at}
@@ -78,14 +82,14 @@ export default function BlogPostPage(props: StoryPage): JSX.Element {
         />
         <PostTags tags={story.tag_list} />
         <Flex my={2}>
-          <TextBlock>{story.content.intro}</TextBlock>
+          <Paragraph>{story.content.intro}</Paragraph>
         </Flex>
 
         <Divider />
       </Box>
       <AspectImage
         ratio={4 / 3}
-        sx={{ borderRadius: "0.5rem", objectFit: "cover" }}
+        sx={{ borderRadius: "md", objectFit: "cover" }}
         src={story.content.image.filename}
         alt={story.content.image.alt}
       />

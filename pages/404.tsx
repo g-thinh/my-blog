@@ -1,10 +1,11 @@
-import { Container } from "theme-ui";
-import { MainHeading } from "@components/index";
+import { Container, Heading } from "theme-ui";
 
-export default function ErrorPage(): JSX.Element {
+export default function ErrorPage() {
   return (
     <Container p={[2, 3]}>
-      <MainHeading>404 Not Found. 😢</MainHeading>
+      <Heading as="h1" variant="main" sx={{ textAlign: "center" }}>
+        404 Not Found. 😢
+      </Heading>
     </Container>
   );
 }

@@ -1,11 +1,5 @@
-import { Container, Box, Flex } from "theme-ui";
-import {
-  MainHeading,
-  Subheading,
-  FeaturedList,
-  SEO,
-  TextBlock,
-} from "@components/index";
+import { Container, Box, Flex, Paragraph, Heading } from "theme-ui";
+import { FeaturedList, SEO } from "@components/index";
 import { GetStaticProps } from "next";
 import { useColorMode } from "theme-ui";
 import Storyblok, { useStoryblok } from "@utils/storyblok";
@@ -66,7 +60,9 @@ export default function HomePage(props: StoryPage): JSX.Element {
           justifyContent: "center",
         }}
       >
-        <MainHeading>{story.content.title}</MainHeading>
+        <Heading as="h1" variant="main" sx={{ textAlign: "center" }}>
+          {story.content.title}
+        </Heading>
         <Flex
           sx={{
             justifyContent: "center",
@@ -76,9 +72,11 @@ export default function HomePage(props: StoryPage): JSX.Element {
           <Lottie options={defaultOptions} height={150} width={150} />
         </Flex>
       </Flex>
-      <Subheading>{story.content.subtitle}</Subheading>
-      <Box p={3} sx={{ borderRadius: "card" }}>
-        <TextBlock>{story.content.description}</TextBlock>
+      <Heading as="h2" variant="subheader" sx={{ textAlign: "center" }}>
+        {story.content.subtitle}
+      </Heading>
+      <Box p={3}>
+        <Paragraph>{story.content.description}</Paragraph>
       </Box>
       <FeaturedList />
     </Container>

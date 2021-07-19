@@ -20,8 +20,9 @@ const Layout: React.FC = (props) => {
           minHeight: "100vh",
         }}
       >
-        <Navbar />
-
+        <Box sx={{ position: "relative", zIndex: 100 }}>
+          <Navbar />
+        </Box>
         <Box
           as="main"
           sx={{

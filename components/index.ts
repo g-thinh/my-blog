@@ -1,6 +1,5 @@
 export * from "./BlogPostCard";
 export * from "./FoodCard";
-export * from "./Typography";
 export * from "./PostTags";
 export { default as Layout } from "./Layout";
 export { default as NavButtons } from "./NavButtons";
@@ -17,3 +16,6 @@ export * from "./Toast";
 export * from "./ToastContext";
 export * from "./Note";
 export * from "./AuthorInfo";
+export * from "./ProjectCard";
+export * from "./Tabs";
+export * from "./Dropdown";
