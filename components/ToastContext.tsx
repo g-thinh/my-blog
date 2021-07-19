@@ -1,36 +1,46 @@
-import React, { createContext, useContext, useReducer } from "react";
+import { Dispatch, PropsWithChildren, useReducer } from "react";
+import { createCtx } from "@utils/createContext";
 import { Toast } from "@components/Toast";
 
-interface ProviderProps {
-  children: React.ReactNode;
-}
+export type Positions =
+  | "top"
+  | "top-right"
+  | "top-left"
+  | "bottom"
+  | "bottom-right"
+  | "bottom-left";
 
-interface ToastItem {
+type ToastItem = {
   id: number;
   text: string;
-}
+  position?: Positions;
+};
 
 type DispatchAction = {
   type: string;
   id?: number;
   text?: string;
+  position?: Positions;
+  duration?: number;
 };
 
-interface InitialState {
+type InitialState = {
   list: ToastItem[];
+  position: Positions;
   duration: number;
-}
+};
 
-interface Context {
+type ToastContextState = {
   state: InitialState;
-  dispatch: React.Dispatch<DispatchAction>;
-}
+  dispatch: Dispatch<DispatchAction>;
+};
 
-const ToastContext = createContext({} as Context);
+export const [useToast, CtxProvider] = createCtx<ToastContextState>();
 
 const initialState: InitialState = {
   list: [],
-  duration: 3000,
+  position: "bottom",
+  duration: 5000,
 };
 
 function reducer(state = initialState, action: DispatchAction) {
@@ -43,6 +53,8 @@ function reducer(state = initialState, action: DispatchAction) {
       return {
         ...state,
         list: [...state.list, newToast],
+        position: action.position ?? "bottom",
+        duration: action.duration ?? 5000,
       };
     }
 
@@ -62,15 +74,13 @@ function reducer(state = initialState, action: DispatchAction) {
   }
 }
 
-export const ToastProvider = ({ children }: ProviderProps) => {
+export const ToastProvider = ({ children }: PropsWithChildren<{}>) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   return (
-    <ToastContext.Provider value={{ state, dispatch }}>
+    <CtxProvider value={{ state, dispatch }}>
       {children}
       <Toast />
-    </ToastContext.Provider>
+    </CtxProvider>
   );
 };
-
-export const useToast = () => useContext(ToastContext);
