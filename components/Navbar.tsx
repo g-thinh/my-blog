@@ -12,21 +12,21 @@ const Navbar = () => (
         height: "100%",
       }}
     >
-      <RouteLink isActive={false} href="/" index={1}>
-        <Heading
+      <RouteLink isActive={false} href="/">
+        <Text
           py={[2, 0]}
           sx={{
             fontWeight: "body",
             userSelect: "none",
-            fontSize: 4,
+            fontSize: 5,
             textAlign: "center",
           }}
         >
           Gia Thinh Nguyen
-          <Text as="span" color="primary" sx={{ fontWeight: "bold" }}>
+          <Text color="primary" sx={{ fontWeight: "bold" }}>
             .
           </Text>
-        </Heading>
+        </Text>
       </RouteLink>
       <Box
         as="ul"
@@ -36,22 +36,12 @@ const Navbar = () => (
           backgroundColor: ["muted", "transparent"],
         }}
       >
-        <Flex sx={{ alignItems: "center", justifyContent: "center" }}>
-          <RouteLink href="/about" index={2}>
-            About
-          </RouteLink>
-          <RouteLink href="/blog" index={3}>
-            Blog
-          </RouteLink>
-          <RouteLink href="/code" index={4}>
-            Code
-          </RouteLink>
-          <RouteLink href="/food" index={5}>
-            Food
-          </RouteLink>
-          <RouteLink href="/projects" index={6}>
-            Projects
-          </RouteLink>
+        <Flex as="li" sx={{ alignItems: "center", justifyContent: "center" }}>
+          <RouteLink href="/about">About</RouteLink>
+          <RouteLink href="/blog">Blog</RouteLink>
+          <RouteLink href="/code">Code</RouteLink>
+          <RouteLink href="/food">Food</RouteLink>
+          <RouteLink href="/projects"> Projects</RouteLink>
         </Flex>
       </Box>
       <Box

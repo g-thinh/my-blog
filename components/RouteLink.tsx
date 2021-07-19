@@ -1,43 +1,43 @@
-import Link from "next/link";
+import { ComponentProps, PropsWithChildren } from "react";
+import NextLink from "next/link";
 import { useRouter } from "next/router";
-import { Text } from "theme-ui";
+import { Text, Button, Link as Anchor } from "theme-ui";
 
-interface Props {
+type RouteLinkProps = PropsWithChildren<{
   href: string;
-  index: number;
   isActive?: boolean;
-  children: React.ReactNode;
-}
+}> &
+  ComponentProps<typeof NextLink>;
 
 export const RouteLink = ({
   href,
-  index,
   isActive = true,
   children,
-}: Props) => {
+  ...props
+}: RouteLinkProps) => {
   const router = useRouter();
   const isActiveLink = isActive && router.asPath === href;
   return (
-    <Link href={href} passHref>
-      <Text
-        as="a"
+    <NextLink href={href} passHref {...props}>
+      <Anchor
         px={[2, 3]}
-        tabIndex={index}
         sx={{
+          fontFamily: "body",
+          fontSize: [2, 3],
           color: isActiveLink ? "primary" : "text",
           textDecoration: "none",
-          fontSize: [3, 4],
-          cursor: "pointer",
           "&:hover": {
             color: "primary",
           },
+
           "&:focus": {
+            outline: "none",
             color: "primary",
           },
         }}
       >
         {children}
-      </Text>
-    </Link>
+      </Anchor>
+    </NextLink>
   );
 };
