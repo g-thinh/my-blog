@@ -1,4 +1,4 @@
-import useScrollToView from "@styles/useScrollToView";
+import useScrollToView from "@utils/useScrollToView";
 import useOnClickOutside from "@utils/useOnClickOutside";
 import { motion } from "framer-motion";
 import {
