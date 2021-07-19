@@ -51,10 +51,17 @@ export const theme: Theme = {
   breakpoints: ["48em", "64em"],
   buttons: {
     primary: {
+      "&:hover": {
+        cursor: "pointer",
+      },
+      "&:disabled": {
+        backgroundColor: "grayness",
+        cursor: "not-allowed",
+      },
       "&:focus": {
         outline: "none",
-        boxShadow: "0px 0px 1px 3px #CB82D9",
         transition: "box-shadow 0.2s",
+        boxShadow: "0px 0px 1px 3px #4299e1",
       },
     },
     back: {
@@ -98,7 +105,8 @@ export const theme: Theme = {
       },
       "&:focus": {
         outline: "none",
-        boxShadow: "0px 0px 1px 3px #CB82D9",
+        transition: "box-shadow 0.2s",
+        boxShadow: "0px 0px 1px 3px #4299e1",
       },
     },
     secondary: {
@@ -131,8 +139,9 @@ export const theme: Theme = {
         transition: "background-color 0.3s ease-out",
       },
       "&:focus": {
+        outline: "none",
         transition: "box-shadow 0.2s",
-        boxShadow: "0px 0px 1px 3px #CB82D9",
+        boxShadow: "0px 0px 1px 3px #4299e1",
       },
       borderTop: "none",
       borderRight: "none",

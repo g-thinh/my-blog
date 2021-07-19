@@ -57,14 +57,7 @@ Dropdown.Button = function DropdownButton({
         onTransitionEnd((c) => !c);
       }}
       sx={{
-        "&:focus": {
-          outline: "none",
-          boxShadow: "0px 0px 1px 3px #CB82D9",
-        },
         borderRadius: "card",
-        "&:hover": {
-          cursor: "pointer",
-        },
       }}
       {...props}
     >
