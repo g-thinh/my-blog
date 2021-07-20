@@ -15,6 +15,11 @@ import {
   Paragraph,
 } from "theme-ui";
 
+type Params = {
+  version: string;
+  cv?: number;
+};
+
 export const getStaticProps: GetStaticProps = async (context) => {
   try {
     const { slug } = context.params;
@@ -60,7 +65,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     fallback: "blocking",
   };
 };
-export default function BlogPostPage(props: StoryPage): JSX.Element {
+export default function BlogPostPage(props) {
   const router = useRouter();
   const story = useStoryblok(props.story);
   const { meta } = story.content;

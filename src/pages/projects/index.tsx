@@ -1,12 +1,17 @@
-import { CodePostCard, SEO } from "@components/index";
+import { ProjectCard, SEO } from "@components/index";
 import Storyblok, { useStoryblok } from "@utils/storyblok";
 import { GetStaticProps } from "next";
 import { Container, Grid, Heading } from "theme-ui";
 
+type Params = {
+  version: string;
+  cv?: number;
+};
+
 export const getStaticProps: GetStaticProps = async (context) => {
   try {
-    const slug = "code";
-    const page_slug = "landing-code";
+    const slug = "projects";
+    const page_slug = "landing-projects";
     const params: Params = {
       version: "draft",
     };
@@ -16,7 +21,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
       params.cv = Date.now();
     }
 
-    const { data: posts } = await Storyblok.get(
+    const { data: projects } = await Storyblok.get(
       `cdn/stories?starts_with=${slug}`,
       params
     );
@@ -29,7 +34,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
     return {
       props: {
         page: page ? page.story : false,
-        stories: posts ? posts.stories : false,
+        stories: projects ? projects.stories : false,
         preview: context.preview || false,
       },
       revalidate: 10,
@@ -41,10 +46,11 @@ export const getStaticProps: GetStaticProps = async (context) => {
   }
 };
 
-export default function CodePage(props: StoriesPage): JSX.Element {
+export default function ProjectsPage(props) {
   const stories = useStoryblok(props.stories);
   const page = useStoryblok(props.page);
   const { meta } = props.page.content;
+
   return (
     <Container p={[2, 3]}>
       <SEO meta={meta} />
@@ -59,10 +65,10 @@ export default function CodePage(props: StoriesPage): JSX.Element {
       >
         {page.content.description}
       </Heading>
-      <Grid sx={{ gridTemplateColumns: ["1fr"], gridAutoRows: "1fr" }}>
+      <Grid mt={4} sx={{ gridTemplateColumns: ["1fr"], gridAutoRows: "1fr" }}>
         {stories &&
-          stories.map((post) => {
-            return <CodePostCard key={post.id} data={post} />;
+          stories.map((data) => {
+            return <ProjectCard key={data.id} data={data} />;
           })}
       </Grid>
     </Container>

@@ -1,12 +1,17 @@
-import { FoodCard, SEO } from "@components/index";
+import { CodePostCard, SEO } from "@components/index";
 import Storyblok, { useStoryblok } from "@utils/storyblok";
 import { GetStaticProps } from "next";
 import { Container, Grid, Heading } from "theme-ui";
 
+type Params = {
+  version: string;
+  cv?: number;
+};
+
 export const getStaticProps: GetStaticProps = async (context) => {
   try {
-    const slug = "food";
-    const page_slug = "landing-food";
+    const slug = "code";
+    const page_slug = "landing-code";
     const params: Params = {
       version: "draft",
     };
@@ -41,7 +46,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   }
 };
 
-export default function FoodPage(props: StoriesPage): JSX.Element {
+export default function CodePage(props) {
   const stories = useStoryblok(props.stories);
   const page = useStoryblok(props.page);
   const { meta } = props.page.content;
@@ -59,13 +64,11 @@ export default function FoodPage(props: StoriesPage): JSX.Element {
       >
         {page.content.description}
       </Heading>
-      <Grid
-        mt={4}
-        sx={{ gridTemplateColumns: ["1fr", "1fr 1fr"], gridAutoRows: "1fr" }}
-      >
-        {stories.map((post) => {
-          return <FoodCard key={post.id} data={post} />;
-        })}
+      <Grid sx={{ gridTemplateColumns: ["1fr"], gridAutoRows: "1fr" }}>
+        {stories &&
+          stories.map((post) => {
+            return <CodePostCard key={post.id} data={post} />;
+          })}
       </Grid>
     </Container>
   );

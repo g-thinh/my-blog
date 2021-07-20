@@ -5,6 +5,11 @@ import { GetStaticProps } from "next";
 import { render } from "storyblok-rich-text-react-renderer";
 import { Box, Container, Heading } from "theme-ui";
 
+type Params = {
+  version: string;
+  cv?: number;
+};
+
 export const getStaticProps: GetStaticProps = async (context) => {
   try {
     const slug = "about";
@@ -33,7 +38,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   }
 };
 
-export default function AboutPage(props: StoryPage) {
+export default function AboutPage(props) {
   const story = useStoryblok(props.story);
   const { meta } = story.content;
   return (
