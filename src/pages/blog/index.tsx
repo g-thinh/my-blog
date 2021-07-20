@@ -3,6 +3,11 @@ import { GetStaticProps } from "next";
 import Storyblok, { useStoryblok } from "@utils/storyblok";
 import { BlogPostCard, SEO } from "@components/index";
 
+type Params = {
+  version: string;
+  cv?: number;
+};
+
 export const getStaticProps: GetStaticProps = async (context) => {
   try {
     const slug = "blog";
@@ -40,7 +45,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
     };
   }
 };
-export default function BlogPage(props: StoriesPage): JSX.Element {
+export default function BlogPage(props) {
   const stories = useStoryblok(props.stories);
   const page = useStoryblok(props.page);
   const { meta } = props.page.content;

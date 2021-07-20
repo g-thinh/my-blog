@@ -3,6 +3,11 @@ import Storyblok, { useStoryblok } from "@utils/storyblok";
 import { GetStaticProps } from "next";
 import { Container, Grid, Heading } from "theme-ui";
 
+type Params = {
+  version: string;
+  cv?: number;
+};
+
 export const getStaticProps: GetStaticProps = async (context) => {
   try {
     const slug = "code";
@@ -41,7 +46,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   }
 };
 
-export default function CodePage(props: StoriesPage): JSX.Element {
+export default function CodePage(props) {
   const stories = useStoryblok(props.stories);
   const page = useStoryblok(props.page);
   const { meta } = props.page.content;

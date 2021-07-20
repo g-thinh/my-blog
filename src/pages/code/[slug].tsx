@@ -6,6 +6,11 @@ import { useRouter } from "next/router";
 import { render } from "storyblok-rich-text-react-renderer";
 import { Box, Button, Container, Divider, Flex, Heading } from "theme-ui";
 
+type Params = {
+  version: string;
+  cv?: number;
+};
+
 export const getStaticProps: GetStaticProps = async (context) => {
   try {
     const { slug } = context.params;
@@ -53,7 +58,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   };
 };
 
-export default function CodePostPage(props: StoryPage): JSX.Element {
+export default function CodePostPage(props) {
   const router = useRouter();
   const story = useStoryblok(props.story);
   const { meta } = story.content;

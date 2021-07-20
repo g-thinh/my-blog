@@ -8,6 +8,11 @@ import reactDark from "../../public/reactDark.json";
 import reactLight from "../../public/reactLight.json";
 import Lottie from "react-lottie";
 
+type Params = {
+  version: string;
+  cv?: number;
+};
+
 export const getStaticProps: GetStaticProps = async (context) => {
   try {
     const slug = "landing";
@@ -36,7 +41,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   }
 };
 
-export default function HomePage(props: StoryPage): JSX.Element {
+export default function HomePage(props) {
   const story = useStoryblok(props.story);
   const { meta } = story.content;
   const [colorMode] = useColorMode();

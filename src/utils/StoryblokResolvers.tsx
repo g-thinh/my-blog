@@ -142,14 +142,14 @@ export const resolvers = {
     "Table of Contents": function TableOfContent(props) {
       return <TableLinks items={props.Sections} />;
     },
-    "Internal Link": function InternalLink(props) {
+    "Internal Link": function TextLink(props) {
       return <InternalLink data={props} />;
     },
   },
   defaultBlokResolver: function DefaultBlock(name: string, props) {
     return (
       <div>
-        <code>Missing blok resolver for blok type &quot{name}&quot.</code>
+        <code>Missing blok resolver for blok type {name}</code>
         <pre>
           <code>{JSON.stringify(props, undefined, 2)}</code>
         </pre>

@@ -21,7 +21,6 @@ export default function ExamplePage(): JSX.Element {
 
   return (
     <Container p={[2, 3]}>
-      <img src="/png" alt="wtf" />
       <Heading as="h1" mb={[2, 3]} sx={{ textAlign: "center" }}>
         Playground
       </Heading>

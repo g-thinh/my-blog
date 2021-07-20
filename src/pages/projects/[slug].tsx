@@ -14,6 +14,11 @@ import { SEO, PostTags, DateReadTime } from "@components/index";
 import { render } from "storyblok-rich-text-react-renderer";
 import { resolvers } from "@utils/StoryblokResolvers";
 
+type Params = {
+  version: string;
+  cv?: number;
+};
+
 export const getStaticProps: GetStaticProps = async (context) => {
   try {
     const { slug } = context.params;
@@ -65,7 +70,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   };
 };
 
-export default function FoodPostPage(props: StoryPage): JSX.Element {
+export default function FoodPostPage(props) {
   const router = useRouter();
   const story = useStoryblok(props.story);
   const { meta } = story.content;
