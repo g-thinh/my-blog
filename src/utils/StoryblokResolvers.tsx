@@ -1,37 +1,28 @@
-import { InternalLink, Note, TableLinks } from "@components/index";
+import { InternalLink, Note, TableLinks, Link } from "@components/index";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { atomOneDarkReasonable } from "react-syntax-highlighter/dist/cjs/styles/hljs";
-import {
-  MARK_BOLD,
-  MARK_CODE,
-  MARK_ITALIC,
-  MARK_LINK,
-  NODE_CODEBLOCK,
-  NODE_HEADING,
-  NODE_IMAGE,
-  NODE_PARAGRAPH,
-} from "storyblok-rich-text-react-renderer";
-import { PropsWithChildren, ComponentProps } from "react";
+import { render } from "storyblok-rich-text-react-renderer-ts";
+import { RenderOptionsProps } from "storyblok-rich-text-react-renderer-ts";
 import styled from "styled-components";
-import { Box, Heading, Image, Link, Paragraph, Text } from "theme-ui";
+import { Box, Heading, Image, Paragraph, Text } from "theme-ui";
 
-export const resolvers = {
+export const resolvers: RenderOptionsProps = {
   nodeResolvers: {
-    [NODE_IMAGE]: function NodeImage(_children, { src, alt }) {
+    image: function NodeImage(_children, { src, alt }) {
       return (
         <Text as="span" sx={{ display: "block", textAlign: "center" }}>
           <Image p={[0, 4]} src={src} alt={alt} />
         </Text>
       );
     },
-    [NODE_PARAGRAPH]: function NodeParagraph(children: React.ReactNode) {
+    paragraph: function NodeParagraph(children) {
       return (
         <Box mb={4}>
           <Paragraph>{children}</Paragraph>
         </Box>
       );
     },
-    [NODE_HEADING]: function NodeHeading(children: React.ReactNode) {
+    heading: function NodeHeading(children) {
       return (
         <Heading
           as="h4"
@@ -43,7 +34,7 @@ export const resolvers = {
         </Heading>
       );
     },
-    [NODE_CODEBLOCK]: function NodeCodeblock(children: React.ReactNode) {
+    code_block: function NodeCodeblock(children) {
       return (
         <Box py={[2, 3]} mb={4}>
           <StyledCodeBlock
@@ -57,43 +48,18 @@ export const resolvers = {
       );
     },
   },
-  defaultNodeResolvers: function DefaultNode(_name: string, props) {
-    return (
-      <div>
-        <pre>
-          <code>{JSON.stringify(props, undefined, 2)}</code>
-        </pre>
-      </div>
-    );
+  defaultStringResolver: function DefaultNode(str) {
+    return <Paragraph>{str}</Paragraph>;
   },
   markResolvers: {
-    [MARK_LINK]: function MarkLink({
-      children,
-      href,
-      ...props
-    }: PropsWithChildren<{}> & ComponentProps<typeof Link>) {
+    link: function MarkLink(children, href) {
       return (
-        <Link
-          href={href}
-          target="_blank"
-          sx={{ textDecoration: "none" }}
-          {...props}
-        >
-          <Text
-            sx={{
-              color: "primary",
-              "&:hover": {
-                color: "secondary",
-              },
-              fontSize: [3, 4],
-            }}
-          >
-            {children}
-          </Text>
+        <Link color="secondary" href={href.href}>
+          {children}
         </Link>
       );
     },
-    [MARK_BOLD]: function MarkBold({ children }: PropsWithChildren<{}>) {
+    bold: function MarkBold(children) {
       return (
         <Text
           sx={{
@@ -105,7 +71,7 @@ export const resolvers = {
         </Text>
       );
     },
-    [MARK_ITALIC]: function MarkItalic({ children }: PropsWithChildren<{}>) {
+    italic: function MarkItalic(children) {
       return (
         <Text
           sx={{
@@ -116,7 +82,7 @@ export const resolvers = {
         </Text>
       );
     },
-    [MARK_CODE]: function MarkCode(children: React.ReactNode) {
+    code: function MarkCode(children) {
       return (
         <Text
           as="code"
@@ -146,7 +112,7 @@ export const resolvers = {
       return <InternalLink data={props} />;
     },
   },
-  defaultBlokResolver: function DefaultBlock(name: string, props) {
+  defaultBlokResolver: function DefaultBlock(name, props) {
     return (
       <div>
         <code>Missing blok resolver for blok type {name}</code>
@@ -164,3 +130,7 @@ const StyledCodeBlock = styled(SyntaxHighlighter)`
   display: flex;
   justify-content: center;
 `;
+
+export function renderRichText(document, defaultResolvers = resolvers) {
+  return render(document, defaultResolvers);
+}

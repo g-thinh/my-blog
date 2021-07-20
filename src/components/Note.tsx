@@ -1,14 +1,21 @@
 import { Message, Paragraph } from "theme-ui";
-import { render } from "storyblok-rich-text-react-renderer";
-import { NODE_PARAGRAPH } from "storyblok-rich-text-react-renderer";
+import { RenderOptionsProps } from "storyblok-rich-text-react-renderer-ts";
+import { resolvers, renderRichText } from "@utils/StoryblokResolvers";
+
+const customParagraphResolver: RenderOptionsProps = {
+  ...resolvers,
+  nodeResolvers: {
+    ...resolvers.nodeResolvers,
+    paragraph: function NoMarginParagraph(children) {
+      return <Paragraph>{children}</Paragraph>;
+    },
+  },
+};
 
 export const Note = ({ data }) => {
-  const resolver = {
-    nodeResolvers: {
-      [NODE_PARAGRAPH]: function NodeParagraph(children) {
-        return <Paragraph>{children}</Paragraph>;
-      },
-    },
-  };
-  return <Message my={[3, 4]}>{render(data.text, resolver)}</Message>;
+  return (
+    <Message my={[3, 4]}>
+      {renderRichText(data.text, customParagraphResolver)}
+    </Message>
+  );
 };

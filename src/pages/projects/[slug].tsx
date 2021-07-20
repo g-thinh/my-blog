@@ -11,8 +11,7 @@ import { GetStaticPaths, GetStaticProps } from "next";
 import Storyblok, { useStoryblok } from "@utils/storyblok";
 import { useRouter } from "next/router";
 import { SEO, PostTags, DateReadTime } from "@components/index";
-import { render } from "storyblok-rich-text-react-renderer";
-import { resolvers } from "@utils/StoryblokResolvers";
+import { renderRichText } from "@utils/StoryblokResolvers";
 
 type Params = {
   version: string;
@@ -102,7 +101,7 @@ export default function FoodPostPage(props) {
           alt={story.content.image.alt}
         />
       </Box>
-      {/* <Box pb={[3, 4]}>{render(story.content.long_text, resolvers)}</Box> */}
+      {/* <Box pb={[3, 4]}>{renderRichText(story.content.long_text)}</Box> */}
     </Container>
   );
 }

@@ -1,8 +1,7 @@
 import { SEO } from "@components/index";
 import Storyblok, { useStoryblok } from "@utils/storyblok";
-import { resolvers } from "@utils/StoryblokResolvers";
+import { renderRichText } from "@utils/StoryblokResolvers";
 import { GetStaticProps } from "next";
-import { render } from "storyblok-rich-text-react-renderer";
 import { Box, Container, Heading } from "theme-ui";
 
 type Params = {
@@ -57,7 +56,7 @@ export default function AboutPage(props) {
       </Heading>
 
       <Box as="section" mt={[3, 4]} p={[3, 0]}>
-        {render(story.content.description, resolvers)}
+        {renderRichText(story.content.description)}
       </Box>
     </Container>
   );

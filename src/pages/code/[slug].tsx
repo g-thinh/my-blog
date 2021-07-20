@@ -1,9 +1,8 @@
 import { AuthorInfo, DateReadTime, PostTags, SEO } from "@components/index";
 import Storyblok, { useStoryblok } from "@utils/storyblok";
-import { resolvers } from "@utils/StoryblokResolvers";
+import { renderRichText } from "@utils/StoryblokResolvers";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { useRouter } from "next/router";
-import { render } from "storyblok-rich-text-react-renderer";
 import { Box, Button, Container, Divider, Flex, Heading } from "theme-ui";
 
 type Params = {
@@ -87,7 +86,7 @@ export default function CodePostPage(props) {
       >
         {story.content.title}
       </Heading>
-      <Box pb={[3, 4]}>{render(story.content.long_text, resolvers)}</Box>
+      <Box pb={[3, 4]}>{renderRichText(story.content.long_text)}</Box>
       {story.content.author.length >= 1 &&
         story.content.author.map((content) => (
           <AuthorInfo key={content._uid} content={content} />
