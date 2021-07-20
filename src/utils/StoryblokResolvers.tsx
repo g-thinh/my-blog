@@ -11,24 +11,27 @@ import {
   NODE_IMAGE,
   NODE_PARAGRAPH,
 } from "storyblok-rich-text-react-renderer";
+import { PropsWithChildren, ComponentProps } from "react";
 import styled from "styled-components";
 import { Box, Heading, Image, Link, Paragraph, Text } from "theme-ui";
 
 export const resolvers = {
   nodeResolvers: {
-    [NODE_IMAGE]: (_children, { src }): JSX.Element => (
-      <Text as="span" sx={{ display: "block", textAlign: "center" }}>
-        <Image p={[0, 4]} src={src} />
-      </Text>
-    ),
-    [NODE_PARAGRAPH]: (children: React.ReactNode): JSX.Element => {
+    [NODE_IMAGE]: function NodeImage(_children, { src, alt }) {
+      return (
+        <Text as="span" sx={{ display: "block", textAlign: "center" }}>
+          <Image p={[0, 4]} src={src} alt={alt} />
+        </Text>
+      );
+    },
+    [NODE_PARAGRAPH]: function NodeParagraph(children: React.ReactNode) {
       return (
         <Box mb={4}>
           <Paragraph>{children}</Paragraph>
         </Box>
       );
     },
-    [NODE_HEADING]: (children: React.ReactNode): JSX.Element => {
+    [NODE_HEADING]: function NodeHeading(children: React.ReactNode) {
       return (
         <Heading
           as="h4"
@@ -40,7 +43,7 @@ export const resolvers = {
         </Heading>
       );
     },
-    [NODE_CODEBLOCK]: (children: React.ReactNode): JSX.Element => {
+    [NODE_CODEBLOCK]: function NodeCodeblock(children: React.ReactNode) {
       return (
         <Box py={[2, 3]} mb={4}>
           <StyledCodeBlock
@@ -54,7 +57,7 @@ export const resolvers = {
       );
     },
   },
-  defaultNodeResolvers: (_name: string, props): JSX.Element => {
+  defaultNodeResolvers: function DefaultNode(_name: string, props) {
     return (
       <div>
         <pre>
@@ -64,70 +67,89 @@ export const resolvers = {
     );
   },
   markResolvers: {
-    [MARK_LINK]: (children: React.ReactNode, props): JSX.Element => (
-      <Link href={props.href} target="_blank" sx={{ textDecoration: "none" }}>
+    [MARK_LINK]: function MarkLink({
+      children,
+      href,
+      ...props
+    }: PropsWithChildren<{}> & ComponentProps<typeof Link>) {
+      return (
+        <Link
+          href={href}
+          target="_blank"
+          sx={{ textDecoration: "none" }}
+          {...props}
+        >
+          <Text
+            sx={{
+              color: "primary",
+              "&:hover": {
+                color: "secondary",
+              },
+              fontSize: [3, 4],
+            }}
+          >
+            {children}
+          </Text>
+        </Link>
+      );
+    },
+    [MARK_BOLD]: function MarkBold({ children }: PropsWithChildren<{}>) {
+      return (
         <Text
           sx={{
-            color: "primary",
-            "&:hover": {
-              color: "secondary",
-            },
+            fontWeight: 600,
             fontSize: [3, 4],
           }}
         >
           {children}
         </Text>
-      </Link>
-    ),
-    [MARK_BOLD]: (children: React.ReactNode): JSX.Element => (
-      <Text
-        sx={{
-          fontWeight: 600,
-          fontSize: [3, 4],
-        }}
-      >
-        {children}
-      </Text>
-    ),
-    [MARK_ITALIC]: (children: React.ReactNode): JSX.Element => (
-      <Text
-        sx={{
-          fontSize: [3, 4],
-        }}
-      >
-        {children}
-      </Text>
-    ),
-    [MARK_CODE]: (children: React.ReactNode): JSX.Element => (
-      <Text
-        as="code"
-        px={1}
-        sx={{
-          borderRadius: "md",
-          filter: "brightness(90%)",
-          fontFamily:
-            "Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New",
-          color: "orange",
-          backgroundColor: "muted",
-        }}
-      >
-        {children}
-      </Text>
-    ),
+      );
+    },
+    [MARK_ITALIC]: function MarkItalic({ children }: PropsWithChildren<{}>) {
+      return (
+        <Text
+          sx={{
+            fontSize: [3, 4],
+          }}
+        >
+          {children}
+        </Text>
+      );
+    },
+    [MARK_CODE]: function MarkCode(children: React.ReactNode) {
+      return (
+        <Text
+          as="code"
+          px={1}
+          sx={{
+            borderRadius: "md",
+            filter: "brightness(90%)",
+            fontFamily:
+              "Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New",
+            color: "orange",
+            backgroundColor: "muted",
+          }}
+        >
+          {children}
+        </Text>
+      );
+    },
   },
   blokResolvers: {
-    Note: (props) => <Note data={props} />,
-    "Table of Contents": (props): JSX.Element => {
+    Note: function NoteBlok(props) {
+      return <Note data={props} />;
+    },
+    "Table of Contents": function TableOfContent(props) {
       return <TableLinks items={props.Sections} />;
     },
-    "Internal Link": (props): JSX.Element => {
+    "Internal Link": function InternalLink(props) {
       return <InternalLink data={props} />;
     },
   },
-  defaultBlokResolver: (name: string, props): JSX.Element => {
+  defaultBlokResolver: function DefaultBlock(name: string, props) {
     return (
       <div>
-        <code>Missing blok resolver for blok type "{name}".</code>
+        <code>Missing blok resolver for blok type &quot{name}&quot.</code>
         <pre>
           <code>{JSON.stringify(props, undefined, 2)}</code>
         </pre>
