@@ -3,14 +3,15 @@ export const buttons = {
     borderRadius: "md",
     "&:hover": {
       cursor: "pointer",
+      backgroundColor: "highlight",
     },
     "&:disabled": {
       backgroundColor: "grayness",
       cursor: "not-allowed",
     },
-    "&:focus": {
+    "&:focus-visible": {
       outline: "none",
-      transition: "box-shadow 0.2s",
+      transition: "box-shadow 0.5s",
       boxShadow: "0px 0px 1px 3px #4299e1",
     },
   },
@@ -76,27 +77,5 @@ export const buttons = {
     "&:focus": {
       color: "primary",
     },
-  },
-  tabButton: {
-    borderRadius: 0,
-    position: "relative",
-    outline: "transparent solid 2px",
-    outlineOffset: "0px",
-    background: "transparent",
-    "&:hover": { cursor: "pointer" },
-    "&:active": {
-      backgroundColor: "highlight",
-      transition: "background-color 0.3s ease-out",
-    },
-    "&:focus": {
-      outline: "none",
-      transition: "box-shadow 0.2s",
-      boxShadow: "0px 0px 1px 3px #4299e1",
-    },
-    borderTop: "none",
-    borderRight: "none",
-    borderLeft: "none",
-    borderBottom: "2px solid",
-    marginBottom: "-2px",
   },
 } as const;

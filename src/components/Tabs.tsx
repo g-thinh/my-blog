@@ -8,10 +8,13 @@ import {
 import { Box, Flex, Container, Text, Button } from "theme-ui";
 import { TabsProvider, useTabs } from "./TabsContext";
 
-export function Tabs({ children }: PropsWithChildren<{}>) {
+export function Tabs({
+  children,
+  ...props
+}: PropsWithChildren<{}> & ComponentProps<typeof Container>) {
   return (
     <TabsProvider>
-      <Container p={2} bg="muted" sx={{ borderRadius: "lg" }}>
+      <Container p={2} bg="muted" sx={{ borderRadius: "lg" }} {...props}>
         {children}
       </Container>
     </TabsProvider>
@@ -25,9 +28,12 @@ type TabProps = PropsWithChildren<{
 
 type TabsListProps = PropsWithChildren<{}> & ComponentProps<typeof Flex>;
 
-Tabs.List = function TabsList({ children }: TabsListProps) {
+Tabs.List = function TabsList({ children, sx, ...props }: TabsListProps) {
   return (
-    <Flex sx={{ borderBottom: "2px solid", borderColor: "highlight" }}>
+    <Flex
+      sx={{ borderBottom: "2px solid", borderColor: "highlight", ...sx }}
+      {...props}
+    >
       {Children.map(children, (child, tabIndex) => {
         if (isValidElement(child)) {
           return cloneElement(child, {
@@ -39,17 +45,39 @@ Tabs.List = function TabsList({ children }: TabsListProps) {
   );
 };
 
-Tabs.ListItem = function Tab({ children, tabIndex, ...props }: TabProps) {
+Tabs.ListItem = function Tab({ children, tabIndex, sx, ...props }: TabProps) {
   const { setActiveTab, activeTab } = useTabs();
   const isActive = activeTab === tabIndex;
 
   return (
     <Button
-      variant="tabButton"
       p={2}
       onClick={() => setActiveTab(tabIndex)}
       sx={{
-        borderColor: isActive ? "primary" : "highlight",
+        color: isActive ? "primary" : "highlight",
+        position: "relative",
+        outline: "transparent solid 2px",
+        outlineOffset: "0px",
+        background: "transparent",
+
+        "&:hover": { cursor: "pointer", backgroundColor: "transparent" },
+        "&:active": {
+          backgroundColor: "highlight",
+          transition: "background-color 0.3s ease-out",
+        },
+        "&:focus-visible": {
+          outline: "none",
+          transition: "box-shadow 0.2s",
+          boxShadow: "0px 0px 1px 3px #4299e1",
+        },
+
+        borderRadius: 0,
+        borderTop: "none",
+        borderRight: "none",
+        borderLeft: "none",
+        borderBottom: "2px solid",
+        marginBottom: "-2px",
+        ...sx,
       }}
       {...props}
     >

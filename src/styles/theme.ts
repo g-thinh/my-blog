@@ -2,6 +2,7 @@ import { Theme } from "theme-ui";
 import { colors } from "./colors";
 import { text } from "./text";
 import { shadows } from "./shadows";
+import { links } from "./links";
 import { buttons } from "./buttons";
 
 const makeTheme = <T extends Theme>(t: T) => t;
@@ -38,16 +39,7 @@ export const theme = makeTheme({
   },
   breakpoints: ["48em", "64em"],
   buttons,
-  styles: {
-    a: {
-      borderRadius: "sm",
-      "&:focus": {
-        outline: "none",
-        transition: "box-shadow 0.2s",
-        boxShadow: "0px 0px 1px 3px #4299e1",
-      },
-    },
-  },
+  links,
 });
 
 export type ExactTheme = typeof theme;

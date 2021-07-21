@@ -1,9 +1,8 @@
 import { AuthorInfo, DateReadTime, PostTags, SEO } from "@components/index";
 import Storyblok, { useStoryblok } from "@utils/storyblok";
-import { resolvers } from "@utils/StoryblokResolvers";
+import { renderRichText } from "@utils/StoryblokResolvers";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { useRouter } from "next/router";
-import { render } from "storyblok-rich-text-react-renderer";
 import {
   AspectImage,
   Box,
@@ -98,7 +97,7 @@ export default function BlogPostPage(props) {
         src={story.content.image.filename}
         alt={story.content.image.alt}
       />
-      <Box pb={[3, 4]}>{render(story.content.long_text, resolvers)}</Box>
+      <Box pb={[3, 4]}>{renderRichText(story.content.long_text)}</Box>
       {story.content.author.length >= 1 &&
         story.content.author.map((content) => (
           <AuthorInfo key={content._uid} content={content} />

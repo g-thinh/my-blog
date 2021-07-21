@@ -1,8 +1,8 @@
-import Link from "next/link";
 import { useRouter } from "next/router";
 import useSWR from "swr";
 import { Container, Box, Text, Divider, Spinner, Flex } from "theme-ui";
 import { format } from "date-fns";
+import { Link } from "@components/index";
 
 function useFeatured() {
   const { data: posts, error } = useSWR("/api/featured", (url) =>
@@ -42,7 +42,7 @@ export default function NewsList() {
         posts.map((post, index) => {
           return (
             <Box key={index}>
-              <Link href={post.full_slug} passHref>
+              <Link href={post.full_slug}>
                 <Text
                   as="a"
                   color="text"

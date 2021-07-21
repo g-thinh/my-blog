@@ -1,9 +1,9 @@
 import { Box, Flex, Heading, Text } from "theme-ui";
-import { RouteLink } from "@components/index";
+import { Link } from "@components/index";
 import NavButtons from "@components/NavButtons";
 
 const Navbar = () => (
-  <Box as="header" p={[0, 3]}>
+  <Box as="header" p={[1, 2]}>
     <Flex
       sx={{
         flexDirection: ["column", "row"],
@@ -12,9 +12,8 @@ const Navbar = () => (
         height: "100%",
       }}
     >
-      <RouteLink isActive={false} href="/">
+      <Link isActive={false} href="/" my={[2, 3]}>
         <Text
-          py={[2, 0]}
           sx={{
             fontWeight: "body",
             userSelect: "none",
@@ -27,7 +26,7 @@ const Navbar = () => (
             .
           </Text>
         </Text>
-      </RouteLink>
+      </Link>
       <Box
         as="ul"
         py={[2, 0]}
@@ -37,11 +36,21 @@ const Navbar = () => (
         }}
       >
         <Flex as="li" sx={{ alignItems: "center", justifyContent: "center" }}>
-          <RouteLink href="/about">About</RouteLink>
-          <RouteLink href="/blog">Blog</RouteLink>
-          <RouteLink href="/code">Code</RouteLink>
-          <RouteLink href="/food">Food</RouteLink>
-          <RouteLink href="/projects"> Projects</RouteLink>
+          <Link href="/about" mx={[2, 3]}>
+            About
+          </Link>
+          <Link href="/blog" mx={[2, 3]}>
+            Blog
+          </Link>
+          <Link href="/code" mx={[2, 3]}>
+            Code
+          </Link>
+          <Link href="/food" mx={[2, 3]}>
+            Food
+          </Link>
+          <Link href="/projects" mx={[2, 3]}>
+            Projects
+          </Link>
         </Flex>
       </Box>
       <Box
