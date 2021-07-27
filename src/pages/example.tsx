@@ -1,7 +1,7 @@
 import { Dropdown, Tabs, Link } from "@components/index";
 import { useToast } from "@components/ToastContext";
 import { useState } from "react";
-import { FiChevronRight } from "react-icons/fi";
+import { FiChevronDown, FiChevronRight } from "react-icons/fi";
 import {
   Box,
   Button,
@@ -33,10 +33,21 @@ export default function ExamplePage(): JSX.Element {
       </Heading>
       <Divider mb={3} mt={3} />
       <Box py={4} px={3}>
+        <Heading>Buttons</Heading>
+        <Paragraph>This is my implementation of the Buttons.</Paragraph>
+        <Box mt={3}>
+          <Flex sx={{ justifyContent: "space-around" }}>
+            <Button>Primary</Button>
+            <Button variant="secondary">Secondary</Button>
+            <Button variant="nofill">No Fill</Button>
+          </Flex>
+        </Box>
+      </Box>
+      <Divider mb={3} mt={3} />
+      <Box py={4} px={3}>
         <Heading>Link</Heading>
         <Paragraph>
-          This is my implementation of the dropdown menu, using Framer-Motion
-          for the animation.
+          This is my implementation of the Link component using next/link.
         </Paragraph>
         <Box mt={3}>
           <Flex sx={{ justifyContent: "space-around" }}>
@@ -55,19 +66,7 @@ export default function ExamplePage(): JSX.Element {
         <Box mt={3}>
           <Flex sx={{ justifyContent: "space-around" }}>
             <Dropdown>
-              <Dropdown.Button rightIcon={<FiChevronRight />}>
-                Default
-              </Dropdown.Button>
-              <Dropdown.List>
-                <Dropdown.Item href="/">Home</Dropdown.Item>
-                <Dropdown.Item href="/blog">Blog</Dropdown.Item>
-                <Dropdown.Item onClick={() => console.log("Hello There")}>
-                  Button
-                </Dropdown.Item>
-              </Dropdown.List>
-            </Dropdown>
-            <Dropdown>
-              <Dropdown.Button variant="nofill" rightIcon={<FiChevronRight />}>
+              <Dropdown.Button rightIcon={<FiChevronDown />}>
                 Default
               </Dropdown.Button>
               <Dropdown.List>
@@ -110,10 +109,6 @@ export default function ExamplePage(): JSX.Element {
                   text: value,
                 })
               }
-              sx={{
-                cursor: "pointer",
-                "&:hover": { backgroundColor: "muted", boxShadow: "card" },
-              }}
             >
               Summon Toast
             </Button>
