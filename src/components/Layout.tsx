@@ -2,18 +2,16 @@ import { Flex, Box, Text } from "theme-ui";
 import { Navbar, NavButtons, ScrollButton } from "@components/index";
 import Head from "next/head";
 import { useColorMode } from "theme-ui";
+import { PropsWithChildren } from "react";
 
-const Layout: React.FC = (props) => {
+const Layout = ({ children }: PropsWithChildren<{}>) => {
   const [colorMode] = useColorMode();
   const isDark = colorMode === "dark";
 
   return (
     <>
       <Head>
-        <link
-          rel="shortcut icon"
-          href={`${isDark ? "/dark.ico" : "/light.ico"}`}
-        />
+        <link rel="shortcut icon" href="/logo.ico" />
         <meta name="theme-color" content={`${isDark ? "#222639" : "#fff"}`} />
       </Head>
       <Flex
@@ -44,7 +42,7 @@ const Layout: React.FC = (props) => {
               px: 0,
             }}
           >
-            {props.children}
+            {children}
           </Box>
         </Box>
         <Flex my={[2, 3]} sx={{ justifyContent: "center" }}>
