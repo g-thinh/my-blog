@@ -7,6 +7,7 @@ import {
 } from "react";
 import { Box, Flex, Container, Text, Button } from "theme-ui";
 import { TabsProvider, useTabs } from "./TabsContext";
+import { darken } from "@theme-ui/color";
 
 export function Tabs({
   children,
@@ -31,7 +32,7 @@ type TabsListProps = PropsWithChildren<{}> & ComponentProps<typeof Flex>;
 Tabs.List = function TabsList({ children, sx, ...props }: TabsListProps) {
   return (
     <Flex
-      sx={{ borderBottom: "2px solid", borderColor: "highlight", ...sx }}
+      sx={{ borderBottom: "3px solid", borderColor: "highlight", ...sx }}
       {...props}
     >
       {Children.map(children, (child, tabIndex) => {
@@ -56,13 +57,13 @@ Tabs.ListItem = function Tab({ children, tabIndex, sx, ...props }: TabProps) {
       sx={{
         color: isActive ? "primary" : "highlight",
         position: "relative",
-        outline: "transparent solid 2px",
+        outline: "transparent solid 3px",
         outlineOffset: "0px",
         background: "transparent",
 
         "&:hover": { cursor: "pointer", backgroundColor: "transparent" },
         "&:active": {
-          backgroundColor: "highlight",
+          backgroundColor: darken("muted", 0.1),
           transition: "background-color 0.3s ease-out",
         },
         "&:focus-visible": {
