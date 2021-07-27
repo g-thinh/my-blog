@@ -1,11 +1,13 @@
-import { Theme } from "theme-ui";
+import { Theme, Button } from "theme-ui";
 import { colors } from "./colors";
 import { text } from "./text";
 import { shadows } from "./shadows";
 import { links } from "./links";
 import { buttons } from "./buttons";
 
-const makeTheme = <T extends Theme>(t: T) => t;
+const makeTheme = <T extends Theme>(t: T): T => {
+  return t;
+};
 
 export const theme = makeTheme({
   space: [0, 4, 8, 16, 32, 64, 128, 256, 512],
@@ -40,6 +42,25 @@ export const theme = makeTheme({
   breakpoints: ["48em", "64em"],
   buttons,
   links,
+  styles: {
+    a: {
+      display: "inline-flex",
+      fontFamily: "body",
+      color: "text",
+      textDecoration: "none",
+      alignItems: "center",
+    },
+  },
 });
 
-export type ExactTheme = typeof theme;
+export type MyTheme = typeof theme;
+
+export type Replace<T extends object, Keys extends keyof T, NewType> = {
+  [key in keyof T]: key extends Keys ? NewType : T[key];
+};
+
+type WithoutDark = Omit<MyTheme["colors"], "modes">;
+
+// export type ExactTheme = Omit<MyTheme, "colors"> & { colors: WithoutDark };
+
+export type ExactTheme = Replace<MyTheme, "colors", WithoutDark>;
