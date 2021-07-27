@@ -1,6 +1,7 @@
 import { Message, Paragraph } from "theme-ui";
 import { RenderOptionsProps } from "storyblok-rich-text-react-renderer-ts";
 import { resolvers, renderRichText } from "@utils/StoryblokResolvers";
+import { darken } from "@theme-ui/color";
 
 const customParagraphResolver: RenderOptionsProps = {
   ...resolvers,
@@ -14,7 +15,7 @@ const customParagraphResolver: RenderOptionsProps = {
 
 export const Note = ({ data }) => {
   return (
-    <Message my={[3, 4]}>
+    <Message my={[3, 4]} sx={{ backgroundColor: darken("muted", 0.1) }}>
       {renderRichText(data.text, customParagraphResolver)}
     </Message>
   );

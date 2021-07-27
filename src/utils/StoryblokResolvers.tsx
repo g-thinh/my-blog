@@ -54,7 +54,7 @@ export const resolvers: RenderOptionsProps = {
   markResolvers: {
     link: function MarkLink(children, href) {
       return (
-        <Link color="secondary" href={href.href}>
+        <Link color="accent" href={href.href}>
           {children}
         </Link>
       );

@@ -68,15 +68,15 @@ Tabs.ListItem = function Tab({ children, tabIndex, sx, ...props }: TabProps) {
         "&:focus-visible": {
           outline: "none",
           transition: "box-shadow 0.2s",
-          boxShadow: "0px 0px 1px 3px #4299e1",
+          boxShadow: "outline",
         },
 
         borderRadius: 0,
         borderTop: "none",
         borderRight: "none",
         borderLeft: "none",
-        borderBottom: "2px solid",
-        marginBottom: "-2px",
+        borderBottom: "3px solid",
+        marginBottom: "-3px",
         ...sx,
       }}
       {...props}

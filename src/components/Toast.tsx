@@ -1,11 +1,14 @@
-import { Box, Text, Alert, Close } from "theme-ui";
+import { Box, Text, Alert, Close, useThemeUI } from "theme-ui";
 import { useToast } from "@components/ToastContext";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useRef } from "react";
 import { useCallback } from "react";
 import type { Positions } from "./ToastContext";
+import { FiInfo } from "react-icons/fi";
+import { darken } from "@theme-ui/color";
 
 const AlertBox = ({ toast }) => {
+  const { theme } = useThemeUI();
   const { dispatch, state } = useToast();
   const timer = useRef(null);
 
@@ -27,7 +30,7 @@ const AlertBox = ({ toast }) => {
       exit={{ opacity: 0 }}
     >
       <Alert
-        bg="highlight"
+        bg="accent"
         mt={3}
         sx={{
           position: "relative",
@@ -35,7 +38,8 @@ const AlertBox = ({ toast }) => {
           boxShadow: "card",
         }}
       >
-        <Text as="p" pr={4}>
+        <FiInfo size={24} color={theme.colors.background as string} />
+        <Text as="p" ml={2} pr={4} color="background">
           {toast.text}
         </Text>
         <Close
@@ -45,9 +49,10 @@ const AlertBox = ({ toast }) => {
           onClick={handleDeleteToast}
           sx={{
             cursor: "pointer",
+            color: "background",
             "&:hover": {
-              color: "primary",
-              backgroundColor: "muted",
+              color: "background",
+              backgroundColor: darken("accent", 0.05),
             },
           }}
         />

@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { ComponentProps, PropsWithChildren } from "react";
 import { FiExternalLink } from "react-icons/fi";
 import { Link as Anchor } from "theme-ui";
+import { lighten } from "@theme-ui/color";
 
 type RouteLinkProps = PropsWithChildren<{
   isActive?: boolean;
@@ -25,23 +26,14 @@ export const Link = ({
         href={href}
         color="text"
         sx={{
-          fontFamily: "body",
-          color: "text",
-          fontSize: [3, 4],
-          textDecoration: "none",
-          display: "inline-flex",
-          alignItems: "center",
-
           ":hover": {
-            color: "primary",
+            color: "teal.regular",
             textDecoration: "underline",
           },
-
           ":focus-visible": {
-            color: "primary",
+            color: "teal.regular",
             textDecoration: "underline",
           },
-
           svg: {
             marginLeft: [1],
           },
@@ -60,20 +52,13 @@ export const Link = ({
       <Anchor
         color="text"
         sx={{
-          fontFamily: "body",
-          fontSize: [3, 4],
           color: isActiveLink && "primary",
-          display: "inline-flex",
-          alignItems: "center",
-          textDecoration: "none",
-
           ":hover": {
-            color: "primary",
+            color: "teal.regular",
             textDecoration: "underline",
           },
-
           ":focus-visible": {
-            color: "primary",
+            color: "teal.regular",
             textDecoration: "underline",
           },
           ...sx,
@@ -100,13 +85,11 @@ Link.Overlay = function LinkOverlay({
         height: "100%",
         width: "100%",
         borderRadius: "md",
-
-        //Overwrite these defaults
-        textDecoration: "none",
         "&:focus-visible": {
+          color: "text",
           outline: "none",
           transition: "box-shadow 0.2s",
-          boxShadow: "0px 0px 1px 3px #4299e1",
+          boxShadow: "outline",
         },
         ...sx,
       }}
@@ -126,24 +109,24 @@ Link.Button = function LinkButton({
   return (
     <Link
       href={href}
-      bg="muted"
       px={3}
       py={2}
       sx={{
-        fontFamily: "body",
-        fontSize: [3, 4],
+        color: "text",
+        backgroundColor: "transparent",
         borderRadius: "md",
-
-        //Overwrite these defaults
+        border: "2px solid",
+        borderColor: lighten("text", 0.5),
         textDecoration: "none",
         "&:hover": {
           cursor: "pointer",
-          backgroundColor: "highlight",
+          textDecoration: "none",
         },
         "&:focus-visible": {
+          textDecoration: "none",
           outline: "none",
           transition: "box-shadow 0.2s",
-          boxShadow: "0px 0px 1px 3px #4299e1",
+          boxShadow: "outline",
         },
         ...sx,
       }}

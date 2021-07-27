@@ -18,13 +18,14 @@ export const PostTags = (props: Props): JSX.Element => {
             mr={props.tags.length > 1 ? 3 : 0}
             px={2}
             sx={{
-              backgroundColor: "highlight",
+              fontSize: 2,
+              fontFamily: "body",
+              color: "background",
+              backgroundColor: "accent",
               borderRadius: "1rem",
             }}
           >
-            <Text color="text" sx={{ fontSize: 2 }}>
-              {tag}
-            </Text>
+            {tag}
           </Badge>
         )
       )}

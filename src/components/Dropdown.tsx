@@ -8,9 +8,10 @@ import {
   useRef,
   FocusEvent,
 } from "react";
-import { Box, Button, Flex, Text, Divider } from "theme-ui";
+import { Box, Flex, Text, Divider, Button } from "theme-ui";
 import { DropdownProvider, useDropdown } from "./DropdownContext";
 import { Link } from "@components/index";
+import { darken } from "@theme-ui/color";
 
 export function Dropdown({
   children,
@@ -50,7 +51,6 @@ function DropdownContainer({
 type DropdownButtonProps = PropsWithChildren<{
   rightIcon?: ReactElement<any>;
   leftIcon?: ReactElement<any>;
-  variant?: "fill" | "nofill";
 }> &
   ComponentProps<typeof Button>;
 
@@ -58,30 +58,22 @@ Dropdown.Button = function DropdownButton({
   children,
   rightIcon,
   leftIcon,
-  variant = "fill",
   ...props
 }: DropdownButtonProps) {
   const { onTransitionEnd } = useDropdown();
 
   return (
     <Button
+      variant="dropdown"
       mb={2}
-      bg={variant === "fill" ? "muted" : "transparent"}
       onClick={() => {
         onTransitionEnd((state) => !state);
-      }}
-      sx={{
-        "&:active": {
-          outline: "none",
-          transition: "box-shadow 0.2s",
-          boxShadow: "0px 0px 1px 3px #4299e1",
-        },
       }}
       {...props}
     >
       <Flex sx={{ alignItems: "center" }}>
         {leftIcon}
-        <Text pr={rightIcon ? 3 : undefined} pl={leftIcon ? 3 : undefined}>
+        <Text pr={rightIcon ? 2 : undefined} pl={leftIcon ? 2 : undefined}>
           {children}
         </Text>
         {rightIcon}
@@ -136,11 +128,11 @@ Dropdown.List = function DropdownList({ children, ...props }: DropdownList) {
     >
       <Box
         ref={DropdownListRef}
-        bg="highlight"
         as="ul"
         py={2}
         onBlur={handleOnBlur}
         sx={{
+          backgroundColor: darken("background", 0.05),
           width: "100%",
           minWidth: "10rem",
           position: "absolute",
@@ -202,15 +194,15 @@ Dropdown.Item = function DropdownItem({
       }}
       sx={{
         ":hover": {
-          backgroundColor: "muted",
+          backgroundColor: darken("background", 0.1),
           cursor: "pointer",
         },
         ":active": {
-          backgroundColor: "muted",
+          backgroundColor: darken("background", 0.1),
           transition: "background-color 0.5s",
         },
         ":focus-within": {
-          backgroundColor: "muted",
+          backgroundColor: darken("background", 0.1),
         },
       }}
       {...props}
