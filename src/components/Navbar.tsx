@@ -13,11 +13,11 @@ const Navbar = () => (
       }}
     >
       <Link isActive={false} href="/" my={[2, 3]}>
-        <Text
+        <Heading
+          aria-hidden
           sx={{
             fontWeight: "body",
             userSelect: "none",
-            fontSize: 5,
             textAlign: "center",
           }}
         >
@@ -25,7 +25,7 @@ const Navbar = () => (
           <Text color="primary" sx={{ fontWeight: "bold" }}>
             .
           </Text>
-        </Text>
+        </Heading>
       </Link>
       <Box
         as="ul"
@@ -36,19 +36,19 @@ const Navbar = () => (
         }}
       >
         <Flex as="li" sx={{ alignItems: "center", justifyContent: "center" }}>
-          <Link href="/about" mx={[2, 3]}>
+          <Link href="/about" isActive mx={[2, 3]}>
             About
           </Link>
-          <Link href="/blog" mx={[2, 3]}>
+          <Link href="/blog" isActive mx={[2, 3]}>
             Blog
           </Link>
-          <Link href="/code" mx={[2, 3]}>
+          <Link href="/code" isActive mx={[2, 3]}>
             Code
           </Link>
-          <Link href="/food" mx={[2, 3]}>
+          <Link href="/food" isActive mx={[2, 3]}>
             Food
           </Link>
-          <Link href="/projects" mx={[2, 3]}>
+          <Link href="/projects" isActive mx={[2, 3]}>
             Projects
           </Link>
         </Flex>
