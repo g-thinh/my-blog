@@ -1,5 +1,5 @@
 import { Card, Box, Flex, Image, Text, Heading } from "theme-ui";
-import { darken } from "@theme-ui/color";
+import { darken, transparentize } from "@theme-ui/color";
 
 type AuthorInfoProps = {
   content: Content;
@@ -31,9 +31,12 @@ export function AuthorInfo({ content }: AuthorInfoProps) {
     <Card
       p={3}
       sx={{
-        backgroundColor: darken("muted", 0.05),
+        backgroundColor: transparentize("primary", 0.5),
+        color: transparentize("primary", 0.9),
+        borderWidth: 2,
+        borderStyle: "solid",
         borderRadius: "xl",
-        boxShadow: "lg",
+        boxShadow: "xl",
       }}
     >
       <Flex sx={{ alignItems: "center", flexDirection: ["column", "row"] }}>
@@ -45,9 +48,10 @@ export function AuthorInfo({ content }: AuthorInfoProps) {
               borderRadius: "50%",
               width: ["180px", "200px"],
               height: ["180px", "200px"],
-              borderWidth: 5,
-              borderStyle: "solid",
-              borderColor: "primary",
+              // borderWidth: 2,
+              // borderStyle: "solid",
+              // borderColor: "text",
+              boxShadow: "sm",
             }}
           />
         </Box>
