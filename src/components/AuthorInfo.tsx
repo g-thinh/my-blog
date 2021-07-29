@@ -1,40 +1,71 @@
-import { Card, Box, Flex, Image, Text } from "theme-ui";
+import { Card, Box, Flex, Image, Text, Heading } from "theme-ui";
+import { darken } from "@theme-ui/color";
 
-export const AuthorInfo = (props) => {
-  const { content } = props;
+type AuthorInfoProps = {
+  content: Content;
+};
+type Content = {
+  _uid: string;
+  image: Image;
+  title: string;
+  component: string;
+  description: string;
+  _editable: string;
+};
 
+type Image = {
+  id: number;
+  alt: string;
+  _uid: string;
+  name: string;
+  focus?: null;
+  title: string;
+  filename: string;
+  copyright: string;
+  fieldtype: string;
+};
+
+export function AuthorInfo({ content }: AuthorInfoProps) {
+  const { image, description, title } = content;
   return (
-    <Card bg="highlight" p={3} sx={{ borderRadius: "card", boxShadow: "card" }}>
+    <Card
+      p={3}
+      sx={{
+        backgroundColor: darken("muted", 0.05),
+        borderRadius: "xl",
+        boxShadow: "lg",
+      }}
+    >
       <Flex sx={{ alignItems: "center", flexDirection: ["column", "row"] }}>
         <Box sx={{ width: "100%", textAlign: "center" }}>
           <Image
-            src={content.image.filename}
-            alt={content.image.alt}
+            src={image.filename}
+            alt={image.alt}
             sx={{
               borderRadius: "50%",
               width: ["180px", "200px"],
               height: ["180px", "200px"],
               borderWidth: 5,
               borderStyle: "solid",
-              borderColor: "muted",
+              borderColor: "primary",
             }}
           />
         </Box>
         <Box px={3} py={[3, 0]}>
-          <Text
+          <Heading
             as="h6"
-            color="white"
+            color="text"
             sx={{
               fontWeight: "bold",
               fontSize: 4,
               textAlign: ["center", "start"],
             }}
           >
-            {content.title}
-          </Text>
-          <Text as="p">{content.description}</Text>
+            {title}
+          </Heading>
+          <Text as="p">{description}</Text>
         </Box>
       </Flex>
     </Card>
   );
-};
+}

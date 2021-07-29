@@ -1,4 +1,10 @@
-import { InternalLink, Note, TableLinks, Link } from "@components/index";
+import {
+  InternalLink,
+  Note,
+  NoteProps,
+  TableLinks,
+  Link,
+} from "@components/index";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { atomOneDarkReasonable } from "react-syntax-highlighter/dist/cjs/styles/hljs";
 import { render } from "storyblok-rich-text-react-renderer-ts";
@@ -102,8 +108,8 @@ export const resolvers: RenderOptionsProps = {
     },
   },
   blokResolvers: {
-    Note: function NoteBlok(props) {
-      return <Note data={props} />;
+    Note: function NoteBlok({ text }: NoteProps) {
+      return <Note text={text} />;
     },
     "Table of Contents": function TableOfContent(props) {
       return <TableLinks items={props.Sections} />;
