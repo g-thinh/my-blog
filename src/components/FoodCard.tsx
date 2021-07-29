@@ -20,14 +20,13 @@ export const FoodCard = ({ data }) => {
           borderRadius: "xl",
           "&:hover": {
             cursor: "pointer",
-            boxShadow: "card",
+            boxShadow: "md",
             "& h2": {
               color: "primary",
             },
           },
           "&:focus-within": {
             cursor: "pointer",
-            boxShadow: "card",
             "& h2": {
               color: "primary",
             },

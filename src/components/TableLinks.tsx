@@ -14,7 +14,7 @@ export const TableLinks = (props: Props): JSX.Element => {
           width: ["100%", "80%"],
           borderRadius: "lg",
           overflow: "hidden",
-          boxShadow: "card",
+          boxShadow: "md",
         }}
       >
         <Flex sx={{ flexFlow: "column nowrap" }}>

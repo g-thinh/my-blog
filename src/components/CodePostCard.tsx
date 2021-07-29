@@ -16,7 +16,7 @@ export const CodePostCard = ({ data }): JSX.Element => {
           borderRadius: "xl",
           "&:hover": {
             cursor: "pointer",
-            boxShadow: "card",
+            boxShadow: "md",
             backgroundColor: "muted",
             "& h3": {
               color: "primary",
@@ -24,7 +24,7 @@ export const CodePostCard = ({ data }): JSX.Element => {
           },
           "&:focus-within": {
             cursor: "pointer",
-            boxShadow: "card",
+            boxShadow: "md",
             backgroundColor: "muted",
             "& h3": {
               color: "primary",

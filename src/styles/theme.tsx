@@ -35,9 +35,9 @@ export const theme = makeTheme({
   text,
   radii: {
     sm: "0.25rem",
-    md: "0.5rem",
-    lg: "0.75rem",
-    xl: "1rem",
+    md: "0.375rem",
+    lg: "0.5rem",
+    xl: "0.75rem",
   },
   breakpoints: ["48em", "64em"],
   buttons,

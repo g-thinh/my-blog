@@ -1,6 +1,5 @@
-import { Text, Button, Box, Card, Flex, Image } from "theme-ui";
+import { Text, Button, Box, Card, Flex, Image, Link } from "theme-ui";
 import { PostTags } from "@components/index";
-import Link from "next/link";
 
 export const ProjectCard = ({ data }) => (
   <Card
@@ -17,13 +16,12 @@ export const ProjectCard = ({ data }) => (
       flexFlow: "column nowrap",
       borderRadius: "xl",
       "&:hover": {
-        boxShadow: "card",
+        boxShadow: "md",
         "& h2": {
           color: "primary",
         },
       },
       "&:focus-within": {
-        boxShadow: "card",
         "& h2": {
           color: "primary",
         },

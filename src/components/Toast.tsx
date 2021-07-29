@@ -35,7 +35,7 @@ const AlertBox = ({ toast }) => {
         sx={{
           position: "relative",
           width: "fit-content",
-          boxShadow: "card",
+          boxShadow: "lg",
         }}
       >
         <FiInfo size={24} color={theme.colors.background as string} />

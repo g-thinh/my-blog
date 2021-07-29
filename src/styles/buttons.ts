@@ -1,4 +1,4 @@
-import { darken } from "@theme-ui/color";
+import { darken, transparentize } from "@theme-ui/color";
 
 export const buttons = {
   primary: {
@@ -34,12 +34,14 @@ export const buttons = {
     border: "2px solid",
     "&:hover": {
       cursor: "pointer",
+      backgroundColor: transparentize("primary", 0.8),
     },
     "&:disabled": {
       backgroundColor: "grayness",
       cursor: "not-allowed",
     },
     "&:active": {
+      backgroundColor: transparentize("primary", 0.85),
       outline: "none",
       transition: "box-shadow 0.2s",
       boxShadow: "outline",
@@ -135,7 +137,7 @@ export const buttons = {
   link: {
     color: "text",
     width: "fit-content",
-    boxShadow: "card",
+    boxShadow: "md",
     marginTop: "auto",
     cursor: "pointer",
     textDecoration: "none",

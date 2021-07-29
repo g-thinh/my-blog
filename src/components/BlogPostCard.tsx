@@ -15,14 +15,13 @@ export const BlogPostCard = ({ data }): JSX.Element => {
         borderRadius: "xl",
         "&:hover": {
           cursor: "pointer",
-          boxShadow: "card",
+          boxShadow: "md",
           "& h3": {
             color: "primary",
           },
         },
         "&:focus-within": {
           cursor: "pointer",
-          boxShadow: "card",
           "& h3": {
             color: "primary",
           },
