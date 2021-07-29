@@ -4,7 +4,7 @@ import { renderRichText } from "@utils/StoryblokResolvers";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { useRouter } from "next/router";
 import {
-  AspectImage,
+  AspectRatio,
   Box,
   Button,
   Container,
@@ -13,6 +13,7 @@ import {
   Heading,
   Paragraph,
 } from "theme-ui";
+import NextImage from "next/image";
 
 type Params = {
   version: string;
@@ -69,7 +70,7 @@ export default function BlogPostPage(props) {
   const story = useStoryblok(props.story);
   const { meta } = story.content;
   return (
-    <Container p={[2, 3]}>
+    <Container p={[2, 3]} sx={{ scrollMarginTop: "20em" }}>
       <SEO meta={meta} />
       <Box mb={[3, 4]}>
         <Flex sx={{ flexFlow: "column nowrap" }}>
@@ -91,12 +92,15 @@ export default function BlogPostPage(props) {
 
         <Divider />
       </Box>
-      <AspectImage
-        ratio={4 / 3}
-        sx={{ borderRadius: "md", objectFit: "cover" }}
-        src={story.content.image.filename}
-        alt={story.content.image.alt}
-      />
+      <AspectRatio ratio={4 / 3} sx={{ img: { borderRadius: "md" } }}>
+        <NextImage
+          src={story.content.image.filename}
+          alt={story.content.image.alt}
+          layout="fill"
+          objectFit="cover"
+          priority
+        />
+      </AspectRatio>
       <Box pb={[3, 4]}>{renderRichText(story.content.long_text)}</Box>
       {story.content.author.length >= 1 &&
         story.content.author.map((content) => (

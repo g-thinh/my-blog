@@ -80,7 +80,7 @@ export default function HomePage(props) {
       <Heading as="h2" variant="subheader" sx={{ textAlign: "center" }}>
         {story.content.subtitle}
       </Heading>
-      <Box p={3}>
+      <Box py={3}>
         <Paragraph>{story.content.description}</Paragraph>
       </Box>
       <FeaturedList />
