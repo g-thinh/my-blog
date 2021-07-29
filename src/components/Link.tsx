@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import { ComponentProps, PropsWithChildren } from "react";
 import { FiExternalLink } from "react-icons/fi";
 import { Link as Anchor } from "theme-ui";
-import { lighten } from "@theme-ui/color";
+import { lighten, transparentize, darken } from "@theme-ui/color";
 
 type RouteLinkProps = PropsWithChildren<{
   isActive?: boolean;
@@ -116,11 +116,12 @@ Link.Button = function LinkButton({
         backgroundColor: "transparent",
         borderRadius: "md",
         border: "2px solid",
-        borderColor: lighten("text", 0.5),
+        borderColor: transparentize("text", 0.4),
         textDecoration: "none",
         "&:hover": {
           cursor: "pointer",
           textDecoration: "none",
+          backgroundColor: darken("background", 0.1),
         },
         "&:focus-visible": {
           textDecoration: "none",

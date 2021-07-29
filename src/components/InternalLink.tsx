@@ -27,7 +27,14 @@ export const InternalLink = (props): JSX.Element => {
         },
       }}
     >
-      <Heading as="h3" id={id.url} color="secondary" sx={{ fontSize: [4, 5] }}>
+      <Heading
+        as="h3"
+        id={id.url}
+        color="secondary"
+        pt={["7rem", "5rem"]}
+        mt={["-7rem", "-5rem"]}
+        sx={{ fontSize: [4, 5] }}
+      >
         {text}
       </Heading>
       <IconButton

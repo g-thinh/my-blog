@@ -4,9 +4,25 @@ import Head from "next/head";
 import { useColorMode } from "theme-ui";
 import { PropsWithChildren } from "react";
 
+import { useState, useEffect, useCallback } from "react";
+
 const Layout = ({ children }: PropsWithChildren<{}>) => {
+  const [scrolled, setScrolled] = useState(false);
   const [colorMode] = useColorMode();
   const isDark = colorMode === "dark";
+
+  const handleScroll = useCallback(() => {
+    const offset = window.scrollY;
+    if (offset > 50) {
+      setScrolled(true);
+    } else {
+      setScrolled(false);
+    }
+  }, [setScrolled]);
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+  }, [handleScroll, scrolled]);
 
   return (
     <>
@@ -21,13 +37,23 @@ const Layout = ({ children }: PropsWithChildren<{}>) => {
           minHeight: "100vh",
         }}
       >
-        <Box sx={{ position: "relative", zIndex: 100 }}>
+        <Box
+          sx={{
+            backgroundColor: "background",
+            width: "100%",
+            position: "sticky",
+            top: 0,
+            zIndex: 100,
+            boxShadow: scrolled ? "xl" : undefined,
+            transition: "box-shadow 0.2s ease-in",
+          }}
+        >
           <Navbar />
         </Box>
         <Box
           as="main"
+          mt={[3, 4]}
           sx={{
-            marginTop: [2, 4],
             width: "100%",
             display: "flex",
             flexDirection: "column",
@@ -65,7 +91,7 @@ const Layout = ({ children }: PropsWithChildren<{}>) => {
             <Text
               as="p"
               sx={{
-                fontSize: 0,
+                fontSize: [0, 1],
                 filter: "brightness(75%)",
                 textAlign: "center",
               }}

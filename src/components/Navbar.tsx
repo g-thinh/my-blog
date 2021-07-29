@@ -1,67 +1,99 @@
-import { Box, Flex, Heading, Text } from "theme-ui";
+import { useEffect, ComponentProps } from "react";
+import { Box, Flex, Heading, Text, useColorMode, IconButton } from "theme-ui";
 import { Link } from "@components/index";
-import NavButtons from "@components/NavButtons";
+import { DarkModeSwitch } from "react-toggle-dark-mode";
 
-const Navbar = () => (
-  <Box as="header" p={[1, 2]}>
-    <Flex
+export function Navbar({ sx, ...props }: ComponentProps<typeof Box>) {
+  const [colorMode, setColorMode] = useColorMode();
+  const isDark = colorMode === "dark";
+
+  const handleColorChange = () =>
+    setColorMode(colorMode === "light" ? "dark" : "light");
+
+  useEffect(() => {
+    const switchMode = (e) => {
+      const isDarkMode = e.matches;
+      isDarkMode ? setColorMode("dark") : setColorMode("light");
+    };
+    const darkModeMediaQuery = window.matchMedia(
+      "(prefers-color-scheme: dark)"
+    );
+    darkModeMediaQuery.addListener(switchMode);
+    return () => darkModeMediaQuery.removeEventListener("change", switchMode);
+  }, [setColorMode]);
+
+  return (
+    <Box
+      as="header"
+      mx="auto"
+      px={[2, 3]}
       sx={{
-        flexDirection: ["column", "row"],
-        alignItems: "center",
-        justifyContent: "space-between",
-        height: "100%",
+        height: "4rem",
+        position: "relative",
+        zIndex: 101,
+        maxWidth: "43em",
+        ...sx,
       }}
+      {...props}
     >
-      <Link isActive={false} href="/" my={[2, 3]}>
-        <Heading
-          aria-hidden
+      <Flex
+        sx={{
+          alignItems: "center",
+          justifyContent: "space-between",
+          height: "100%",
+        }}
+      >
+        <Link
+          isActive={false}
+          href="/"
+          my={[2, 3]}
           sx={{
-            fontWeight: "body",
-            userSelect: "none",
-            textAlign: "center",
+            "&:hover": {
+              color: "primary",
+            },
+            "&:focus": {
+              textDecoration: "none",
+            },
           }}
         >
-          Gia Thinh Nguyen
-          <Text color="primary" sx={{ fontWeight: "bold" }}>
-            .
-          </Text>
-        </Heading>
-      </Link>
-      <Box
-        as="ul"
-        py={[2, 0]}
-        sx={{
-          width: ["100%", "auto"],
-          backgroundColor: ["muted", "transparent"],
-        }}
-      >
-        <Flex as="li" sx={{ alignItems: "center", justifyContent: "center" }}>
-          <Link href="/about" isActive mx={[2, 3]}>
-            About
-          </Link>
-          <Link href="/blog" isActive mx={[2, 3]}>
-            Blog
-          </Link>
-          <Link href="/code" isActive mx={[2, 3]}>
-            Code
-          </Link>
-          <Link href="/food" isActive mx={[2, 3]}>
-            Food
-          </Link>
-          <Link href="/projects" isActive mx={[2, 3]}>
-            Projects
-          </Link>
-        </Flex>
-      </Box>
-      <Box
-        sx={{
-          display: ["none", "block"],
-        }}
-      >
-        <NavButtons />
-      </Box>
-    </Flex>
-  </Box>
-);
-
-export default Navbar;
+          <Heading
+            as="span"
+            aria-hidden
+            sx={{
+              fontSize: [4, 5],
+              fontWeight: "body",
+              userSelect: "none",
+              textAlign: "center",
+            }}
+          >
+            Gia Thinh Nguyen
+            <Text color="primary" sx={{ fontWeight: "bold", fontSize: [5] }}>
+              .
+            </Text>
+          </Heading>
+        </Link>
+        <Box as="ul" py={[2, 0]}>
+          <Flex as="li" sx={{ alignItems: "center", justifyContent: "center" }}>
+            <Box px={2}>
+              <IconButton bg="transparent" onClick={handleColorChange}>
+                <DarkModeSwitch
+                  moonColor="var(--theme-ui-colors-primary)"
+                  sunColor="var(--theme-ui-colors-secondary)"
+                  size={20}
+                  checked={isDark}
+                  onChange={handleColorChange}
+                />
+              </IconButton>
+            </Box>
+            <Link href="/about" isActive mx={[2, 3]}>
+              About
+            </Link>
+            <Link href="/blog" isActive mx={[2, 3]}>
+              Blog
+            </Link>
+          </Flex>
+        </Box>
+      </Flex>
+    </Box>
+  );
+}
