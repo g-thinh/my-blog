@@ -5,12 +5,10 @@ import {
   TableLinks,
   Link,
 } from "@components/index";
-import SyntaxHighlighter from "react-syntax-highlighter";
-import { atomOneDarkReasonable } from "react-syntax-highlighter/dist/cjs/styles/hljs";
 import { render } from "storyblok-rich-text-react-renderer-ts";
 import { RenderOptionsProps } from "storyblok-rich-text-react-renderer-ts";
-import styled from "styled-components";
-import { Box, Heading, Image, Paragraph, Text } from "theme-ui";
+import { Box, Heading, Image, Paragraph, Text, useColorMode } from "theme-ui";
+import { Code } from "@components/Code";
 
 export const resolvers: RenderOptionsProps = {
   nodeResolvers: {
@@ -40,16 +38,10 @@ export const resolvers: RenderOptionsProps = {
         </Heading>
       );
     },
-    code_block: function NodeCodeblock(children) {
+    code_block: function NodeCodeblock(props) {
       return (
         <Box py={[2, 3]} mb={4}>
-          <StyledCodeBlock
-            language="javascript"
-            style={atomOneDarkReasonable}
-            customStyle={{ padding: "1rem" }}
-          >
-            {children}
-          </StyledCodeBlock>
+          <Code>{props}</Code>
         </Box>
       );
     },
@@ -129,13 +121,6 @@ export const resolvers: RenderOptionsProps = {
     );
   },
 };
-
-const StyledCodeBlock = styled(SyntaxHighlighter)`
-  width: 100%;
-  border-radius: 1rem;
-  display: flex;
-  justify-content: center;
-`;
 
 export function renderRichText(document, defaultResolvers = resolvers) {
   return render(document, defaultResolvers);
