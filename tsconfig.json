@@ -17,7 +17,8 @@
     "paths": {
       "@components/*": ["components/*"],
       "@styles/*": ["styles/*"],
-      "@utils/*": ["utils/*"]
+      "@utils/*": ["utils/*"],
+      "@ts/*": ["types/*"]
     }
   },
   "include": ["src", "next-env.d.ts", "utils/storyblok.js"],

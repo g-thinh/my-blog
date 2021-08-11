@@ -32,7 +32,7 @@ type TabsListProps = PropsWithChildren<{}> & ComponentProps<typeof Flex>;
 Tabs.List = function TabsList({ children, sx, ...props }: TabsListProps) {
   return (
     <Flex
-      sx={{ borderBottom: "3px solid", borderColor: "highlight", ...sx }}
+      sx={{ borderBottom: "3px solid", borderColor: "grayness", ...sx }}
       {...props}
     >
       {Children.map(children, (child, tabIndex) => {
@@ -55,7 +55,7 @@ Tabs.ListItem = function Tab({ children, tabIndex, sx, ...props }: TabProps) {
       p={2}
       onClick={() => setActiveTab(tabIndex)}
       sx={{
-        color: isActive ? "primary" : "highlight",
+        color: isActive ? "primary" : "grayness",
         position: "relative",
         outline: "transparent solid 3px",
         outlineOffset: "0px",

@@ -9,6 +9,6 @@ module.exports = {
     baseUrl: process.env.NEXT_PUBLIC_URL,
   },
   images: {
-    domains: ["localhost", "a.storyblok.com"],
+    domains: ["localhost", "a.storyblok.com", "images.unsplash.com"],
   },
 };

@@ -1,12 +1,11 @@
 import { Flex, Box, Text } from "theme-ui";
-import { Navbar, NavButtons, ScrollButton } from "@components/index";
+import { Navbar, NavButtons } from "@components/index";
 import Head from "next/head";
 import { useColorMode } from "theme-ui";
 import { PropsWithChildren } from "react";
-
 import { useState, useEffect, useCallback } from "react";
 
-const Layout = ({ children }: PropsWithChildren<{}>) => {
+export function Layout({ children }: PropsWithChildren<{}>) {
   const [scrolled, setScrolled] = useState(false);
   const [colorMode] = useColorMode();
   const isDark = colorMode === "dark";
@@ -39,13 +38,7 @@ const Layout = ({ children }: PropsWithChildren<{}>) => {
       >
         <Box
           sx={{
-            backgroundColor: "background",
             width: "100%",
-            position: "sticky",
-            top: 0,
-            zIndex: 100,
-            boxShadow: scrolled ? "xl" : undefined,
-            transition: "box-shadow 0.2s ease-in",
           }}
         >
           <Navbar />
@@ -63,7 +56,7 @@ const Layout = ({ children }: PropsWithChildren<{}>) => {
           <Box
             sx={{
               width: "100%",
-              maxWidth: "43em",
+              maxWidth: "52em",
               mx: "auto",
               px: 0,
             }}
@@ -71,9 +64,6 @@ const Layout = ({ children }: PropsWithChildren<{}>) => {
             {children}
           </Box>
         </Box>
-        <Flex my={[2, 3]} sx={{ justifyContent: "center" }}>
-          <ScrollButton />
-        </Flex>
         <Box
           as="footer"
           sx={{
@@ -81,11 +71,7 @@ const Layout = ({ children }: PropsWithChildren<{}>) => {
           }}
         >
           <Box py={[2, 3]} bg="muted">
-            <Box
-              sx={{
-                display: ["block", "none"],
-              }}
-            >
+            <Box>
               <NavButtons />
             </Box>
             <Text
@@ -103,6 +89,4 @@ const Layout = ({ children }: PropsWithChildren<{}>) => {
       </Flex>
     </>
   );
-};
-
-export default Layout;
+}

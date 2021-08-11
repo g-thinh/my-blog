@@ -1,8 +1,13 @@
 import { Text, Card, Flex, Box } from "theme-ui";
 import { format } from "date-fns";
 import { Link } from "@components/index";
+import { MarkdownFrontmatter } from "@ts/Posts";
 
-export const BlogPostCard = ({ data }): JSX.Element => {
+export function BlogPostCard({
+  frontmatter,
+  full_slug,
+}: Pick<MarkdownFrontmatter, "frontmatter" | "full_slug">) {
+  const { title, description, published } = frontmatter;
   return (
     <Card
       bg="muted"
@@ -28,7 +33,7 @@ export const BlogPostCard = ({ data }): JSX.Element => {
         },
       }}
     >
-      <Link.Overlay href={`/${data.full_slug}`} />
+      <Link.Overlay href={full_slug} />
       <Flex p={[2, 3]} sx={{ width: "100%" }}>
         <Flex
           mx={3}
@@ -42,7 +47,7 @@ export const BlogPostCard = ({ data }): JSX.Element => {
             as="h3"
             sx={{ fontSize: [2, 3], textAlign: "center", color: "grayness" }}
           >
-            {format(new Date(data.first_published_at), "do MMMM, yyyy")}
+            {format(new Date(published), "do MMMM, yyyy")}
           </Text>
         </Flex>
         <Flex sx={{ flexFlow: "column nowrap", flex: "3" }}>
@@ -56,7 +61,7 @@ export const BlogPostCard = ({ data }): JSX.Element => {
                 fontWeight: "bold",
               }}
             >
-              {data.name}
+              {title}
             </Text>
           </Box>
           <Text
@@ -67,7 +72,7 @@ export const BlogPostCard = ({ data }): JSX.Element => {
               fontSize: [2, 3],
             }}
           >
-            {data.content.preview}
+            {description}
           </Text>
           <Flex>
             <Link href={"test"} color="grayness" variant="card">
@@ -78,4 +83,4 @@ export const BlogPostCard = ({ data }): JSX.Element => {
       </Flex>
     </Card>
   );
-};
+}

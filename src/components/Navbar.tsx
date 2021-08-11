@@ -31,7 +31,7 @@ export function Navbar({ sx, ...props }: ComponentProps<typeof Box>) {
         height: "4rem",
         position: "relative",
         zIndex: 101,
-        maxWidth: "43em",
+        maxWidth: "52em",
         ...sx,
       }}
       {...props}
@@ -88,8 +88,8 @@ export function Navbar({ sx, ...props }: ComponentProps<typeof Box>) {
             <Link href="/about" isActive mx={[2, 3]}>
               About
             </Link>
-            <Link href="/blog" isActive mx={[2, 3]}>
-              Blog
+            <Link href="/posts" isActive mx={[2, 3]}>
+              Posts
             </Link>
           </Flex>
         </Box>

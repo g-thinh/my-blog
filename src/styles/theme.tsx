@@ -1,4 +1,4 @@
-import { Theme, Button } from "theme-ui";
+import { Theme, ThemeUIContextValue, useThemeUI } from "theme-ui";
 import { colors } from "./colors";
 import { text } from "./text";
 import { shadows } from "./shadows";
@@ -16,6 +16,7 @@ export const theme = makeTheme({
     heading:
       '"Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI",Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif',
     body: '"Catamaran", -apple-system, BlinkMacSystemFont, "Segoe UI",Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif',
+    code: "Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New",
   },
   fontWeights: {
     body: 400,
@@ -61,6 +62,9 @@ export type Replace<T extends object, Keys extends keyof T, NewType> = {
 
 type WithoutDark = Omit<MyTheme["colors"], "modes">;
 
-// export type ExactTheme = Omit<MyTheme, "colors"> & { colors: WithoutDark };
-
 export type ExactTheme = Replace<MyTheme, "colors", WithoutDark>;
+
+interface ExactContextValue extends Omit<ThemeUIContextValue, "theme"> {
+  theme: ExactTheme;
+}
+export const useTheme = useThemeUI as unknown as () => ExactContextValue;

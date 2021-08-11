@@ -4,14 +4,14 @@ export const text = {
     fontFamily: "body",
     fontWeight: "body",
     lineHeight: "body",
-    fontSize: [2, 3],
+    fontSize: [3, 4],
   },
   paragraph: {
     color: "text",
     fontFamily: "body",
     fontWeight: "body",
     lineHeight: "body",
-    fontSize: [2, 3],
+    fontSize: [3, 4],
   },
   heading: {
     color: "text",

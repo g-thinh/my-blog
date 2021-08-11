@@ -1,0 +1,64 @@
+---
+title: Second Example
+description: This frontmatter description will appear below the title
+published: "2021-05-17 00:37:08"
+backgroundImage: "https://images.unsplash.com/photo-1541701494587-cb58502866ab?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80"
+isDraft: false
+tags: ["dev", "storyblok"]
+---
+
+While exploring JAMstack applications, I came across the thought of rebuilding my
+React portfolio website into a full fledged Next.js application with Statically
+Generated content that I could manage through a headless CMS.
+
+<Divider />
+
+<Image
+  my={3}
+  src={frontmatter.backgroundImage}
+  layout="fill"
+  objectFit="cover"
+  priority
+/>
+
+After going through a bunch of different approaches as to how I would rebuild by
+portfolio website, I started thinking about how I wanted to also write blog posts
+about code I come across, the idea finally solidified after exploring Storyblok
+and Next.js for my frameworks of choice. In fact, while this blog was being
+built, the team over at Storyblok published this amazingly well-timed guide on
+how to integrate their CMS to a Next.js framework.
+
+## Setting Up The Boilerplate
+
+Next.js is a framework built on React, and provides incredible out-of-the-box
+features that make it easier for developers to create full-stack applications.
+Page routing and API routes are highly opinionated so there is little to
+configure, underneath the hood the app will be running an express server.
+
+Additionally, it can be easily hosted on Vercel (the team that built Next.js)
+for additional optimizations. The ability to statically generate dynamic pages
+according to specifications built on Storyblok was also another selling point
+for me and felt like the most natural way to build the application.
+
+```jsx
+export function calculateReadTime(content): string {
+  const wordsPerMinute = 200;
+  let resultReadTime = 0;
+  content.forEach((item) => {
+    item.content?.forEach((c) => {
+      if (c.text !== undefined) {
+      const wordsLength = c.text.split(" ").length as number;
+      if (wordsLength > 0) {
+        const value: number = wordsLength / wordsPerMinute;
+        resultReadTime += value;
+        }
+      }
+    });
+  });
+
+  const resultText = `${Math.ceil(resultReadTime)} min read`;
+
+  return resultText;
+}
+
+```
