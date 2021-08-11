@@ -1,12 +1,37 @@
 import { Theme, ThemeUIContextValue, useThemeUI } from "theme-ui";
-import { colors } from "./colors";
-import { text } from "./text";
-import { shadows } from "./shadows";
-import { links } from "./links";
 import { buttons } from "./buttons";
 
 const makeTheme = <T extends Theme>(t: T): T => {
   return t;
+};
+
+const light = {
+  primary: "#3182CE",
+  secondary: "#F7B108",
+  accent: "#00A3C4",
+  text: "#000",
+  background: "#EFF0F5",
+  muted: "#e1e5f2",
+  highlight: "#9F7AEA",
+  grayness: "#6c757d",
+};
+
+const dark = {
+  primary: "#4299E1",
+  secondary: "#F8BF35",
+  accent: "#90cdf4",
+  text: "#F0F5FA",
+  background: "#222639",
+  muted: "#131520",
+  highlight: "#B794F4",
+  grayness: "#6c757d",
+};
+
+const colors = {
+  ...light,
+  modes: {
+    dark,
+  },
 };
 
 export const theme = makeTheme({
@@ -31,9 +56,43 @@ export const theme = makeTheme({
     body: "normal",
     caps: "0.2em",
   },
+  text: {
+    default: {
+      color: "text",
+      fontFamily: "body",
+      fontWeight: "body",
+      lineHeight: "body",
+      fontSize: [3, 4],
+    },
+    paragraph: {
+      color: "text",
+      fontFamily: "body",
+      fontWeight: "body",
+      lineHeight: "body",
+      fontSize: [3, 4],
+    },
+    heading: {
+      color: "text",
+      fontFamily: "heading",
+      fontWeight: "heading",
+      lineHeight: "heading",
+    },
+    main: {
+      fontSize: [4, 5],
+      fontWeight: "bold",
+    },
+    subheader: {
+      fontSize: [2, 3],
+      fontWeight: "body",
+    },
+  },
   colors,
-  shadows,
-  text,
+  shadows: {
+    sm: "0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)",
+    md: "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
+    lg: "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)",
+    xl: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
+  },
   radii: {
     sm: "0.25rem",
     md: "0.375rem",
@@ -42,7 +101,6 @@ export const theme = makeTheme({
   },
   breakpoints: ["48em", "64em"],
   buttons,
-  links,
   styles: {
     a: {
       display: "inline-flex",

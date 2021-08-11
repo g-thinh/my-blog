@@ -1,9 +1,16 @@
-import { Image, Link } from "@components/index";
+import { Image, Link, Note } from "@components/index";
 import { getMDXComponent } from "mdx-bundler/client";
 import { useMemo } from "react";
 import { Box, Divider, Paragraph, Text, Heading as H } from "theme-ui";
 import React from "react";
 import { CodeSnippet, InlineCode } from "@components/CodeSnippet";
+
+type PreProps = {
+  children: React.ReactElement;
+  filename?: string;
+  hl?: any;
+  showlineNumbers?: boolean;
+};
 
 export function H1(props: React.ComponentProps<typeof H>) {
   return <H as="h1" color="primary" {...props} />;
@@ -27,9 +34,7 @@ const components = {
     filename,
     hl,
     showlineNumbers,
-    ...props
-  }) {
-    console.log(props);
+  }: PreProps) {
     return (
       <CodeSnippet
         code={children.props.children}
@@ -66,6 +71,7 @@ const components = {
   H2,
   Divider,
   Image,
+  Note,
 };
 
 export function MDXComponent({ code }) {

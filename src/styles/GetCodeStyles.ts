@@ -1,7 +1,7 @@
 import { PrismTheme } from "prism-react-renderer";
 import { useTheme } from "@styles/theme";
 
-export function GetCodeStyle() {
+export function GetCodeStyles() {
   const {
     theme: { colors },
   } = useTheme();

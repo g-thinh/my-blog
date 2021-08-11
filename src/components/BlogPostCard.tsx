@@ -74,11 +74,6 @@ export function BlogPostCard({
           >
             {description}
           </Text>
-          <Flex>
-            <Link href={"test"} color="grayness" variant="card">
-              Read More
-            </Link>
-          </Flex>
         </Flex>
       </Flex>
     </Card>

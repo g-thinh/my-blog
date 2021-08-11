@@ -1,7 +1,7 @@
 import { transparentize } from "@theme-ui/color";
 import { Box, Text } from "theme-ui";
 import Highlight, { defaultProps, Language } from "prism-react-renderer";
-import { GetCodeStyle } from "@styles/code";
+import { GetCodeStyles } from "@styles/GetCodeStyles";
 import rangeParser from "parse-numeric-range";
 import React from "react";
 
@@ -153,7 +153,7 @@ export function CodeSnippet({
       <Code.Title>{language}</Code.Title>
       <Highlight
         {...defaultProps}
-        theme={GetCodeStyle()}
+        theme={GetCodeStyles()}
         code={code}
         language={language}
       >

@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import { ComponentProps, PropsWithChildren } from "react";
 import { FiExternalLink } from "react-icons/fi";
 import { Link as Anchor } from "theme-ui";
-import { lighten, transparentize, darken } from "@theme-ui/color";
+import { transparentize, darken } from "@theme-ui/color";
 
 type RouteLinkProps = PropsWithChildren<{
   isActive?: boolean;
