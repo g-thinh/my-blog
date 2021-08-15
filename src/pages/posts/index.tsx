@@ -16,9 +16,13 @@ export default function CodePage({ posts }: Posts) {
       <Heading>This is where all my posts go</Heading>
       <Grid mt={4} sx={{ gridTemplateColumns: ["1fr"], gridAutoRows: "1fr" }}>
         {posts &&
-          posts.map(({ frontmatter, full_slug }) => {
+          posts.map(({ frontmatter, full_slug }, index) => {
             return !frontmatter.isDraft ? (
-              <BlogPostCard full_slug={full_slug} frontmatter={frontmatter} />
+              <BlogPostCard
+                key={index}
+                full_slug={full_slug}
+                frontmatter={frontmatter}
+              />
             ) : null;
           })}
       </Grid>

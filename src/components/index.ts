@@ -1,5 +1,5 @@
 export * from "./BlogPostCard";
-export * from "./PostTags";
+export * from "./Tags";
 export * from "./Layout";
 export * from "./NavButtons";
 export * from "./Navbar";

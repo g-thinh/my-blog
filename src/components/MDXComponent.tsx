@@ -3,10 +3,10 @@ import {
   Link,
   Note,
   useToast,
-  TOC,
   CodeSnippet,
   InlineCode,
 } from "@components/index";
+import { TOC } from "@components/TOC";
 import { getMDXComponent } from "mdx-bundler/client";
 import React, { useMemo } from "react";
 import {

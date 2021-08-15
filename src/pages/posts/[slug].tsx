@@ -1,6 +1,6 @@
 import { Container, Heading, Text, Box, Flex, Button } from "theme-ui";
 import { getSinglePost, getAllPosts, POSTS_PATH } from "@utils/mdxUtils";
-import { MDXComponent, PostTags, SEO } from "@components/index";
+import { MDXComponent, Tags, SEO } from "@components/index";
 import { useRouter } from "next/router";
 import { format } from "date-fns";
 import { SinglePost } from "@ts/Posts";
@@ -67,7 +67,7 @@ export default function PostPage({ markdownContent, frontmatter }: SinglePost) {
           </Heading>
         </Flex>
         <DateReadTime date={frontmatter.published} text={markdownContent} />
-        <PostTags tags={frontmatter.tags} />
+        <Tags tags={frontmatter.tags} />
       </Box>
       <MDXComponent code={markdownContent} />
     </Container>
