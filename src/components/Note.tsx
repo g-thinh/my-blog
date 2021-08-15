@@ -11,7 +11,7 @@ export const Note = ({
       sx={{ backgroundColor: darken("muted", 0.1) }}
       {...props}
     >
-      <Paragraph>{children}</Paragraph>
+      {children}
     </Message>
   );
 };

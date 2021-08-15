@@ -1,9 +1,24 @@
-import { Image, Link, Note } from "@components/index";
+import {
+  Image,
+  Link,
+  Note,
+  useToast,
+  TOC,
+  CodeSnippet,
+  InlineCode,
+} from "@components/index";
 import { getMDXComponent } from "mdx-bundler/client";
-import { useMemo } from "react";
-import { Box, Divider, Paragraph, Text, Heading as H } from "theme-ui";
-import React from "react";
-import { CodeSnippet, InlineCode } from "@components/CodeSnippet";
+import React, { useMemo } from "react";
+import {
+  Box,
+  Divider,
+  Paragraph,
+  Text,
+  Flex,
+  Heading as H,
+  IconButton,
+} from "theme-ui";
+import { FiLink } from "react-icons/fi";
 
 type PreProps = {
   children: React.ReactElement;
@@ -12,12 +27,55 @@ type PreProps = {
   showlineNumbers?: boolean;
 };
 
+function stringToId(text) {
+  return text
+    .toLowerCase()
+    .replace(/ /g, "-")
+    .replace(/[^\w-]+/g, "");
+}
+
 export function H1(props: React.ComponentProps<typeof H>) {
   return <H as="h1" color="primary" {...props} />;
 }
 
-export function H2(props: React.ComponentProps<typeof H>) {
-  return <H as="h2" color="secondary" {...props} />;
+export function H2({ children, ...props }: React.ComponentProps<typeof H>) {
+  const slug: string = stringToId(children);
+  const { dispatch } = useToast();
+
+  const handleClick = () => {
+    navigator.clipboard.writeText(window.location.href + slug);
+    dispatch({ type: "ADD", text: "Copied link to clipboard" });
+  };
+
+  return (
+    <Flex
+      mb={2}
+      sx={{
+        alignItems: "center",
+        "&:hover button": {
+          visibility: "visible",
+        },
+      }}
+    >
+      <H as="h2" color="secondary" id={slug} {...props}>
+        {children}
+      </H>
+      <IconButton
+        ml={2}
+        color="grayness"
+        sx={{
+          visibility: "hidden",
+          "&:hover": {
+            color: "white",
+            cursor: "pointer",
+          },
+        }}
+        onClick={handleClick}
+      >
+        <FiLink size={18} />
+      </IconButton>
+    </Flex>
+  );
 }
 
 const components = {
@@ -72,6 +130,8 @@ const components = {
   Divider,
   Image,
   Note,
+  TOC,
+  Link,
 };
 
 export function MDXComponent({ code }) {

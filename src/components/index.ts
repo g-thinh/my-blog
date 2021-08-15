@@ -14,3 +14,4 @@ export * from "./Dropdown";
 export * from "./CodeSnippet";
 export * from "./Image";
 export * from "./MDXComponent";
+export * from "./TOC";
