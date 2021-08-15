@@ -869,13 +869,6 @@
     "@emotion/react" "^11.1.1"
     "@theme-ui/css" "0.10.0"
 
-"@theme-ui/prism@^0.10.0":
-  version "0.10.0"
-  resolved "https://registry.yarnpkg.com/@theme-ui/prism/-/prism-0.10.0.tgz#3be950bc1d55b0765abd2a4266fca3398f689fee"
-  integrity sha512-ru/G9ipG9eUEgO1CENAC8kTp0xtOsY4UOPwFmYFts0/DTVNXssWrwH8XE9OC7HpbbDOJ2RFAns3XqOs8gzNSBw==
-  dependencies:
-    prism-react-renderer "^1.1.1"
-
 "@theme-ui/theme-provider@0.10.0":
   version "0.10.0"
   resolved "https://registry.yarnpkg.com/@theme-ui/theme-provider/-/theme-provider-0.10.0.tgz#16586af579bef804f1e4997a131134d2465bfd5d"
@@ -4229,7 +4222,7 @@ prettier@^2.3.0:
   resolved "https://registry.yarnpkg.com/prettier/-/prettier-2.3.2.tgz#ef280a05ec253712e486233db5c6f23441e7342d"
   integrity sha512-lnJzDfJ66zkMy58OL5/NY5zp70S7Nz6KqcKkXYzn2tMVrNxvbqaBpg7H3qHaLxCJ5lNMsGuM8+ohS7cZrthdLQ==
 
-prism-react-renderer@^1.1.1, prism-react-renderer@^1.2.1:
+prism-react-renderer@^1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/prism-react-renderer/-/prism-react-renderer-1.2.1.tgz#392460acf63540960e5e3caa699d851264e99b89"
   integrity sha512-w23ch4f75V1Tnz8DajsYKvY5lF7H1+WvzvLUcF0paFxkTHSp42RS0H5CttdN2Q8RR3DRGZ9v5xD/h3n8C8kGmg==

@@ -25,13 +25,12 @@ export const Link = ({
       <Anchor
         href={href}
         color="text"
+        target="_blank"
         sx={{
           ":hover": {
-            color: "teal.regular",
             textDecoration: "underline",
           },
           ":focus-visible": {
-            color: "teal.regular",
             textDecoration: "underline",
           },
           svg: {
@@ -54,11 +53,9 @@ export const Link = ({
         sx={{
           color: isActiveLink && "primary",
           ":hover": {
-            color: "teal.regular",
             textDecoration: "underline",
           },
           ":focus-visible": {
-            color: "teal.regular",
             textDecoration: "underline",
           },
           ...sx,

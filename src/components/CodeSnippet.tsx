@@ -47,6 +47,13 @@ function Code({ children, ...props }: BoxProps) {
 
 Code.Title = function CodeTitle({ children, ...props }: TextProps) {
   return (
+    <Text color="grayness" sx={{ fontFamily: "code" }} {...props}>
+      {children}
+    </Text>
+  );
+};
+Code.Language = function CodeLanguage({ children, ...props }: TextProps) {
+  return (
     <Text
       color="text"
       bg="muted"
@@ -150,7 +157,7 @@ export function CodeSnippet({
 
   return (
     <Code>
-      <Code.Title>{language}</Code.Title>
+      {language && <Code.Language>{language}</Code.Language>}
       <Highlight
         {...defaultProps}
         theme={GetCodeStyles()}
@@ -159,13 +166,17 @@ export function CodeSnippet({
       >
         {({ className, style, tokens, getLineProps, getTokenProps }) => (
           <Code.Pre className={className} style={style}>
-            {title && <Text color="grayness" ml={3}>{`//${title}`}</Text>}
+            {title && (
+              <Code.Title
+                color="grayness"
+                ml={3}
+              >{`/* ${title} */`}</Code.Title>
+            )}
             {tokens.map((line, index) => (
               <Line
                 key={index}
                 {...getLineProps({ line, key: index })}
                 sx={{
-                  borderRadius: "sm",
                   backgroundColor: shouldHighlightLine(index)
                     ? transparentize("accent", 0.8)
                     : undefined,

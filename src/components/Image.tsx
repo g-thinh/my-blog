@@ -1,16 +1,30 @@
-import { ComponentProps } from "react";
+import React, { ComponentProps } from "react";
 import NextImage from "next/image";
-import { AspectRatio } from "@theme-ui/components";
+import { AspectRatio, Text, Box } from "@theme-ui/components";
 
-export function Image({
-  my,
-  sx,
-  ratio = 4 / 3,
-  ...props
-}: ComponentProps<typeof NextImage> & ComponentProps<typeof AspectRatio>) {
+type ImageProps = { caption?: string } & ComponentProps<typeof NextImage> &
+  ComponentProps<typeof Box> &
+  React.ComponentProps<typeof AspectRatio>;
+
+export function Image({ ratio = 4 / 3, caption, ...props }: ImageProps) {
   return (
-    <AspectRatio ratio={ratio} sx={{ img: { borderRadius: "md" } }} my={my}>
-      <NextImage {...props} />
-    </AspectRatio>
+    <Box {...props}>
+      <AspectRatio
+        as="figure"
+        ratio={ratio}
+        sx={{ img: { borderRadius: "md" } }}
+      >
+        <NextImage {...props} />
+      </AspectRatio>
+      {caption && (
+        <Text
+          as="figcaption"
+          color="grayness"
+          sx={{ fontStyle: "italic", textAlign: "center", fontSize: 1 }}
+        >
+          {caption}
+        </Text>
+      )}
+    </Box>
   );
 }

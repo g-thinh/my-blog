@@ -1,5 +1,5 @@
 import { Message, Paragraph } from "theme-ui";
-import { darken } from "@theme-ui/color";
+import { darken, transparentize } from "@theme-ui/color";
 
 export const Note = ({
   children,
@@ -8,7 +8,7 @@ export const Note = ({
   return (
     <Message
       my={[3, 4]}
-      sx={{ backgroundColor: darken("muted", 0.1) }}
+      sx={{ backgroundColor: transparentize("grayness", 0.8) }}
       {...props}
     >
       {children}

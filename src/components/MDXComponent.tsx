@@ -22,7 +22,7 @@ import { FiLink } from "react-icons/fi";
 
 type PreProps = {
   children: React.ReactElement;
-  filename?: string;
+  title?: string;
   hl?: any;
   showlineNumbers?: boolean;
 };
@@ -66,7 +66,7 @@ export function H2({ children, ...props }: React.ComponentProps<typeof H>) {
         sx={{
           visibility: "hidden",
           "&:hover": {
-            color: "white",
+            color: "highlight",
             cursor: "pointer",
           },
         }}
@@ -87,17 +87,12 @@ const components = {
   },
   h1: H1,
   h2: H2,
-  pre: function renderPre({
-    children,
-    filename,
-    hl,
-    showlineNumbers,
-  }: PreProps) {
+  pre: function renderPre({ children, title, hl, showlineNumbers }: PreProps) {
     return (
       <CodeSnippet
         code={children.props.children}
         className={children.props.className}
-        title={filename}
+        title={title}
         hl={hl}
         showlineNumbers={showlineNumbers}
       />

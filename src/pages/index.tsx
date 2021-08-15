@@ -8,6 +8,7 @@ import {
 } from "@utils/mdxUtils";
 import { SinglePost, Posts } from "@ts/Posts";
 import { useColorMode } from "theme-ui";
+import dayjs from "dayjs";
 
 import reactDark from "../../public/reactDark.json";
 import reactLight from "../../public/reactLight.json";
@@ -93,7 +94,11 @@ export default function HomePage({
             return (
               !frontmatter.isDraft && (
                 <Box as="li" py={2} key={frontmatter.title}>
-                  <Link href={full_slug}>{frontmatter.title}</Link>
+                  <Link href={full_slug}>
+                    {`${dayjs(frontmatter.published).format(
+                      "MMM DD, YYYY"
+                    )} - ${frontmatter.title}`}
+                  </Link>
                 </Box>
               )
             );
