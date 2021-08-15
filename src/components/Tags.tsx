@@ -48,6 +48,8 @@ export function Tags({ tags }: TagProps) {
             key={tag}
             mr={tags.length > 1 ? 3 : 0}
             px={2}
+            py={1}
+            my={1}
             sx={{
               fontSize: 2,
               fontFamily: "body",

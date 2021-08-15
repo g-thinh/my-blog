@@ -11,7 +11,7 @@
     "prettier:check": "prettier -c src"
   },
   "dependencies": {
-    "@fontsource/catamaran": "^4.4.0",
+    "@fontsource/inter": "^4.5.0",
     "@fontsource/poppins": "^4.4.0",
     "@theme-ui/color": "^0.10.0",
     "@theme-ui/prism": "^0.10.0",

@@ -490,6 +490,11 @@
   resolved "https://registry.yarnpkg.com/@fontsource/catamaran/-/catamaran-4.5.0.tgz#149554b2b027a044d02f03fefcd5d12ee5b6ef0c"
   integrity sha512-ov4yMcJmPX0mDewH7b1XgsnCGBz/vM1soOCNlGQVNajPFo0gPCGWnYvupyl7vmULWegADZsBECLA3ArZko4NhQ==
 
+"@fontsource/inter@^4.5.0":
+  version "4.5.0"
+  resolved "https://registry.yarnpkg.com/@fontsource/inter/-/inter-4.5.0.tgz#b99e49fa178e4086250fb3df2ed6a7366c9a0cb5"
+  integrity sha512-2efK8Ru0LkuOYrEpiHPlV02YkTdIKGbezlxVNeA8/3c+tNt7P2aQPuiYYkVy7N4GA5LWSUVcLL/91MpCIjinOw==
+
 "@fontsource/poppins@^4.4.0":
   version "4.5.0"
   resolved "https://registry.yarnpkg.com/@fontsource/poppins/-/poppins-4.5.0.tgz#a419697b85864afbf8363f5c247b1e9d1f117564"
