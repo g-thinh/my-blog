@@ -1,7 +1,10 @@
 import { Text, Card, Flex, Box } from "theme-ui";
-import { format } from "date-fns";
 import { Link } from "@components/index";
+import dayjs from "dayjs";
+import advancedFormat from "dayjs/plugin/advancedFormat";
 import { MarkdownFrontmatter } from "@ts/Posts";
+
+dayjs.extend(advancedFormat);
 
 export function BlogPostCard({
   frontmatter,
@@ -47,7 +50,7 @@ export function BlogPostCard({
             as="h3"
             sx={{ fontSize: [2, 3], textAlign: "center", color: "grayness" }}
           >
-            {format(new Date(published), "do MMMM, yyyy")}
+            {dayjs(published).format("MMM Do, YYYY")}
           </Text>
         </Flex>
         <Flex sx={{ flexFlow: "column nowrap", flex: "3" }}>

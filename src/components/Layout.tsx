@@ -56,7 +56,7 @@ export function Layout({ children }: PropsWithChildren<{}>) {
           <Box
             sx={{
               width: "100%",
-              maxWidth: "52em",
+              maxWidth: "48em",
               mx: "auto",
               px: 0,
             }}

@@ -3,6 +3,7 @@ import path from "path";
 import matter from "gray-matter";
 import { bundleMDX } from "mdx-bundler";
 import { remarkMdxCodeMeta } from "remark-mdx-code-meta";
+import { FrontmatterProperties } from "@ts/Posts";
 
 export const POSTS_PATH = path.join(process.cwd(), "mdx/posts");
 export const LANDING_PATH = path.join(process.cwd(), "mdx");
@@ -22,7 +23,7 @@ export function getAllPosts(contentPath) {
       const { data } = matter(source);
 
       return {
-        frontmatter: data,
+        frontmatter: data as FrontmatterProperties,
         slug: slug,
         full_slug,
       };

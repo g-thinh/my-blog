@@ -5,6 +5,14 @@ import { BlogPostCard } from "@components/index";
 
 export async function getStaticProps() {
   const posts = await getAllPosts(POSTS_PATH);
+
+  //sorts posts by latest
+  posts.sort((postA, postB) => {
+    const DateA = new Date(postA.frontmatter.published).getTime();
+    const DateB = new Date(postB.frontmatter.published).getTime();
+    return DateB - DateA;
+  });
+
   return {
     props: { posts },
   };

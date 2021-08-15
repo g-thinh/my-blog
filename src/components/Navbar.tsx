@@ -31,7 +31,7 @@ export function Navbar({ sx, ...props }: ComponentProps<typeof Box>) {
         height: "4rem",
         position: "relative",
         zIndex: 101,
-        maxWidth: "52em",
+        maxWidth: "48em",
         ...sx,
       }}
       {...props}

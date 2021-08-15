@@ -92,7 +92,7 @@ export default function HomePage({
           {posts.map(({ frontmatter, full_slug }) => {
             return (
               !frontmatter.isDraft && (
-                <Box as="li" key={frontmatter.title}>
+                <Box as="li" py={2} key={frontmatter.title}>
                   <Link href={full_slug}>{frontmatter.title}</Link>
                 </Box>
               )

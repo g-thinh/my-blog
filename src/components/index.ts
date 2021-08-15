@@ -4,7 +4,6 @@ export * from "./Layout";
 export * from "./NavButtons";
 export * from "./Navbar";
 export * from "./Link";
-export * from "./TableLinks";
 export * from "./SEO";
 export * from "./Toast";
 export * from "./ToastContext";
