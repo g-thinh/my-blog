@@ -82,7 +82,7 @@ export const theme = makeTheme({
       fontWeight: "bold",
     },
     subheader: {
-      fontSize: [2, 3],
+      fontSize: [3, 4],
       fontWeight: "body",
     },
   },

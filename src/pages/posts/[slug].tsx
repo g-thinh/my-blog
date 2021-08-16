@@ -42,14 +42,6 @@ interface Props {
   text: any;
 }
 
-function stringToSlug(text) {
-  return text
-    .toLowerCase()
-    .replace(/ /g, "-")
-    .replace(/[^\w-]+/g, "")
-    .replace(/^/, "#");
-}
-
 function DateReadTime(props: Props) {
   return (
     <Text

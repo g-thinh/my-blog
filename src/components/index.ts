@@ -1,7 +1,6 @@
 export * from "./BlogPostCard";
 export * from "./Tags";
 export * from "./Layout";
-export * from "./NavButtons";
 export * from "./Navbar";
 export * from "./Link";
 export * from "./SEO";
@@ -14,3 +13,4 @@ export * from "./CodeSnippet";
 export * from "./Image";
 export * from "./MDXComponent";
 export * from "./TOC";
+export * from "./Footer";

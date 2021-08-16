@@ -43,7 +43,7 @@ export function H2({ children, ...props }: React.ComponentProps<typeof H>) {
   const { dispatch } = useToast();
 
   const handleClick = () => {
-    navigator.clipboard.writeText(window.location.href + slug);
+    navigator.clipboard.writeText(window.location.href + "#" + slug);
     dispatch({ type: "ADD", text: "Copied link to clipboard" });
   };
 

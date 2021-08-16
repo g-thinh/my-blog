@@ -18,9 +18,15 @@ export default function AboutPage({
   markdownContent,
   frontmatter,
 }: SinglePost) {
+  const SEOTag = {
+    title: `Gia Thinh Nguyen - ${frontmatter.title}`,
+    description: frontmatter.description,
+    backgroundImage: frontmatter.backgroundImage,
+  };
+
   return (
     <Container p={[2, 3]}>
-      <SEO meta={frontmatter} />
+      <SEO meta={SEOTag} />
       <Heading as="h1" variant="main" sx={{ textAlign: "center" }}>
         {frontmatter.title}
       </Heading>

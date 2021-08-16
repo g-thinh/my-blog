@@ -3,6 +3,6 @@ module.exports = {
     baseUrl: "https://giathinhnguyen.com",
   },
   images: {
-    domains: ["localhost", "images.unsplash.com"],
+    domains: ["localhost", "images.unsplash.com", "a.storyblok.com"],
   },
 };

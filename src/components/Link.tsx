@@ -7,6 +7,7 @@ import { transparentize, darken } from "@theme-ui/color";
 
 type RouteLinkProps = PropsWithChildren<{
   isActive?: boolean;
+  noIcon?: boolean;
 }> &
   ComponentProps<typeof Anchor>;
 
@@ -14,6 +15,7 @@ export const Link = ({
   href,
   isActive = false,
   children,
+  noIcon = false,
   sx,
   ...props
 }: RouteLinkProps) => {
@@ -41,7 +43,7 @@ export const Link = ({
         {...props}
       >
         {children}
-        <FiExternalLink size={14} aria-hidden={true} />
+        {!noIcon && <FiExternalLink size={14} aria-hidden={true} />}
       </Anchor>
     );
   }

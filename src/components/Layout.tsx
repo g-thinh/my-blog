@@ -1,5 +1,5 @@
-import { Flex, Box, Text } from "theme-ui";
-import { Navbar, NavButtons } from "@components/index";
+import { Flex, Box } from "theme-ui";
+import { Navbar, Footer } from "@components/index";
 import Head from "next/head";
 import { useColorMode } from "theme-ui";
 import { PropsWithChildren } from "react";
@@ -64,28 +64,7 @@ export function Layout({ children }: PropsWithChildren<{}>) {
             {children}
           </Box>
         </Box>
-        <Box
-          as="footer"
-          sx={{
-            width: "100%",
-          }}
-        >
-          <Box py={[2, 3]} bg="muted">
-            <Box>
-              <NavButtons />
-            </Box>
-            <Text
-              as="p"
-              sx={{
-                fontSize: [0, 1],
-                filter: "brightness(75%)",
-                textAlign: "center",
-              }}
-            >
-              © 2021 All rights probably deserved.
-            </Text>
-          </Box>
-        </Box>
+        <Footer />
       </Flex>
     </>
   );
