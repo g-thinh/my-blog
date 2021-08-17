@@ -78,6 +78,12 @@ export function H2({ children, ...props }: React.ComponentProps<typeof H>) {
   );
 }
 
+export function H3(props: React.ComponentProps<typeof H>) {
+  return (
+    <H as="h3" mb={2} color="accent" sx={{ fontSize: [3, 4] }} {...props} />
+  );
+}
+
 const components = {
   a: function RenderLink(props: React.ComponentProps<typeof Link>) {
     return <Link color="accent" {...props} />;
@@ -87,6 +93,7 @@ const components = {
   },
   h1: H1,
   h2: H2,
+  h3: H3,
   pre: function renderPre({ children, title, hl, showlineNumbers }: PreProps) {
     return (
       <CodeSnippet
@@ -127,6 +134,7 @@ const components = {
   Note,
   TOC,
   Link,
+  Flex,
 };
 
 export function MDXComponent({ code }) {

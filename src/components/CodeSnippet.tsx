@@ -105,7 +105,7 @@ Code.Pre = function CodePre({
 
 function Line({ children, ...props }: BoxProps) {
   return (
-    <Box px={2} sx={{ display: "table-cell" }} {...props}>
+    <Box px={2} sx={{ display: "table-cell", width: "100%" }} {...props}>
       {children}
     </Box>
   );
@@ -118,6 +118,8 @@ Line.Number = function LineNumber({ children, ...props }: TextProps) {
       sx={{
         display: "table-cell",
         textAlign: "right",
+        minWidth: "2rem",
+        maxWidth: "2rem",
         paddingRight: "1em",
         userSelect: "none",
         opacity: 0.8,

@@ -2,8 +2,8 @@ import NextLink from "next/link";
 import { useRouter } from "next/router";
 import { ComponentProps, PropsWithChildren } from "react";
 import { FiExternalLink } from "react-icons/fi";
-import { Link as Anchor } from "theme-ui";
-import { transparentize, darken } from "@theme-ui/color";
+import { Link as Anchor, Button } from "theme-ui";
+import { Icon } from "./Icon";
 
 type RouteLinkProps = PropsWithChildren<{
   isActive?: boolean;
@@ -11,74 +11,43 @@ type RouteLinkProps = PropsWithChildren<{
 }> &
   ComponentProps<typeof Anchor>;
 
-export const Link = ({
+export function Link({
   href,
   isActive = false,
   children,
   noIcon = false,
-  sx,
   ...props
-}: RouteLinkProps) => {
+}: RouteLinkProps) {
   const router = useRouter();
   const isActiveLink = isActive && router.asPath === href;
 
   if (href.match(/^(https?:)?\/\//)) {
     return (
-      <Anchor
-        href={href}
-        color="text"
-        target="_blank"
-        sx={{
-          ":hover": {
-            textDecoration: "underline",
-          },
-          ":focus-visible": {
-            textDecoration: "underline",
-          },
-          svg: {
-            marginLeft: [1],
-          },
-          ...sx,
-        }}
-        {...props}
-      >
+      <Anchor href={href} target="_blank" color="text" {...props}>
         {children}
-        {!noIcon && <FiExternalLink size={14} aria-hidden={true} />}
+        {!noIcon && <Icon ml={1} aria-hidden as={FiExternalLink} size={16} />}
       </Anchor>
     );
   }
 
   return (
-    <NextLink href={href} passHref>
-      <Anchor
-        color="text"
-        sx={{
-          color: isActiveLink && "primary",
-          ":hover": {
-            textDecoration: "underline",
-          },
-          ":focus-visible": {
-            textDecoration: "underline",
-          },
-          ...sx,
-        }}
-        {...props}
-      >
+    <NextLink href={href}>
+      <Anchor color={isActiveLink ? "primary" : "text"} {...props}>
         {children}
       </Anchor>
     </NextLink>
   );
-};
+}
 
 Link.Overlay = function LinkOverlay({
   children,
   href,
-  sx,
   ...props
 }: RouteLinkProps) {
   return (
     <Link
       href={href}
+      color="text"
       sx={{
         position: "absolute",
         height: "100%",
@@ -90,7 +59,6 @@ Link.Overlay = function LinkOverlay({
           transition: "box-shadow 0.2s",
           boxShadow: "outline",
         },
-        ...sx,
       }}
       {...props}
     >
@@ -107,29 +75,9 @@ Link.Button = function LinkButton({
 }: RouteLinkProps) {
   return (
     <Link
+      as={Button}
       href={href}
-      px={3}
-      py={2}
-      sx={{
-        color: "text",
-        backgroundColor: "transparent",
-        borderRadius: "md",
-        border: "2px solid",
-        borderColor: transparentize("text", 0.4),
-        textDecoration: "none",
-        "&:hover": {
-          cursor: "pointer",
-          textDecoration: "none",
-          backgroundColor: darken("background", 0.1),
-        },
-        "&:focus-visible": {
-          textDecoration: "none",
-          outline: "none",
-          transition: "box-shadow 0.2s",
-          boxShadow: "outline",
-        },
-        ...sx,
-      }}
+      sx={{ "&:hover": { textDecoration: "none" } }}
       {...props}
     >
       {children}

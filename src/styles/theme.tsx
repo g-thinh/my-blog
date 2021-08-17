@@ -105,9 +105,16 @@ export const theme = makeTheme({
     a: {
       display: "inline-flex",
       fontFamily: "body",
-      color: "text",
+      fontSize: [3, 4],
       textDecoration: "none",
       alignItems: "center",
+      ":hover": {
+        cursor: "pointer",
+        textDecoration: "underline",
+      },
+      ":focus-visible": {
+        textDecoration: "underline",
+      },
     },
   },
 });

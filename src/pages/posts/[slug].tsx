@@ -1,4 +1,4 @@
-import { Container, Heading, Text, Box } from "theme-ui";
+import { Container, Heading, Text, Box, Divider } from "theme-ui";
 import { getSinglePost, getAllPosts, POSTS_PATH } from "@utils/mdxUtils";
 import { MDXComponent, Tags, SEO } from "@components/index";
 
@@ -66,6 +66,7 @@ export default function PostPage({ markdownContent, frontmatter }: SinglePost) {
         <DateReadTime date={frontmatter.published} text={markdownContent} />
         <Tags tags={frontmatter.tags} />
       </Box>
+      <Divider mb={4} />
       <MDXComponent code={markdownContent} />
     </Container>
   );
