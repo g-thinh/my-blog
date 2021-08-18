@@ -1,7 +1,7 @@
-import { Dropdown, Tabs } from "@components/index";
+import { Dropdown, Tabs, Link } from "@components/index";
 import { useToast } from "@components/ToastContext";
 import { useState } from "react";
-import { FiChevronRight } from "react-icons/fi";
+import { FiChevronDown, FiChevronRight } from "react-icons/fi";
 import {
   Box,
   Button,
@@ -10,9 +10,7 @@ import {
   Flex,
   Heading,
   Input,
-  Link,
   Paragraph,
-  Text,
 } from "theme-ui";
 
 export default function ExamplePage(): JSX.Element {
@@ -35,88 +33,53 @@ export default function ExamplePage(): JSX.Element {
       </Heading>
       <Divider mb={3} mt={3} />
       <Box py={4} px={3}>
+        <Heading>Buttons</Heading>
+        <Paragraph>This is my implementation of the Buttons.</Paragraph>
+        <Box mt={3}>
+          <Flex sx={{ justifyContent: "space-around" }}>
+            <Button>Primary</Button>
+            <Button variant="secondary">Secondary</Button>
+            <Button variant="nofill">No Fill</Button>
+          </Flex>
+        </Box>
+      </Box>
+      <Divider mb={3} mt={3} />
+      <Box py={4} px={3}>
+        <Heading>Link</Heading>
+        <Paragraph>
+          This is my implementation of the Link component using next/link.
+        </Paragraph>
+        <Box mt={3}>
+          <Flex sx={{ justifyContent: "space-around" }}>
+            <Link href="/">Internal Link</Link>
+            <Link href="https://www.google.ca">External Link</Link>
+            <Link.Button href="/">Button Link</Link.Button>
+          </Flex>
+        </Box>
+      </Box>
+      <Box py={4} px={3}>
         <Heading>Dropdown Menu</Heading>
         <Paragraph>
           This is my implementation of the dropdown menu, using Framer-Motion
-          for the animation
+          for the animation.
         </Paragraph>
         <Box mt={3}>
           <Flex sx={{ justifyContent: "space-around" }}>
             <Dropdown>
-              <Dropdown.Button rightIcon={<FiChevronRight />}>
-                Default
-              </Dropdown.Button>
-              <Dropdown.List>
-                <Dropdown.Item>
-                  <Link
-                    href="#"
-                    sx={{ textDecoration: "none", outline: "none" }}
-                  >
-                    <Text>Item 1</Text>
-                  </Link>
-                </Dropdown.Item>
-                <Dropdown.Item>
-                  <Link
-                    href="#"
-                    sx={{ textDecoration: "none", outline: "none" }}
-                  >
-                    <Text>Item 1</Text>
-                  </Link>
-                </Dropdown.Item>
-                <Dropdown.Item>
-                  <Button
-                    onClick={() => alert("hello there")}
-                    sx={{
-                      padding: 0,
-                      backgroundColor: "transparent",
-                      ":focus": {
-                        boxShadow: "none",
-                      },
-                    }}
-                  >
-                    <Text>Item 3</Text>
-                  </Button>
-                </Dropdown.Item>
-              </Dropdown.List>
-            </Dropdown>
-            <Dropdown>
-              <Dropdown.Button variant="nofill" rightIcon={<FiChevronRight />}>
+              <Dropdown.Button rightIcon={<FiChevronDown />}>
                 Default
               </Dropdown.Button>
               <Dropdown.List>
                 <Dropdown.ListGroup title="Main">
-                  <Dropdown.Item icon={<FiChevronRight />}>
-                    <Link
-                      href="#"
-                      sx={{ textDecoration: "none", outline: "none" }}
-                    >
-                      <Text>Item 1</Text>
-                    </Link>
+                  <Dropdown.Item href="/" leftIcon={<FiChevronRight />}>
+                    Home
                   </Dropdown.Item>
                 </Dropdown.ListGroup>
                 <Dropdown.Divider />
                 <Dropdown.ListGroup title="Options">
-                  <Dropdown.Item>
-                    <Link
-                      href="#"
-                      sx={{ textDecoration: "none", outline: "none" }}
-                    >
-                      <Text>Item 2</Text>
-                    </Link>
-                  </Dropdown.Item>
-                  <Dropdown.Item>
-                    <Button
-                      onClick={() => alert("hello there")}
-                      sx={{
-                        padding: 0,
-                        backgroundColor: "transparent",
-                        ":focus": {
-                          boxShadow: "none",
-                        },
-                      }}
-                    >
-                      <Text>Item 3</Text>
-                    </Button>
+                  <Dropdown.Item href="/code">Code</Dropdown.Item>
+                  <Dropdown.Item onClick={() => alert("hello there")}>
+                    Alert
                   </Dropdown.Item>
                 </Dropdown.ListGroup>
               </Dropdown.List>
@@ -146,10 +109,6 @@ export default function ExamplePage(): JSX.Element {
                   text: value,
                 })
               }
-              sx={{
-                cursor: "pointer",
-                "&:hover": { backgroundColor: "muted", boxShadow: "card" },
-              }}
             >
               Summon Toast
             </Button>

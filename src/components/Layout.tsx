@@ -1,19 +1,32 @@
-import { Flex, Box, Text } from "theme-ui";
-import { Navbar, NavButtons, ScrollButton } from "@components/index";
+import { Flex, Box } from "theme-ui";
+import { Navbar, Footer } from "@components/index";
 import Head from "next/head";
 import { useColorMode } from "theme-ui";
+import { PropsWithChildren } from "react";
+import { useState, useEffect, useCallback } from "react";
 
-const Layout: React.FC = (props) => {
+export function Layout({ children }: PropsWithChildren<{}>) {
+  const [scrolled, setScrolled] = useState(false);
   const [colorMode] = useColorMode();
   const isDark = colorMode === "dark";
+
+  const handleScroll = useCallback(() => {
+    const offset = window.scrollY;
+    if (offset > 50) {
+      setScrolled(true);
+    } else {
+      setScrolled(false);
+    }
+  }, [setScrolled]);
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+  }, [handleScroll, scrolled]);
 
   return (
     <>
       <Head>
-        <link
-          rel="shortcut icon"
-          href={`${isDark ? "/dark.ico" : "/light.ico"}`}
-        />
+        <link rel="shortcut icon" href="/logo.ico" />
         <meta name="theme-color" content={`${isDark ? "#222639" : "#fff"}`} />
       </Head>
       <Flex
@@ -23,13 +36,17 @@ const Layout: React.FC = (props) => {
           minHeight: "100vh",
         }}
       >
-        <Box sx={{ position: "relative", zIndex: 100 }}>
+        <Box
+          sx={{
+            width: "100%",
+          }}
+        >
           <Navbar />
         </Box>
         <Box
           as="main"
+          mt={[3, 4]}
           sx={{
-            marginTop: [2, 4],
             width: "100%",
             display: "flex",
             flexDirection: "column",
@@ -39,46 +56,16 @@ const Layout: React.FC = (props) => {
           <Box
             sx={{
               width: "100%",
-              maxWidth: "43em",
+              maxWidth: "48em",
               mx: "auto",
               px: 0,
             }}
           >
-            {props.children}
+            {children}
           </Box>
         </Box>
-        <Flex my={[2, 3]} sx={{ justifyContent: "center" }}>
-          <ScrollButton />
-        </Flex>
-        <Box
-          as="footer"
-          sx={{
-            width: "100%",
-          }}
-        >
-          <Box py={[2, 3]} bg="muted">
-            <Box
-              sx={{
-                display: ["block", "none"],
-              }}
-            >
-              <NavButtons />
-            </Box>
-            <Text
-              as="p"
-              sx={{
-                fontSize: 0,
-                filter: "brightness(75%)",
-                textAlign: "center",
-              }}
-            >
-              © 2021 All rights probably deserved.
-            </Text>
-          </Box>
-        </Box>
+        <Footer />
       </Flex>
     </>
   );
-};
-
-export default Layout;
+}

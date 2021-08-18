@@ -7,11 +7,15 @@ import {
 } from "react";
 import { Box, Flex, Container, Text, Button } from "theme-ui";
 import { TabsProvider, useTabs } from "./TabsContext";
+import { darken } from "@theme-ui/color";
 
-export function Tabs({ children }: PropsWithChildren<{}>) {
+export function Tabs({
+  children,
+  ...props
+}: PropsWithChildren<{}> & ComponentProps<typeof Container>) {
   return (
     <TabsProvider>
-      <Container p={2} bg="muted" sx={{ borderRadius: "lg" }}>
+      <Container p={2} bg="muted" sx={{ borderRadius: "lg" }} {...props}>
         {children}
       </Container>
     </TabsProvider>
@@ -25,9 +29,12 @@ type TabProps = PropsWithChildren<{
 
 type TabsListProps = PropsWithChildren<{}> & ComponentProps<typeof Flex>;
 
-Tabs.List = function TabsList({ children }: TabsListProps) {
+Tabs.List = function TabsList({ children, sx, ...props }: TabsListProps) {
   return (
-    <Flex sx={{ borderBottom: "2px solid", borderColor: "highlight" }}>
+    <Flex
+      sx={{ borderBottom: "3px solid", borderColor: "grayness", ...sx }}
+      {...props}
+    >
       {Children.map(children, (child, tabIndex) => {
         if (isValidElement(child)) {
           return cloneElement(child, {
@@ -39,17 +46,39 @@ Tabs.List = function TabsList({ children }: TabsListProps) {
   );
 };
 
-Tabs.ListItem = function Tab({ children, tabIndex, ...props }: TabProps) {
+Tabs.ListItem = function Tab({ children, tabIndex, sx, ...props }: TabProps) {
   const { setActiveTab, activeTab } = useTabs();
   const isActive = activeTab === tabIndex;
 
   return (
     <Button
-      variant="tabButton"
       p={2}
       onClick={() => setActiveTab(tabIndex)}
       sx={{
-        borderColor: isActive ? "primary" : "highlight",
+        color: isActive ? "primary" : "grayness",
+        position: "relative",
+        outline: "transparent solid 3px",
+        outlineOffset: "0px",
+        background: "transparent",
+
+        "&:hover": { cursor: "pointer", backgroundColor: "transparent" },
+        "&:active": {
+          backgroundColor: darken("muted", 0.1),
+          transition: "background-color 0.3s ease-out",
+        },
+        "&:focus-visible": {
+          outline: "none",
+          transition: "box-shadow 0.2s",
+          boxShadow: "outline",
+        },
+
+        borderRadius: 0,
+        borderTop: "none",
+        borderRight: "none",
+        borderLeft: "none",
+        borderBottom: "3px solid",
+        marginBottom: "-3px",
+        ...sx,
       }}
       {...props}
     >

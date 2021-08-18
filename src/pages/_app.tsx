@@ -1,11 +1,11 @@
 import type { AppProps } from "next/app";
 import GlobalStyles from "@styles/GlobalStyles";
 import { theme } from "@styles/theme";
-import Layout from "@components/Layout";
+import { Layout } from "@components/Layout";
 import { ThemeProvider } from "theme-ui";
 import { ToastProvider } from "@components/ToastContext";
 import "@fontsource/poppins";
-import "@fontsource/catamaran";
+import "@fontsource/inter";
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   return (

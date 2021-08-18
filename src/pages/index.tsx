@@ -1,49 +1,36 @@
-import { Container, Box, Flex, Paragraph, Heading } from "theme-ui";
-import { FeaturedList, SEO } from "@components/index";
-import { GetStaticProps } from "next";
+import { Container, Box, Flex, Heading, Divider, Text } from "theme-ui";
+import { SEO, MDXComponent, Link } from "@components/index";
+import {
+  getSinglePost,
+  getAllPosts,
+  LANDING_PATH,
+  POSTS_PATH,
+} from "@utils/mdxUtils";
+import { SinglePost, Posts } from "@ts/Posts";
 import { useColorMode } from "theme-ui";
-import Storyblok, { useStoryblok } from "@utils/storyblok";
+import dayjs from "dayjs";
 
 import reactDark from "../../public/reactDark.json";
 import reactLight from "../../public/reactLight.json";
 import Lottie from "react-lottie";
 
-type Params = {
-  version: string;
-  cv?: number;
-};
+export async function getStaticProps() {
+  const { markdownContent, frontmatter } = await getSinglePost(
+    "home",
+    LANDING_PATH
+  );
 
-export const getStaticProps: GetStaticProps = async (context) => {
-  try {
-    const slug = "landing";
-    const params: Params = {
-      version: "draft",
-    };
+  const posts = await getAllPosts(POSTS_PATH);
+  return {
+    props: { markdownContent, frontmatter, posts },
+  };
+}
 
-    if (context.preview) {
-      params.version = "draft";
-      params.cv = Date.now();
-    }
-
-    const { data } = await Storyblok.get(`cdn/stories/${slug}`, params);
-
-    return {
-      props: {
-        story: data ? data.story : false,
-        preview: context.preview || false,
-      },
-      revalidate: 10,
-    };
-  } catch (error) {
-    return {
-      notFound: true,
-    };
-  }
-};
-
-export default function HomePage(props) {
-  const story = useStoryblok(props.story);
-  const { meta } = story.content;
+export default function HomePage({
+  markdownContent,
+  frontmatter,
+  posts,
+}: SinglePost & Posts) {
   const [colorMode] = useColorMode();
   const isDark = colorMode === "dark";
 
@@ -58,7 +45,7 @@ export default function HomePage(props) {
 
   return (
     <Container p={[2, 3]}>
-      <SEO meta={meta} />
+      <SEO meta={frontmatter} />
       <Flex
         sx={{
           flexFlow: "column",
@@ -66,7 +53,7 @@ export default function HomePage(props) {
         }}
       >
         <Heading as="h1" variant="main" sx={{ textAlign: "center" }}>
-          {story.content.title}
+          {frontmatter.title}
         </Heading>
         <Flex
           sx={{
@@ -78,12 +65,46 @@ export default function HomePage(props) {
         </Flex>
       </Flex>
       <Heading as="h2" variant="subheader" sx={{ textAlign: "center" }}>
-        {story.content.subtitle}
+        {frontmatter.description}
       </Heading>
-      <Box p={3}>
-        <Paragraph>{story.content.description}</Paragraph>
+      <Box py={3}>
+        <MDXComponent code={markdownContent} />
       </Box>
-      <FeaturedList />
+      <Box
+        p={3}
+        mb={5}
+        bg="muted"
+        sx={{
+          borderRadius: "md",
+        }}
+      >
+        <Text
+          py={[2, 3]}
+          sx={{
+            fontSize: [3, 4],
+            textAlign: "left",
+            width: "100%",
+          }}
+        >
+          Latest Posts
+        </Text>
+        <Divider />
+        <Box as="ul">
+          {posts.map(({ frontmatter, full_slug }) => {
+            return (
+              !frontmatter.isDraft && (
+                <Box as="li" py={2} key={frontmatter.title}>
+                  <Link href={full_slug}>
+                    {`${dayjs(frontmatter.published).format(
+                      "MMM DD, YYYY"
+                    )} - ${frontmatter.title}`}
+                  </Link>
+                </Box>
+              )
+            );
+          })}
+        </Box>
+      </Box>
     </Container>
   );
 }

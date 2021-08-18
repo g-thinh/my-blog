@@ -1,51 +1,34 @@
-import { SEO } from "@components/index";
-import Storyblok, { useStoryblok } from "@utils/storyblok";
-import { resolvers } from "@utils/StoryblokResolvers";
-import { GetStaticProps } from "next";
-import { render } from "storyblok-rich-text-react-renderer";
+import { SEO, MDXComponent } from "@components/index";
+import { getSinglePost, LANDING_PATH } from "@utils/mdxUtils";
 import { Box, Container, Heading } from "theme-ui";
 
-type Params = {
-  version: string;
-  cv?: number;
-};
+import { SinglePost } from "@ts/Posts";
 
-export const getStaticProps: GetStaticProps = async (context) => {
-  try {
-    const slug = "about";
-    const params: Params = {
-      version: "draft",
-    };
+export async function getStaticProps() {
+  const { markdownContent, frontmatter } = await getSinglePost(
+    "about",
+    LANDING_PATH
+  );
+  return {
+    props: { markdownContent, frontmatter },
+  };
+}
 
-    if (context.preview) {
-      params.version = "draft";
-      params.cv = Date.now();
-    }
+export default function AboutPage({
+  markdownContent,
+  frontmatter,
+}: SinglePost) {
+  const SEOTag = {
+    title: `Gia Thinh Nguyen - ${frontmatter.title}`,
+    description: frontmatter.description,
+    backgroundImage: frontmatter.backgroundImage,
+  };
 
-    const { data } = await Storyblok.get(`cdn/stories/${slug}`, params);
-
-    return {
-      props: {
-        story: data ? data.story : false,
-        preview: context.preview || false,
-      },
-      revalidate: 10,
-    };
-  } catch (error) {
-    return {
-      notFound: true,
-    };
-  }
-};
-
-export default function AboutPage(props) {
-  const story = useStoryblok(props.story);
-  const { meta } = story.content;
   return (
     <Container p={[2, 3]}>
-      <SEO meta={meta} />
+      <SEO meta={SEOTag} />
       <Heading as="h1" variant="main" sx={{ textAlign: "center" }}>
-        {story.content.title}
+        {frontmatter.title}
       </Heading>
       <Heading
         as="h2"
@@ -53,11 +36,11 @@ export default function AboutPage(props) {
         mt={[2, 3]}
         sx={{ textAlign: "center" }}
       >
-        {story.content.subtitle}
+        {frontmatter.description}
       </Heading>
 
       <Box as="section" mt={[3, 4]} p={[3, 0]}>
-        {render(story.content.description, resolvers)}
+        <MDXComponent code={markdownContent} />
       </Box>
     </Container>
   );

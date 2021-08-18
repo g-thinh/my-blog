@@ -1,14 +1,17 @@
 import { Message, Paragraph } from "theme-ui";
-import { render } from "storyblok-rich-text-react-renderer";
-import { NODE_PARAGRAPH } from "storyblok-rich-text-react-renderer";
+import { darken, transparentize } from "@theme-ui/color";
 
-export const Note = ({ data }) => {
-  const resolver = {
-    nodeResolvers: {
-      [NODE_PARAGRAPH]: function NodeParagraph(children) {
-        return <Paragraph>{children}</Paragraph>;
-      },
-    },
-  };
-  return <Message my={[3, 4]}>{render(data.text, resolver)}</Message>;
+export const Note = ({
+  children,
+  ...props
+}: React.PropsWithChildren<{}> & React.ComponentProps<typeof Message>) => {
+  return (
+    <Message
+      my={[3, 4]}
+      sx={{ backgroundColor: transparentize("grayness", 0.8) }}
+      {...props}
+    >
+      {children}
+    </Message>
+  );
 };

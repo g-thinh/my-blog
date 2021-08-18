@@ -108,6 +108,7 @@ const GlobalStyles = (props: GlobalProps): JSX.Element => {
           vertical-align: baseline;
           ::-webkit-scrollbar {
             width: 12px;
+            height: 12px;
             background-color: ${theme.colors.background};
           }
           ::-webkit-scrollbar-track {
