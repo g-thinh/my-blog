@@ -1,0 +1,71 @@
+---
+title: Using Next/Image with Theme-UI
+description: A quick tutorial on how to leverage Next/Image with Theme-UI
+published: "2021-08-15 15:15:52"
+backgroundImage: "https://images.unsplash.com/photo-1546329360-490ea6bf70e4?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80"
+isDraft: false
+tags: [Typescript, "Theme-UI", Next.js]
+---
+
+Next.js comes packed with optimizations, notably with images since version 10
+got released. This is ideal for web apps with tons of media content such as 
+images. Essentially, instead of images being optimized at build time, they are
+lazy loaded by default (meaning they are loaded as users scroll).
+
+These are some huge benefits, and we definitely want them rolling with our Theme-UI
+project. Since `next/image` already provides a React component to use, we can 
+wrap around with an incredibly useful Theme-UI component called the `<AspectRatio>`. 
+As the name aptly implies, this component preserves the aspect ratio of any image it wraps
+around through its `ratio` prop.
+
+Taking a look at the code, we come up with the following:
+
+```typescript title="Image.tsx"
+import NextImage from "next/image";
+import { AspectRatio } from "@theme-ui/components";
+
+type ImageProps = React.ComponentProps<typeof NextImage> &
+  React.ComponentProps<typeof AspectRatio>;
+
+export function Image({ ratio, ...props }: ImageProps) {
+  if (!ratio) {
+    return <NextImage {...props} />;
+  }
+
+  return (
+    <AspectRatio ratio={ratio}>
+      <NextImage {...props} />
+    </AspectRatio>
+  );
+}
+```
+
+And voilà! We have our `<Image>` component ready to use. There is no particular
+magic behind this component, it actually uses a well-known padding trick to 
+calculate the appropriate width/height for the image. `NextImage` will naturally
+takes whatever space is available using the `layout` prop with the value of `fill`.
+
+<Image
+  src={frontmatter.backgroundImage}
+  ratio={4/3}
+  alt="Photo by Thomas Le"
+  caption="A Next/Image with layout fill"
+  layout="fill"
+  mb={4}
+/>
+
+Of course, we should also be able to choose a width or height using the component
+itself if no aspect ratio is passed.
+
+<Flex mb={4} sx={{justifyContent:'center'}}>
+  <Image
+  src={frontmatter.backgroundImage}
+  alt="Photo by Thomas Le"
+  caption="A regular 300x250 Next/Image"
+  width={300}
+  height={250}
+/>
+</Flex>
+
+And that's really it, you now have a versatile component to render images at any
+size.

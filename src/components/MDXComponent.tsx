@@ -135,6 +135,7 @@ const components = {
   TOC,
   Link,
   Flex,
+  Box,
 };
 
 export function MDXComponent({ code }) {
