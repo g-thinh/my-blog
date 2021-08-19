@@ -86,11 +86,11 @@ Code.Pre = function CodePre({
       as="pre"
       className={className}
       style={style}
+      py={3}
       sx={{
         backgroundColor: "transparent",
         width: "100%",
         overflow: "auto",
-        padding: 3,
         borderRadius: "lg",
         "::-webkit-scrollbar-thumb": {
           backgroundColor: "grayness",
@@ -105,16 +105,25 @@ Code.Pre = function CodePre({
 
 function Line({ children, ...props }: BoxProps) {
   return (
-    <Box px={2} sx={{ display: "table-cell", width: "100%" }} {...props}>
+    <Box sx={{ display: "table", width: "100%" }} {...props}>
       {children}
     </Box>
   );
 }
 
+Line.Row = function LineRow({ children, ...props }: BoxProps) {
+  return (
+    <Box sx={{ display: "table-cell", width: "100%" }} {...props}>
+      {children}
+    </Box>
+  );
+};
+
 Line.Number = function LineNumber({ children, ...props }: TextProps) {
   return (
     <Text
       color="grayness"
+      px={3}
       sx={{
         display: "table-cell",
         textAlign: "right",
@@ -133,7 +142,7 @@ Line.Number = function LineNumber({ children, ...props }: TextProps) {
 
 Line.Content = function LineContent({ children, ...props }: TextProps) {
   return (
-    <Text sx={{ display: "table-cell" }} {...props}>
+    <Text px={3} sx={{ display: "table-cell" }} {...props}>
       {children}
     </Text>
   );
@@ -174,33 +183,35 @@ export function CodeSnippet({
                 ml={3}
               >{`/* ${title} */`}</Code.Title>
             )}
-            {tokens.map((line, index) => (
-              <Line
-                key={index}
-                {...getLineProps({ line, key: index })}
-                sx={{
-                  backgroundColor: shouldHighlightLine(index)
-                    ? transparentize("accent", 0.8)
-                    : undefined,
-                }}
-              >
-                {showlineNumbers && <Line.Number>{index + 1}</Line.Number>}
-                <Line.Content sx={{ display: "table-cell" }}>
-                  {line.map((token, key) => (
-                    <Text
-                      as="span"
-                      key={key}
-                      {...getTokenProps({ token, key })}
-                      sx={{
-                        fontSize: [2, 3],
-                        fontFamily: "code",
-                        lineHeight: 1.4,
-                      }}
-                    />
-                  ))}
-                </Line.Content>
-              </Line>
-            ))}
+            <Line>
+              {tokens.map((line, index) => (
+                <Line.Row
+                  key={index}
+                  {...getLineProps({ line, key: index })}
+                  sx={{
+                    backgroundColor: shouldHighlightLine(index)
+                      ? transparentize("accent", 0.8)
+                      : undefined,
+                  }}
+                >
+                  {showlineNumbers && <Line.Number>{index + 1}</Line.Number>}
+                  <Line.Content>
+                    {line.map((token, key) => (
+                      <Text
+                        as="span"
+                        key={key}
+                        {...getTokenProps({ token, key })}
+                        sx={{
+                          fontSize: [2, 3],
+                          fontFamily: "code",
+                          lineHeight: 1.4,
+                        }}
+                      />
+                    ))}
+                  </Line.Content>
+                </Line.Row>
+              ))}
+            </Line>
           </Code.Pre>
         )}
       </Highlight>
