@@ -1,18 +1,12 @@
-import {
-  ComponentProps,
-  PropsWithChildren,
-  Children,
-  isValidElement,
-  cloneElement,
-} from "react";
+import React from "react";
 import { Box, Flex, Container, Text, Button } from "theme-ui";
-import { TabsProvider, useTabs } from "./TabsContext";
+import { TabsProvider, useTabs } from "@components/TabsContext";
 import { darken } from "@theme-ui/color";
 
 export function Tabs({
   children,
   ...props
-}: PropsWithChildren<{}> & ComponentProps<typeof Container>) {
+}: React.PropsWithChildren<{}> & React.ComponentProps<typeof Container>) {
   return (
     <TabsProvider>
       <Container p={2} bg="muted" sx={{ borderRadius: "lg" }} {...props}>
@@ -22,12 +16,12 @@ export function Tabs({
   );
 }
 
-type TabProps = PropsWithChildren<{
+type TabProps = React.PropsWithChildren<{
   tabIndex?: number;
 }> &
-  ComponentProps<typeof Button>;
+  React.ComponentProps<typeof Button>;
 
-type TabsListProps = PropsWithChildren<{}> & ComponentProps<typeof Flex>;
+type TabsListProps = React.PropsWithChildren<React.ComponentProps<typeof Flex>>;
 
 Tabs.List = function TabsList({ children, sx, ...props }: TabsListProps) {
   return (
@@ -35,9 +29,9 @@ Tabs.List = function TabsList({ children, sx, ...props }: TabsListProps) {
       sx={{ borderBottom: "3px solid", borderColor: "grayness", ...sx }}
       {...props}
     >
-      {Children.map(children, (child, tabIndex) => {
-        if (isValidElement(child)) {
-          return cloneElement(child, {
+      {React.Children.map(children, (child, tabIndex) => {
+        if (React.isValidElement(child)) {
+          return React.cloneElement(child, {
             tabIndex,
           });
         }
@@ -91,18 +85,18 @@ Tabs.ListItem = function Tab({ children, tabIndex, sx, ...props }: TabProps) {
   );
 };
 
-type TabsContentProps = PropsWithChildren<{
+type TabsContentProps = React.PropsWithChildren<{
   tabIndex?: number;
   TabName?: string;
 }> &
-  ComponentProps<typeof Box>;
+  React.ComponentProps<typeof Box>;
 
 Tabs.Sections = function TabsContent({ children, ...props }: TabsContentProps) {
   return (
     <Box my={2} {...props}>
-      {Children.map(children, (child, tabIndex) => {
-        if (isValidElement(child)) {
-          return cloneElement(child, { tabIndex });
+      {React.Children.map(children, (child, tabIndex) => {
+        if (React.isValidElement(child)) {
+          return React.cloneElement(child, { tabIndex });
         }
       })}
     </Box>

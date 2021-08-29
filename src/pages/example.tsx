@@ -1,6 +1,8 @@
-import { Dropdown, Tabs, Link } from "@components/index";
+import { Dropdown } from "@components/Dropdown";
+import { Link } from "@components/Link";
+import { Tabs } from "@components/Tabs";
 import { useToast } from "@components/ToastContext";
-import { useState } from "react";
+import React from "react";
 import { FiChevronDown, FiChevronRight } from "react-icons/fi";
 import {
   Box,
@@ -15,7 +17,7 @@ import {
 
 export default function ExamplePage(): JSX.Element {
   const { dispatch } = useToast();
-  const [value, setValue] = useState<string>("Toast message here");
+  const [value, setValue] = React.useState<string>("Toast message here");
 
   return (
     <Container p={[2, 3]}>

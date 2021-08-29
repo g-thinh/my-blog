@@ -1,15 +1,14 @@
 import NextLink from "next/link";
 import { useRouter } from "next/router";
-import { ComponentProps, PropsWithChildren } from "react";
 import { FiExternalLink } from "react-icons/fi";
 import { Link as Anchor, Button } from "theme-ui";
 import { Icon } from "./Icon";
 
-type RouteLinkProps = PropsWithChildren<{
+type RouteLinkProps = React.PropsWithChildren<{
   isActive?: boolean;
   noIcon?: boolean;
 }> &
-  ComponentProps<typeof Anchor>;
+  React.ComponentProps<typeof Anchor>;
 
 export function Link({
   href,

@@ -1,11 +1,11 @@
-import { PropsWithChildren, useState, Dispatch, SetStateAction } from "react";
+import React from "react";
 import { Variants } from "framer-motion";
 
 import { createCtx } from "@utils/createContext";
 
 type DropdownContextState = {
   isOpen: boolean;
-  onTransitionEnd: Dispatch<SetStateAction<boolean>>;
+  onTransitionEnd: React.Dispatch<React.SetStateAction<boolean>>;
   dropdownAnimation: typeof dropdownAnimation;
 };
 
@@ -34,8 +34,8 @@ const dropdownAnimation: Variants = {
 
 export const [useDropdown, CtxProvider] = createCtx<DropdownContextState>();
 
-export function DropdownProvider({ children }: PropsWithChildren<{}>) {
-  const [isOpen, onTransitionEnd] = useState(false);
+export function DropdownProvider({ children }: React.PropsWithChildren<{}>) {
+  const [isOpen, onTransitionEnd] = React.useState(false);
 
   return (
     <CtxProvider

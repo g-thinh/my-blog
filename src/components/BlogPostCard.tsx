@@ -1,5 +1,5 @@
 import { Text, Card, Flex, Box } from "theme-ui";
-import { Link } from "@components/index";
+import { Link } from "@components/Link";
 import dayjs from "dayjs";
 import advancedFormat from "dayjs/plugin/advancedFormat";
 import { MarkdownFrontmatter } from "@ts/Posts";

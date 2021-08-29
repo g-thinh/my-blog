@@ -1,7 +1,8 @@
 import { Container, Grid, Heading } from "theme-ui";
 import { getAllPosts, POSTS_PATH } from "@utils/mdxUtils";
 import { Posts } from "@ts/Posts";
-import { BlogPostCard, SEO } from "@components/index";
+import { BlogPostCard } from "@components/BlogPostCard";
+import { SEO } from "@components/SEO";
 import type { FrontmatterProperties } from "@ts/Posts";
 
 export async function getStaticProps() {

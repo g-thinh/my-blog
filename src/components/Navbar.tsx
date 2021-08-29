@@ -1,16 +1,16 @@
-import { useEffect, ComponentProps } from "react";
-import { Box, Flex, Heading, Text, useColorMode, IconButton } from "theme-ui";
-import { Link } from "@components/index";
+import { Link } from "@components/Link";
+import React from "react";
 import { DarkModeSwitch } from "react-toggle-dark-mode";
+import { Box, Flex, Heading, IconButton, Text, useColorMode } from "theme-ui";
 
-export function Navbar({ sx, ...props }: ComponentProps<typeof Box>) {
+export function Navbar({ sx, ...props }: React.ComponentProps<typeof Box>) {
   const [colorMode, setColorMode] = useColorMode();
   const isDark = colorMode === "dark";
 
   const handleColorChange = () =>
     setColorMode(colorMode === "light" ? "dark" : "light");
 
-  useEffect(() => {
+  React.useEffect(() => {
     const switchMode = (e) => {
       const isDarkMode = e.matches;
       isDarkMode ? setColorMode("dark") : setColorMode("light");

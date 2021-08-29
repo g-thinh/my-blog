@@ -1,7 +1,7 @@
-import { SEO, MDXComponent } from "@components/index";
+import { SEO } from "@components/SEO";
+import { MDXComponent } from "@components/MDXComponent";
 import { getSinglePost, LANDING_PATH } from "@utils/mdxUtils";
 import { Box, Container, Heading } from "theme-ui";
-
 import { SinglePost } from "@ts/Posts";
 
 export async function getStaticProps() {

@@ -1,5 +1,6 @@
 import { Flex, Box } from "theme-ui";
-import { Navbar, Footer } from "@components/index";
+import { Navbar } from "@components/Navbar";
+import { Footer } from "@components/Footer";
 import Head from "next/head";
 import { useColorMode } from "theme-ui";
 import { PropsWithChildren } from "react";

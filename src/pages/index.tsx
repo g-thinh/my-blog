@@ -1,5 +1,7 @@
 import { Container, Box, Flex, Heading, Divider, Text } from "theme-ui";
-import { SEO, MDXComponent, Link } from "@components/index";
+import { SEO } from "@components/SEO";
+import { MDXComponent } from "@components/MDXComponent";
+import { Link } from "@components/Link";
 import {
   getSinglePost,
   getAllPosts,
@@ -9,7 +11,6 @@ import {
 import { SinglePost, Posts } from "@ts/Posts";
 import { useColorMode } from "theme-ui";
 import dayjs from "dayjs";
-
 import reactDark from "../../public/reactDark.json";
 import reactLight from "../../public/reactLight.json";
 import Lottie from "react-lottie";

@@ -3,7 +3,6 @@ import { Box, Text } from "theme-ui";
 import Highlight, { defaultProps, Language } from "prism-react-renderer";
 import { GetCodeStyles } from "@styles/GetCodeStyles";
 import rangeParser from "parse-numeric-range";
-import React from "react";
 
 type CodeSnippetProps = {
   code: string;

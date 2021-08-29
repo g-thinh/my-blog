@@ -1,7 +1,8 @@
 import { Container, Heading, Text, Box, Divider } from "theme-ui";
 import { getSinglePost, getAllPosts, POSTS_PATH } from "@utils/mdxUtils";
-import { MDXComponent, Tags, SEO } from "@components/index";
-
+import { MDXComponent } from "@components/MDXComponent";
+import { Tags } from "@components/Tags";
+import { SEO } from "@components/SEO";
 import dayjs from "dayjs";
 import advancedFormat from "dayjs/plugin/advancedFormat";
 import { SinglePost } from "@ts/Posts";

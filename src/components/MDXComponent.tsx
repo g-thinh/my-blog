@@ -1,24 +1,21 @@
-import {
-  Image,
-  Link,
-  Note,
-  useToast,
-  CodeSnippet,
-  InlineCode,
-} from "@components/index";
+import { CodeSnippet, InlineCode } from "@components/CodeSnippet";
+import { Image } from "@components/Image";
+import { Link } from "@components/Link";
+import { Note } from "@components/Note";
+import { useToast } from "@components/ToastContext";
 import { TOC } from "@components/TOC";
 import { getMDXComponent } from "mdx-bundler/client";
-import React, { useMemo } from "react";
+import React from "react";
+import { FiLink } from "react-icons/fi";
 import {
   Box,
   Divider,
-  Paragraph,
-  Text,
   Flex,
   Heading as H,
   IconButton,
+  Paragraph,
+  Text,
 } from "theme-ui";
-import { FiLink } from "react-icons/fi";
 
 type PreProps = {
   children: React.ReactElement;
@@ -139,6 +136,6 @@ const components = {
 };
 
 export function MDXComponent({ code }) {
-  const Component = useMemo(() => getMDXComponent(code), [code]);
+  const Component = React.useMemo(() => getMDXComponent(code), [code]);
   return <Component components={components} />;
 }

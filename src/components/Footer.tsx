@@ -1,6 +1,6 @@
 import { Box, Flex, Text } from "theme-ui";
 import { FiGithub, FiTwitter, FiLinkedin } from "react-icons/fi";
-import { Link } from "@components/index";
+import { Link } from "@components/Link";
 
 export function Footer() {
   return (

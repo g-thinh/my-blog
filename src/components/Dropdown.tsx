@@ -9,8 +9,8 @@ import {
   FocusEvent,
 } from "react";
 import { Box, Flex, Text, Divider, Button } from "theme-ui";
-import { DropdownProvider, useDropdown } from "./DropdownContext";
-import { Link } from "@components/index";
+import { DropdownProvider, useDropdown } from "@components/DropdownContext";
+import { Link } from "@components/Link";
 import { darken } from "@theme-ui/color";
 
 export function Dropdown({

@@ -1,4 +1,4 @@
-import { Dispatch, PropsWithChildren, useReducer } from "react";
+import React from "react";
 import { createCtx } from "@utils/createContext";
 import { Toast } from "@components/Toast";
 
@@ -32,7 +32,7 @@ type InitialState = {
 
 type ToastContextState = {
   state: InitialState;
-  dispatch: Dispatch<DispatchAction>;
+  dispatch: React.Dispatch<DispatchAction>;
 };
 
 export const [useToast, CtxProvider] = createCtx<ToastContextState>();
@@ -74,8 +74,8 @@ function reducer(state = initialState, action: DispatchAction) {
   }
 }
 
-export const ToastProvider = ({ children }: PropsWithChildren<{}>) => {
-  const [state, dispatch] = useReducer(reducer, initialState);
+export const ToastProvider = ({ children }: React.PropsWithChildren<{}>) => {
+  const [state, dispatch] = React.useReducer(reducer, initialState);
 
   return (
     <CtxProvider value={{ state, dispatch }}>
