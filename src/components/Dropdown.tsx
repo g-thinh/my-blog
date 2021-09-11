@@ -1,10 +1,10 @@
 import useScrollToView from "@utils/useScrollToView";
 import useOnClickOutside from "@utils/useOnClickOutside";
-import { motion } from "framer-motion";
 import { useRef } from "react";
 import { Box, Flex, Text, Divider, Button } from "theme-ui";
 import { DropdownProvider, useDropdown } from "@components/DropdownContext";
 import { Link } from "@components/Link";
+import { Motion } from "@components/Motion";
 import { darken } from "@theme-ui/color";
 
 export function Dropdown({
@@ -115,7 +115,7 @@ Dropdown.List = function DropdownList({ children, ...props }: DropdownList) {
   useScrollToView(DropdownListRef, isOpen);
 
   return (
-    <motion.div
+    <Motion.Box
       initial="exit"
       animate={isOpen ? "enter" : "exit"}
       variants={dropdownAnimation}
@@ -137,7 +137,7 @@ Dropdown.List = function DropdownList({ children, ...props }: DropdownList) {
       >
         {children}
       </Box>
-    </motion.div>
+    </Motion.Box>
   );
 };
 

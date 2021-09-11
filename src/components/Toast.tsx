@@ -1,11 +1,12 @@
 import { Box, Text, Alert, Close, useThemeUI } from "theme-ui";
 import { useToast } from "@components/ToastContext";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import { useEffect, useRef } from "react";
 import { useCallback } from "react";
 import type { Positions } from "./ToastContext";
 import { FiInfo } from "react-icons/fi";
 import { darken } from "@theme-ui/color";
+import { Motion } from "@components/Motion";
 
 const AlertBox = ({ toast }) => {
   const { theme } = useThemeUI();
@@ -23,7 +24,7 @@ const AlertBox = ({ toast }) => {
   }, [handleDeleteToast, state.duration]);
 
   return (
-    <motion.div
+    <Motion.Box
       key={toast.id}
       initial={{ opacity: 0, scale: 0.3, y: "100%" }}
       animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -57,7 +58,7 @@ const AlertBox = ({ toast }) => {
           }}
         />
       </Alert>
-    </motion.div>
+    </Motion.Box>
   );
 };
 
