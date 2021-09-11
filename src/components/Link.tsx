@@ -1,7 +1,7 @@
 import NextLink from "next/link";
 import { useRouter } from "next/router";
 import { FiExternalLink } from "react-icons/fi";
-import { Link as Anchor, Button } from "theme-ui";
+import { Link as Anchor, Button, Text } from "theme-ui";
 import { Icon } from "./Icon";
 
 type RouteLinkProps = React.PropsWithChildren<{
@@ -19,6 +19,16 @@ export function Link({
 }: RouteLinkProps) {
   const router = useRouter();
   const isActiveLink = isActive && router.asPath === href;
+
+  if (!href) {
+    return (
+      <Text
+        sx={{ textDecoration: "underline", textDecorationColor: "primary" }}
+      >
+        {children}
+      </Text>
+    );
+  }
 
   if (href.match(/^(https?:)?\/\//)) {
     return (

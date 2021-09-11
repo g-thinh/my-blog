@@ -1,13 +1,7 @@
 import useScrollToView from "@utils/useScrollToView";
 import useOnClickOutside from "@utils/useOnClickOutside";
 import { motion } from "framer-motion";
-import {
-  ComponentProps,
-  PropsWithChildren,
-  ReactElement,
-  useRef,
-  FocusEvent,
-} from "react";
+import { useRef } from "react";
 import { Box, Flex, Text, Divider, Button } from "theme-ui";
 import { DropdownProvider, useDropdown } from "@components/DropdownContext";
 import { Link } from "@components/Link";
@@ -16,7 +10,7 @@ import { darken } from "@theme-ui/color";
 export function Dropdown({
   children,
   ...props
-}: PropsWithChildren<ComponentProps<typeof Box>>) {
+}: React.PropsWithChildren<React.ComponentProps<typeof Box>>) {
   return (
     <DropdownProvider>
       <DropdownContainer {...props}>{children}</DropdownContainer>
@@ -28,7 +22,7 @@ function DropdownContainer({
   children,
   sx,
   ...props
-}: PropsWithChildren<ComponentProps<typeof Box>>) {
+}: React.PropsWithChildren<React.ComponentProps<typeof Box>>) {
   const { onTransitionEnd } = useDropdown();
   const ContainerRef = useRef(null);
 
@@ -48,11 +42,11 @@ function DropdownContainer({
   );
 }
 
-type DropdownButtonProps = PropsWithChildren<{
-  rightIcon?: ReactElement<any>;
-  leftIcon?: ReactElement<any>;
+type DropdownButtonProps = React.PropsWithChildren<{
+  rightIcon?: React.ReactElement<any>;
+  leftIcon?: React.ReactElement<any>;
 }> &
-  ComponentProps<typeof Button>;
+  React.ComponentProps<typeof Button>;
 
 Dropdown.Button = function DropdownButton({
   children,
@@ -83,10 +77,10 @@ Dropdown.Button = function DropdownButton({
 };
 
 type DropdownList = {
-  icon?: ReactElement<any>;
-} & PropsWithChildren<ComponentProps<typeof Box>>;
+  icon?: React.ReactElement<any>;
+} & React.PropsWithChildren<React.ComponentProps<typeof Box>>;
 
-type DropdownListGroup = PropsWithChildren<{
+type DropdownListGroup = React.PropsWithChildren<{
   title: string;
 }>;
 
@@ -112,7 +106,7 @@ Dropdown.List = function DropdownList({ children, ...props }: DropdownList) {
 
   const DropdownListRef = useRef<HTMLDivElement>(null);
 
-  const handleOnBlur = (event: FocusEvent<HTMLDivElement>) => {
+  const handleOnBlur = (event: React.FocusEvent<HTMLDivElement>) => {
     if (!event.currentTarget.contains(event.relatedTarget as Node)) {
       onTransitionEnd(false);
     }
@@ -147,12 +141,12 @@ Dropdown.List = function DropdownList({ children, ...props }: DropdownList) {
   );
 };
 
-type DropdownItem = PropsWithChildren<{
+type DropdownItem = React.PropsWithChildren<{
   href?: string;
-  rightIcon?: ReactElement<any>;
-  leftIcon?: ReactElement<any>;
+  rightIcon?: React.ReactElement<any>;
+  leftIcon?: React.ReactElement<any>;
 }> &
-  ComponentProps<typeof Box>;
+  React.ComponentProps<typeof Box>;
 
 Dropdown.Item = function DropdownItem({
   children,

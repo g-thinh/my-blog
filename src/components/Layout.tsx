@@ -3,10 +3,9 @@ import { Navbar } from "@components/Navbar";
 import { Footer } from "@components/Footer";
 import Head from "next/head";
 import { useColorMode } from "theme-ui";
-import { PropsWithChildren } from "react";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 
-export function Layout({ children }: PropsWithChildren<{}>) {
+export function Layout({ children }: React.PropsWithChildren<{}>) {
   const [scrolled, setScrolled] = useState(false);
   const [colorMode] = useColorMode();
   const isDark = colorMode === "dark";

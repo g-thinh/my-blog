@@ -28,7 +28,7 @@ export function Navbar({ sx, ...props }: React.ComponentProps<typeof Box>) {
       mx="auto"
       px={[2, 3]}
       sx={{
-        height: "4rem",
+        height: ["3.5rem", "3.5rem", "5rem"],
         position: "relative",
         zIndex: 101,
         maxWidth: "48em",
