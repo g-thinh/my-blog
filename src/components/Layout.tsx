@@ -36,13 +36,7 @@ export function Layout({ children }: React.PropsWithChildren<{}>) {
           minHeight: "100vh",
         }}
       >
-        <Box
-          sx={{
-            width: "100%",
-          }}
-        >
-          <Navbar />
-        </Box>
+        <Navbar />
         <Box
           as="main"
           mt={[3, 4]}

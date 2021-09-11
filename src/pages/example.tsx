@@ -24,15 +24,10 @@ export default function ExamplePage(): JSX.Element {
       <Heading as="h1" mb={[2, 3]} sx={{ textAlign: "center" }}>
         Playground
       </Heading>
-      <Heading
-        as="h2"
-        mt={[3, 4]}
-        variant="subheader"
-        sx={{ textAlign: "center" }}
-      >
+      <Paragraph variant="subheader" mt={[3, 4]} sx={{ textAlign: "center" }}>
         This is where build stuff that will be used on my blog! Mostly basic
         implementations of widely used web components.
-      </Heading>
+      </Paragraph>
       <Divider mb={3} mt={3} />
       <Box py={4} px={3}>
         <Heading>Buttons</Heading>

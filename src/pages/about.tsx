@@ -1,7 +1,7 @@
 import { SEO } from "@components/SEO";
 import { MDXComponent } from "@components/MDXComponent";
 import { getSinglePost, LANDING_PATH } from "@utils/mdxUtils";
-import { Box, Container, Heading } from "theme-ui";
+import { Box, Container, Heading, Paragraph } from "theme-ui";
 import { SinglePost } from "@ts/Posts";
 
 export async function getStaticProps() {
@@ -30,14 +30,9 @@ export default function AboutPage({
       <Heading as="h1" variant="main" sx={{ textAlign: "center" }}>
         {frontmatter.title}
       </Heading>
-      <Heading
-        as="h2"
-        variant="subheader"
-        mt={[2, 3]}
-        sx={{ textAlign: "center" }}
-      >
+      <Paragraph variant="subheader" mt={[2, 3]} sx={{ textAlign: "center" }}>
         {frontmatter.description}
-      </Heading>
+      </Paragraph>
 
       <Box as="section" mt={[3, 4]} p={[3, 0]}>
         <MDXComponent code={markdownContent} />

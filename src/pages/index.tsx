@@ -62,7 +62,12 @@ export default function HomePage({
             alignItems: "center",
           }}
         >
-          <Lottie options={defaultOptions} height={150} width={150} />
+          <Lottie
+            tabIndex={-1}
+            options={defaultOptions}
+            height={150}
+            width={150}
+          />
         </Flex>
       </Flex>
       <Heading as="h2" variant="subheader" sx={{ textAlign: "center" }}>

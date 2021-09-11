@@ -37,18 +37,21 @@ export function BlogPostCard({
       }}
     >
       <Link.Overlay href={full_slug} />
-      <Flex p={[2, 3]} sx={{ width: "100%" }}>
+      <Flex p={3} sx={{ width: "100%", flexDirection: ["column", "row"] }}>
         <Flex
-          mx={3}
+          mb={[2, undefined]}
           sx={{
             flex: "1",
-            justifyContent: "center",
+            justifyContent: ["flex-start", "center"],
             alignContent: "center",
           }}
         >
           <Text
-            as="h3"
-            sx={{ fontSize: [2, 3], textAlign: "center", color: "grayness" }}
+            sx={{
+              fontSize: [2, 3],
+              textAlign: "center",
+              color: "grayness",
+            }}
           >
             {dayjs(published).format("MMM Do, YYYY")}
           </Text>

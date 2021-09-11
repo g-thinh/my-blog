@@ -40,7 +40,7 @@ export function Link({
   }
 
   return (
-    <NextLink href={href}>
+    <NextLink href={href} passHref>
       <Anchor color={isActiveLink ? "primary" : "text"} {...props}>
         {children}
       </Anchor>

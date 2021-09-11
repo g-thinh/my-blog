@@ -1,5 +1,5 @@
 import { Link } from "@components/Link";
-import React from "react";
+import { useEffect } from "react";
 import { DarkModeSwitch } from "react-toggle-dark-mode";
 import { Box, Flex, Heading, IconButton, Text, useColorMode } from "theme-ui";
 
@@ -10,7 +10,7 @@ export function Navbar({ sx, ...props }: React.ComponentProps<typeof Box>) {
   const handleColorChange = () =>
     setColorMode(colorMode === "light" ? "dark" : "light");
 
-  React.useEffect(() => {
+  useEffect(() => {
     const switchMode = (e) => {
       const isDarkMode = e.matches;
       isDarkMode ? setColorMode("dark") : setColorMode("light");
@@ -32,6 +32,7 @@ export function Navbar({ sx, ...props }: React.ComponentProps<typeof Box>) {
         position: "relative",
         zIndex: 101,
         maxWidth: "48em",
+        width: "100%",
         ...sx,
       }}
       {...props}
@@ -48,11 +49,8 @@ export function Navbar({ sx, ...props }: React.ComponentProps<typeof Box>) {
           href="/"
           my={[2, 3]}
           sx={{
-            "&:hover": {
+            "&:hover, :focus-within": {
               color: "primary",
-            },
-            "&:focus": {
-              textDecoration: "none",
             },
           }}
         >
@@ -72,9 +70,9 @@ export function Navbar({ sx, ...props }: React.ComponentProps<typeof Box>) {
             </Text>
           </Heading>
         </Link>
-        <Box as="ul" py={[2, 0]}>
-          <Flex as="li" sx={{ alignItems: "center", justifyContent: "center" }}>
-            <Box px={2}>
+        <Box as="nav">
+          <Flex as="ul" py={[2, 0]} sx={{ alignItems: "center" }}>
+            <Box as="li">
               <IconButton bg="transparent" onClick={handleColorChange}>
                 <DarkModeSwitch
                   moonColor="var(--theme-ui-colors-primary)"
@@ -85,12 +83,16 @@ export function Navbar({ sx, ...props }: React.ComponentProps<typeof Box>) {
                 />
               </IconButton>
             </Box>
-            <Link href="/about" isActive mx={[2, 3]}>
-              About
-            </Link>
-            <Link href="/posts" isActive mx={[2, 3]}>
-              Posts
-            </Link>
+            <Box as="li">
+              <Link href="/about" isActive mx={[2, 3]}>
+                About
+              </Link>
+            </Box>
+            <Box as="li">
+              <Link href="/posts" isActive mx={[2, 3]}>
+                Posts
+              </Link>
+            </Box>
           </Flex>
         </Box>
       </Flex>

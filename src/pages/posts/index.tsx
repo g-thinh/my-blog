@@ -1,4 +1,4 @@
-import { Container, Grid, Heading } from "theme-ui";
+import { Container, Grid, Heading, Paragraph } from "theme-ui";
 import { getAllPosts, POSTS_PATH } from "@utils/mdxUtils";
 import { Posts } from "@ts/Posts";
 import { BlogPostCard } from "@components/BlogPostCard";
@@ -34,9 +34,9 @@ export default function PostsPage({ posts }: Posts) {
       <Heading as="h1" variant="main">
         Blog Posts
       </Heading>
-      <Heading as="h2" variant="subheader" mt={[2, 3]}>
+      <Paragraph variant="subheader" mt={[2, 3]}>
         Where I share some of my findings about building apps for the web.
-      </Heading>
+      </Paragraph>
       <Grid mt={4} sx={{ gridTemplateColumns: ["1fr"], gridAutoRows: "1fr" }}>
         {posts &&
           posts.map(({ frontmatter, full_slug }, index) => {
