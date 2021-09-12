@@ -1,8 +1,9 @@
 import { Dropdown } from "@components/Dropdown";
 import { Link } from "@components/Link";
+import Accordion from "@components/Accordion";
 import { Tabs } from "@components/Tabs";
 import { useToast } from "@components/ToastContext";
-import React from "react";
+import { useState } from "react";
 import { FiChevronDown, FiChevronRight } from "react-icons/fi";
 import {
   Box,
@@ -13,11 +14,13 @@ import {
   Heading,
   Input,
   Paragraph,
+  Grid,
 } from "theme-ui";
 
 export default function ExamplePage(): JSX.Element {
   const { dispatch } = useToast();
-  const [value, setValue] = React.useState<string>("Toast message here");
+  const [value, setValue] = useState<string>("Toast message here");
+  const [expanded, setExpanded] = useState<number | false>(0);
 
   return (
     <Container p={[2, 3]}>
@@ -54,6 +57,7 @@ export default function ExamplePage(): JSX.Element {
           </Flex>
         </Box>
       </Box>
+      <Divider mb={3} />
       <Box py={4} px={3}>
         <Heading>Dropdown Menu</Heading>
         <Paragraph>
@@ -82,6 +86,63 @@ export default function ExamplePage(): JSX.Element {
               </Dropdown.List>
             </Dropdown>
           </Flex>
+        </Box>
+      </Box>
+      <Divider mb={3} />
+      <Box py={4} px={3}>
+        <Heading>Accordion</Heading>
+        <Paragraph mb={4}>
+          This is my implementation of the Accordion, using Framer-Motion for
+          the animation and react-aria/focus for the focus management. Build
+          with a11y W3C specs.
+        </Paragraph>
+        <Box mb={4}>
+          <Accordion>
+            <Accordion.Panel title="Neque porro quisquam">
+              <Paragraph>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
+                ex nibh, vestibulum eget ante et, congue feugiat erat. Ut ornare
+                faucibus leo eget suscipit. Suspendisse nulla libero, bibendum
+                nec mollis ut, bibendum vitae elit. Phasellus placerat odio a
+                pulvinar gravida.
+              </Paragraph>
+            </Accordion.Panel>
+            <Accordion.Panel title="Praesent mollis">
+              <Paragraph>
+                In et blandit augue, eu gravida mauris. Pellentesque tincidunt,
+                erat nec efficitur viverra, libero quam mollis arcu, in dapibus
+                elit lorem et sapien. Praesent dignissim ipsum vel semper
+                ullamcorper. Ut quam libero, commodo a tristique ultricies,
+                aliquam non lorem.
+              </Paragraph>
+            </Accordion.Panel>
+          </Accordion>
+        </Box>
+        <Paragraph mb={4}>
+          We can also enable multiple panels to be opened at once, and for each
+          panel to be collapsible once opened.
+        </Paragraph>
+        <Box>
+          <Accordion allowToggle allowMultiple>
+            <Accordion.Panel title="Neque porro quisquam">
+              <Paragraph>
+                Nunc in velit volutpat erat semper blandit. Quisque eu
+                consectetur mauris, et lacinia elit. Orci varius natoque
+                penatibus et magnis dis parturient montes, nascetur ridiculus
+                mus. In et blandit augue, eu gravida mauris. Pellentesque
+                tincidunt, erat nec efficitur viverra, libero quam mollis arcu,
+                in dapibus elit lorem et sapien. Praesent dignissim ipsum vel
+                semper ullamcorper. Ut quam libero, commodo a tristique
+                ultricies, aliquam non lorem.
+              </Paragraph>
+            </Accordion.Panel>
+            <Accordion.Panel title="Praesent mollis">
+              <Paragraph>
+                Praesent dignissim ipsum vel semper ullamcorper. Ut quam libero,
+                commodo a tristique ultricies, aliquam non lorem.
+              </Paragraph>
+            </Accordion.Panel>
+          </Accordion>
         </Box>
       </Box>
       <Divider mb={3} />

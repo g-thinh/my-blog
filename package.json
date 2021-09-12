@@ -13,6 +13,7 @@
   "dependencies": {
     "@fontsource/inter": "^4.5.0",
     "@fontsource/poppins": "^4.4.0",
+    "@react-aria/focus": "^3.4.1",
     "@theme-ui/color": "^0.10.0",
     "dayjs": "^1.10.6",
     "esbuild": "^0.12.18",

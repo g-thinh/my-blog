@@ -21,7 +21,7 @@ export const buttons = {
       transition: "box-shadow 0.2s",
       boxShadow: "outline",
     },
-    "&:focus-visible": {
+    "&:focus-visible, :focus-within": {
       outline: "none",
       transition: "box-shadow 0.2s",
       boxShadow: "outline",
