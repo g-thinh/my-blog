@@ -1,10 +1,8 @@
-import { Dropdown } from "@components/Dropdown";
 import { Link } from "@components/Link";
 import Accordion from "@components/Accordion";
 import { Tabs } from "@components/Tabs";
 import { useToast } from "@components/ToastContext";
 import { useState } from "react";
-import { FiChevronDown, FiChevronRight } from "react-icons/fi";
 import {
   Box,
   Button,
@@ -14,13 +12,12 @@ import {
   Heading,
   Input,
   Paragraph,
-  Grid,
 } from "theme-ui";
+import Menu from "@components/Menu";
 
 export default function ExamplePage(): JSX.Element {
   const { dispatch } = useToast();
   const [value, setValue] = useState<string>("Toast message here");
-  const [expanded, setExpanded] = useState<number | false>(0);
 
   return (
     <Container p={[2, 3]}>
@@ -59,32 +56,27 @@ export default function ExamplePage(): JSX.Element {
       </Box>
       <Divider mb={3} />
       <Box py={4} px={3}>
-        <Heading>Dropdown Menu</Heading>
+        <Heading>Menu</Heading>
         <Paragraph>
           This is my implementation of the dropdown menu, using Framer-Motion
           for the animation.
         </Paragraph>
         <Box mt={3}>
-          <Flex sx={{ justifyContent: "space-around" }}>
-            <Dropdown>
-              <Dropdown.Button rightIcon={<FiChevronDown />}>
-                Default
-              </Dropdown.Button>
-              <Dropdown.List>
-                <Dropdown.ListGroup title="Main">
-                  <Dropdown.Item href="/" leftIcon={<FiChevronRight />}>
-                    Home
-                  </Dropdown.Item>
-                </Dropdown.ListGroup>
-                <Dropdown.Divider />
-                <Dropdown.ListGroup title="Options">
-                  <Dropdown.Item href="/code">Code</Dropdown.Item>
-                  <Dropdown.Item onClick={() => alert("hello there")}>
-                    Alert
-                  </Dropdown.Item>
-                </Dropdown.ListGroup>
-              </Dropdown.List>
-            </Dropdown>
+          <Flex sx={{ justifyContent: "center" }}>
+            <Menu>
+              <Menu.Button variant="secondary">Button</Menu.Button>
+              <Menu.List>
+                <Menu.Item onClick={() => console.log("do something")}>
+                  Button 1
+                </Menu.Item>
+                <Menu.Item onClick={() => console.log("do something")}>
+                  Button 2
+                </Menu.Item>
+                <Menu.Item as={Link} href="#">
+                  Link 1
+                </Menu.Item>
+              </Menu.List>
+            </Menu>
           </Flex>
         </Box>
       </Box>

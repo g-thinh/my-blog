@@ -106,7 +106,7 @@ export const theme = makeTheme({
     a: {
       display: "inline-flex",
       fontFamily: "body",
-      fontSize: [3, 4],
+      fontSize: [2, 3],
       textDecoration: "none",
       alignItems: "center",
       ":hover": {
