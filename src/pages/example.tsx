@@ -110,10 +110,12 @@ export default function ExamplePage(): JSX.Element {
             </Accordion.Panel>
           </Accordion>
         </Box>
-        <Paragraph mb={4}>
-          We can also enable multiple panels to be opened at once, and for each
-          panel to be collapsible once opened.
-        </Paragraph>
+        <Container variant="outlined" p={3} mb={4}>
+          <Paragraph>
+            We can also enable multiple panels to be opened at once, and for
+            each panel to be collapsible once opened.
+          </Paragraph>
+        </Container>
         <Box>
           <Accordion allowToggle allowMultiple>
             <Accordion.Panel title="Neque porro quisquam">
