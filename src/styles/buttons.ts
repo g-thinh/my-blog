@@ -21,7 +21,7 @@ export const buttons = {
       transition: "box-shadow 0.2s",
       boxShadow: "outline",
     },
-    "&:focus-visible, :focus-within": {
+    "&:focus-visible, :focus-within, :focus": {
       outline: "none",
       transition: "box-shadow 0.2s",
       boxShadow: "outline",
@@ -71,7 +71,7 @@ export const buttons = {
       transition: "box-shadow 0.2s",
       boxShadow: "outline",
     },
-    "&:focus-visible": {
+    "&:focus-visible, :focus": {
       outline: "none",
       transition: "box-shadow 0.2s",
       boxShadow: "outline",
@@ -119,6 +119,14 @@ export const buttons = {
 
     "&:focus": {
       color: "primary",
+    },
+  },
+  reset: {
+    padding: 0,
+    color: "text",
+    borderRadius: 0,
+    "&:hover": {
+      cursor: "pointer",
     },
   },
 };

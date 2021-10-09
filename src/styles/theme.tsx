@@ -1,4 +1,5 @@
 import { Theme, ThemeUIContextValue, useThemeUI } from "theme-ui";
+import { transparentize } from "@theme-ui/color";
 import { buttons } from "./buttons";
 
 const makeTheme = <T extends Theme>(t: T): T => {
@@ -102,11 +103,22 @@ export const theme = makeTheme({
   },
   breakpoints: ["48em", "64em"],
   buttons,
+  layout: {
+    outlined: {
+      border: "0.5px solid",
+      borderColor: transparentize("grayness", 0.75),
+      borderRadius: "lg",
+    },
+  },
   styles: {
+    hr: {
+      borderColor: transparentize("grayness", 0.75),
+      borderWidth: 1,
+    },
     a: {
       display: "inline-flex",
       fontFamily: "body",
-      fontSize: [3, 4],
+      fontSize: [2, 3],
       textDecoration: "none",
       alignItems: "center",
       ":hover": {

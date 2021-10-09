@@ -14,7 +14,7 @@ type AccordionProps = React.PropsWithChildren<{
 }> &
   React.ComponentProps<typeof Flex>;
 
-export default function Accordion({
+export function Accordion({
   children,
   allowMultiple,
   allowToggle,
@@ -66,10 +66,12 @@ Accordion.Panel = function AccordionItem({
   const OnArrowKeysDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
     switch (event.key) {
       case "ArrowDown":
-        focusManager.focusNext();
+        focusManager.focusNext({ wrap: true });
+        event.preventDefault();
         break;
       case "ArrowUp":
-        focusManager.focusPrevious();
+        focusManager.focusPrevious({ wrap: true });
+        event.preventDefault();
         break;
     }
   };
@@ -113,7 +115,7 @@ Accordion.Panel = function AccordionItem({
           >
             {title}
             <Motion.Flex
-              animate={{ rotate: isOpen ? 180 : 0 }}
+              animate={{ rotate: isOpen ? -180 : 0 }}
               transition={{ duration: shouldReduceMotion ? 0 : 0.4 }}
               sx={{ alignItems: "center" }}
             >

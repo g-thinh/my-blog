@@ -43,6 +43,9 @@
     "webpack": "^5.36.2"
   },
   "eslintConfig": {
-    "extends": "next"
+    "extends": "next",
+    "rules": {
+      "@next/next/no-document-import-in-page": "off"
+    }
   }
 }
