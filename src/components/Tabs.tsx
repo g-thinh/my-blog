@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { Box, Flex, Container, Text, Button } from "theme-ui";
 import { TabsProvider, useTabs } from "@components/TabsContext";
 import { darken } from "@theme-ui/color";
+import { FocusScope, useFocusManager } from "@react-aria/focus";
 
 export function Tabs({
   children,
@@ -18,6 +19,7 @@ export function Tabs({
 
 type TabProps = React.PropsWithChildren<{
   tabIndex?: number;
+  size?: number;
 }> &
   React.ComponentProps<typeof Button>;
 
@@ -25,29 +27,58 @@ type TabsListProps = React.PropsWithChildren<React.ComponentProps<typeof Flex>>;
 
 Tabs.List = function TabsList({ children, sx, ...props }: TabsListProps) {
   return (
-    <Flex
-      sx={{ borderBottom: "3px solid", borderColor: "grayness", ...sx }}
-      {...props}
-    >
-      {React.Children.map(children, (child, tabIndex) => {
-        if (React.isValidElement(child)) {
-          return React.cloneElement(child, {
-            tabIndex,
-          });
-        }
-      })}
-    </Flex>
+    <FocusScope>
+      <Flex
+        sx={{ borderBottom: "3px solid", borderColor: "grayness", ...sx }}
+        {...props}
+      >
+        {React.Children.map(children, (child, tabIndex) => {
+          if (React.isValidElement(child)) {
+            return React.cloneElement(child, {
+              tabIndex,
+              size: React.Children.count(children),
+            });
+          }
+        })}
+      </Flex>
+    </FocusScope>
   );
 };
 
-Tabs.ListItem = function Tab({ children, tabIndex, sx, ...props }: TabProps) {
+Tabs.ListItem = function Tab({
+  children,
+  tabIndex,
+  size,
+  sx,
+  ...props
+}: TabProps) {
   const { setActiveTab, activeTab } = useTabs();
   const isActive = activeTab === tabIndex;
+  const focusManager = useFocusManager();
+
+  const onHandleKeyPress = useCallback(
+    (e: React.KeyboardEvent<HTMLButtonElement>) => {
+      switch (e.key) {
+        case "ArrowRight":
+          focusManager.focusNext({ wrap: true });
+          setActiveTab(activeTab === size - 1 ? 0 : activeTab + 1);
+          break;
+
+        case "ArrowLeft":
+          focusManager.focusPrevious({ wrap: true });
+          setActiveTab(activeTab === 0 ? size - 1 : activeTab - 1);
+          break;
+      }
+    },
+    [setActiveTab, focusManager, activeTab, size]
+  );
 
   return (
     <Button
       p={2}
+      onKeyDown={onHandleKeyPress}
       onClick={() => setActiveTab(tabIndex)}
+      tabIndex={isActive ? 0 : -1}
       sx={{
         color: isActive ? "primary" : "grayness",
         position: "relative",

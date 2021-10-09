@@ -14,7 +14,7 @@ type AccordionProps = React.PropsWithChildren<{
 }> &
   React.ComponentProps<typeof Flex>;
 
-export default function Accordion({
+export function Accordion({
   children,
   allowMultiple,
   allowToggle,

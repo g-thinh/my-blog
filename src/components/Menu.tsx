@@ -148,7 +148,6 @@ Menu.Item = function LinkItem({
       switch (event.key) {
         case "ArrowDown":
           focusManager.focusNext({ wrap: true });
-          console.log();
           setCurrentFocus(currentFocus === size - 1 ? 0 : currentFocus + 1);
           event.preventDefault();
           break;

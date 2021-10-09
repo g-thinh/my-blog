@@ -1,5 +1,5 @@
 import { Link } from "@components/Link";
-import Accordion from "@components/Accordion";
+import { Accordion } from "@components/Accordion";
 import { Tabs } from "@components/Tabs";
 import { useToast } from "@components/ToastContext";
 import { useState } from "react";
