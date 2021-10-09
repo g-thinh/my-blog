@@ -8,7 +8,7 @@ type CodeSnippetProps = {
   code: string;
   className?: string;
   title?: string;
-  hl?: number;
+  hl?: string;
   showlineNumbers?: boolean;
 };
 
@@ -147,10 +147,10 @@ Line.Content = function LineContent({ children, ...props }: TextProps) {
   );
 };
 
-function getShouldHighlightLine(hl: unknown) {
+function getShouldHighlightLine(hl: CodeSnippetProps["hl"]) {
   if (hl) {
-    const lineNumbers = rangeParser(hl);
-    return (index) => lineNumbers.includes(index + 1);
+    const lineNumbers: number[] = rangeParser(hl);
+    return (index: number) => lineNumbers.includes(index + 1);
   }
   return () => false;
 }
