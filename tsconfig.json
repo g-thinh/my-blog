@@ -1,7 +1,10 @@
 {
   "compilerOptions": {
     "target": "es6",
-    "lib": ["dom", "esnext"],
+    "lib": [
+      "dom",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,
@@ -15,12 +18,27 @@
     "jsx": "preserve",
     "baseUrl": "src",
     "paths": {
-      "@components/*": ["components/*"],
-      "@styles/*": ["styles/*"],
-      "@utils/*": ["utils/*"],
-      "@ts/*": ["types/*"]
-    }
+      "@components/*": [
+        "components/*"
+      ],
+      "@styles/*": [
+        "styles/*"
+      ],
+      "@utils/*": [
+        "utils/*"
+      ],
+      "@ts/*": [
+        "types/*"
+      ]
+    },
+    "incremental": true
   },
-  "include": ["src", "next-env.d.ts", "utils/storyblok.js"],
-  "exclude": ["node_modules"]
+  "include": [
+    "src",
+    "next-env.d.ts",
+    "utils/storyblok.js"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

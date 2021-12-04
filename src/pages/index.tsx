@@ -9,11 +9,7 @@ import {
   POSTS_PATH,
 } from "@utils/mdxUtils";
 import { SinglePost, Posts } from "@ts/Posts";
-import { useColorMode } from "theme-ui";
 import dayjs from "dayjs";
-import reactDark from "../../public/reactDark.json";
-import reactLight from "../../public/reactLight.json";
-import Lottie from "react-lottie";
 
 export async function getStaticProps() {
   const { markdownContent, frontmatter } = await getSinglePost(
@@ -32,47 +28,20 @@ export default function HomePage({
   frontmatter,
   posts,
 }: SinglePost & Posts) {
-  const [colorMode] = useColorMode();
-  const isDark = colorMode === "dark";
-
-  const defaultOptions = {
-    loop: false,
-    autoplay: true,
-    animationData: isDark ? reactDark : reactLight,
-    rendererSettings: {
-      preserveAspectRatio: "xMidYMid slice",
-    },
-  };
-
   return (
     <Container p={[2, 3]}>
       <SEO meta={frontmatter} />
       <Flex
         sx={{
-          flexFlow: "column",
-          justifyContent: "center",
+          flexFlow: "row",
+          justifyContent: "start",
+          alignItems: "start",
         }}
       >
         <Heading as="h1" variant="main" sx={{ textAlign: "center" }}>
           {frontmatter.title}
         </Heading>
-        <Flex
-          sx={{
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <Lottie
-            tabIndex={-1}
-            options={defaultOptions}
-            height={150}
-            width={150}
-          />
-        </Flex>
       </Flex>
-      <Heading as="h2" variant="subheader" sx={{ textAlign: "center" }}>
-        {frontmatter.description}
-      </Heading>
       <Box py={3}>
         <MDXComponent code={markdownContent} />
       </Box>
