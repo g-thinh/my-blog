@@ -1,12 +1,11 @@
-import { Box, Text, Alert, Close, useThemeUI } from "theme-ui";
-import { useToast } from "@components/ToastContext";
-import { AnimatePresence } from "framer-motion";
-import { useEffect, useRef } from "react";
-import { useCallback } from "react";
-import type { Positions } from "./ToastContext";
-import { FiInfo } from "react-icons/fi";
-import { darken } from "@theme-ui/color";
 import { Motion } from "@components/Motion";
+import { useToast } from "@components/ToastContext";
+import { darken } from "@theme-ui/color";
+import { AnimatePresence } from "framer-motion";
+import { useCallback, useEffect, useRef } from "react";
+import { FiInfo } from "react-icons/fi";
+import { Alert, Box, Close, Text, useThemeUI } from "theme-ui";
+import type { Positions } from "./ToastContext";
 
 const AlertBox = ({ toast }) => {
   const { theme } = useThemeUI();
@@ -108,7 +107,7 @@ function computePositionStyles(position: Positions) {
   }
 }
 
-export const Toast = () => {
+const Toast = () => {
   const { state } = useToast();
   const positionStyles = computePositionStyles(state.position);
 
@@ -129,3 +128,5 @@ export const Toast = () => {
     </Box>
   );
 };
+
+export default Toast;

@@ -1,6 +1,8 @@
-import React from "react";
 import { createCtx } from "@utils/createContext";
-import { Toast } from "@components/Toast";
+import dynamic from "next/dynamic";
+import React from "react";
+
+const LazyToast = dynamic(()=> import("../components/Toast"), {ssr: false})
 
 export type Positions =
   | "top"
@@ -80,7 +82,7 @@ export const ToastProvider = ({ children }: React.PropsWithChildren<{}>) => {
   return (
     <CtxProvider value={{ state, dispatch }}>
       {children}
-      <Toast />
+      <LazyToast />
     </CtxProvider>
   );
 };
